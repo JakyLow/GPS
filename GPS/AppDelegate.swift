@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigator: Navigator!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        navigator.appDelegate(didFinishLaunchingWithOptions: self)
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         return true
     }
 

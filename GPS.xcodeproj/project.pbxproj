@@ -7,21 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		704FE1E634510DEEB3A9A74F /* Pods_GPS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */; };
+		D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */; };
 		D930D5A31E7D588800A77F6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D930D5A21E7D588800A77F6C /* AppDelegate.swift */; };
-		D930D5A51E7D588800A77F6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D930D5A41E7D588800A77F6C /* ViewController.swift */; };
 		D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A61E7D588800A77F6C /* Main.storyboard */; };
 		D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A91E7D588800A77F6C /* Assets.xcassets */; };
 		D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5AB1E7D588800A77F6C /* LaunchScreen.storyboard */; };
+		D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = D9D6864C1E833AFC00A2B798 /* loginBg.gif */; };
+		D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */; };
+		D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */; };
+		D9EC1DD41E809A3A00C925A9 /* AssemblyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBC1E809A3A00C925A9 /* AssemblyViewControllers.swift */; };
+		D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DCC1E809A3A00C925A9 /* Navigator.swift */; };
+		D9EC1DDE1E809A3A00C925A9 /* NavigatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DCD1E809A3A00C925A9 /* NavigatorImpl.swift */; };
+		D9EC1DDF1E809A3A00C925A9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DCF1E809A3A00C925A9 /* Router.swift */; };
+		D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DD01E809A3A00C925A9 /* RouterImpl.swift */; };
+		D9EC1DE11E809A3A00C925A9 /* RouterViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DD11E809A3A00C925A9 /* RouterViewControllerType.swift */; };
+		D9EC1DE31E809D6700C925A9 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DE21E809D6700C925A9 /* HelpViewController.swift */; };
+		D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DE51E80A43000C925A9 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		161060B766C21D295F184046 /* Pods-GPS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS/Pods-GPS.release.xcconfig"; sourceTree = "<group>"; };
+		BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D930D59F1E7D588800A77F6C /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D930D5A21E7D588800A77F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D930D5A41E7D588800A77F6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D930D5A21E7D588800A77F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		D930D5A71E7D588800A77F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D930D5A91E7D588800A77F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D930D5A91E7D588800A77F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		D930D5AC1E7D588800A77F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D930D5AE1E7D588800A77F6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D930D5AE1E7D588800A77F6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		D9D6864C1E833AFC00A2B798 /* loginBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = loginBg.gif; path = GPS/loginBg.gif; sourceTree = SOURCE_ROOT; };
+		D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyProperties.swift; sourceTree = "<group>"; };
+		D9EC1DBC1E809A3A00C925A9 /* AssemblyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyViewControllers.swift; sourceTree = "<group>"; };
+		D9EC1DCC1E809A3A00C925A9 /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		D9EC1DCD1E809A3A00C925A9 /* NavigatorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigatorImpl.swift; sourceTree = "<group>"; };
+		D9EC1DCF1E809A3A00C925A9 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D9EC1DD01E809A3A00C925A9 /* RouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterImpl.swift; sourceTree = "<group>"; };
+		D9EC1DD11E809A3A00C925A9 /* RouterViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterViewControllerType.swift; sourceTree = "<group>"; };
+		D9EC1DE21E809D6700C925A9 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		D9EC1DE51E80A43000C925A9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5AC1993288F91CAADAB279B /* Pods-GPS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPS/Pods-GPS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				704FE1E634510DEEB3A9A74F /* Pods_GPS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24F3962F486FB23CF54DD13B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D930D5961E7D588800A77F6C = {
 			isa = PBXGroup;
 			children = (
 				D930D5A11E7D588800A77F6C /* GPS */,
 				D930D5A01E7D588800A77F6C /* Products */,
+				E3410F9D619230C512FA339A /* Pods */,
+				24F3962F486FB23CF54DD13B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +91,114 @@
 		D930D5A11E7D588800A77F6C /* GPS */ = {
 			isa = PBXGroup;
 			children = (
+				D9EC1DE41E80A41100C925A9 /* Resources */,
+				D9EC1DB91E809A3A00C925A9 /* Assemly */,
+				D9EC1DBD1E809A3A00C925A9 /* Controllers */,
+				D9EC1DC11E809A3A00C925A9 /* DAL */,
+				D9EC1DCB1E809A3A00C925A9 /* Navigator */,
+				D9EC1DCE1E809A3A00C925A9 /* Router */,
+			);
+			path = GPS;
+			sourceTree = "<group>";
+		};
+		D9EC1DB91E809A3A00C925A9 /* Assemly */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */,
+				D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */,
+				D9EC1DBC1E809A3A00C925A9 /* AssemblyViewControllers.swift */,
+			);
+			path = Assemly;
+			sourceTree = "<group>";
+		};
+		D9EC1DBD1E809A3A00C925A9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC1DE51E80A43000C925A9 /* ViewController.swift */,
+				D9EC1DE21E809D6700C925A9 /* HelpViewController.swift */,
+				D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D9EC1DC11E809A3A00C925A9 /* DAL */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC1DC21E809A3A00C925A9 /* Settings */,
+			);
+			path = DAL;
+			sourceTree = "<group>";
+		};
+		D9EC1DC21E809A3A00C925A9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC1DC31E809A3A00C925A9 /* Model */,
+				D9EC1DC51E809A3A00C925A9 /* Repository */,
+				D9EC1DC81E809A3A00C925A9 /* Service */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D9EC1DC31E809A3A00C925A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D9EC1DC51E809A3A00C925A9 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		D9EC1DC81E809A3A00C925A9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D9EC1DCB1E809A3A00C925A9 /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC1DCC1E809A3A00C925A9 /* Navigator.swift */,
+				D9EC1DCD1E809A3A00C925A9 /* NavigatorImpl.swift */,
+			);
+			path = Navigator;
+			sourceTree = "<group>";
+		};
+		D9EC1DCE1E809A3A00C925A9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC1DCF1E809A3A00C925A9 /* Router.swift */,
+				D9EC1DD01E809A3A00C925A9 /* RouterImpl.swift */,
+				D9EC1DD11E809A3A00C925A9 /* RouterViewControllerType.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		D9EC1DE41E80A41100C925A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6864C1E833AFC00A2B798 /* loginBg.gif */,
 				D930D5A21E7D588800A77F6C /* AppDelegate.swift */,
-				D930D5A41E7D588800A77F6C /* ViewController.swift */,
 				D930D5A61E7D588800A77F6C /* Main.storyboard */,
 				D930D5A91E7D588800A77F6C /* Assets.xcassets */,
 				D930D5AB1E7D588800A77F6C /* LaunchScreen.storyboard */,
 				D930D5AE1E7D588800A77F6C /* Info.plist */,
 			);
-			path = GPS;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E3410F9D619230C512FA339A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5AC1993288F91CAADAB279B /* Pods-GPS.debug.xcconfig */,
+				161060B766C21D295F184046 /* Pods-GPS.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D930D5B11E7D588800A77F6C /* Build configuration list for PBXNativeTarget "GPS" */;
 			buildPhases = (
+				D04E42633E91D1671EE59BD0 /* [CP] Check Pods Manifest.lock */,
 				D930D59B1E7D588800A77F6C /* Sources */,
 				D930D59C1E7D588800A77F6C /* Frameworks */,
 				D930D59D1E7D588800A77F6C /* Resources */,
+				EF9069B4BBB6C12A12AAADBA /* [CP] Embed Pods Frameworks */,
+				B36448CBF5A5F6FDDE32BDE9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +236,7 @@
 				TargetAttributes = {
 					D930D59E1E7D588800A77F6C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = P97K8XPRW7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -124,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */,
+				D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */,
 				D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */,
 				D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */,
 			);
@@ -131,13 +273,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B36448CBF5A5F6FDDE32BDE9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPS/Pods-GPS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D04E42633E91D1671EE59BD0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EF9069B4BBB6C12A12AAADBA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPS/Pods-GPS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D930D59B1E7D588800A77F6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D930D5A51E7D588800A77F6C /* ViewController.swift in Sources */,
+				D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */,
+				D9EC1DE31E809D6700C925A9 /* HelpViewController.swift in Sources */,
+				D9EC1DDE1E809A3A00C925A9 /* NavigatorImpl.swift in Sources */,
+				D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */,
+				D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */,
+				D9EC1DE11E809A3A00C925A9 /* RouterViewControllerType.swift in Sources */,
+				D9EC1DDF1E809A3A00C925A9 /* Router.swift in Sources */,
+				D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */,
+				D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */,
+				D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */,
 				D930D5A31E7D588800A77F6C /* AppDelegate.swift in Sources */,
+				D9EC1DD41E809A3A00C925A9 /* AssemblyViewControllers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +350,7 @@
 				D930D5A71E7D588800A77F6C /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D930D5AB1E7D588800A77F6C /* LaunchScreen.storyboard */ = {
@@ -158,6 +359,7 @@
 				D930D5AC1E7D588800A77F6C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -258,25 +460,31 @@
 		};
 		D930D5B21E7D588800A77F6C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5AC1993288F91CAADAB279B /* Pods-GPS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = P97K8XPRW7;
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = everly.GPS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		D930D5B31E7D588800A77F6C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 161060B766C21D295F184046 /* Pods-GPS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = P97K8XPRW7;
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = everly.GPS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -299,6 +507,7 @@
 				D930D5B31E7D588800A77F6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
