@@ -13,7 +13,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var navigator: Navigator!
 
-
     @IBAction func openHelp(_ sender: UIButton) {
         navigator.loginViewController(openHelpViewController: self)
     }
@@ -29,7 +28,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var activeTextField: UITextField?
   
     override func viewWillAppear(_ animated: Bool) {
-        // call method for keyboard notification
         self.setNotificationKeyboard()
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -51,8 +49,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+
+// MARK: Keyboard settings
     
     func setNotificationKeyboard ()  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
@@ -72,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     {
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height+81, 0.0)
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height+10, 0.0)
         self.theScrollView.contentInset = contentInsets
         self.theScrollView.scrollIndicatorInsets = contentInsets
         var aRect : CGRect = self.view.frame
@@ -86,22 +85,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    // when tuch on view and dismiss keyboard
     @IBAction func dismissKeyboard() {
         view.endEditing(true)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Try to find next responder
-        // Try to find next responder
         if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField
         {
             nextField.becomeFirstResponder()
         } else {
-            // Not found, so remove keyboard.
             textField.resignFirstResponder()
         }
-        
         return false
     }
 

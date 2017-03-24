@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Авторизация-->
         <scene sceneID="8th-Nf-wUm">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FCO-fM-BZl" customClass="LoginViewController" customModule="GPS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Авторизация" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FCO-fM-BZl" customClass="LoginViewController" customModule="GPS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4rJ-E0-rAD"/>
                         <viewControllerLayoutGuide type="bottom" id="ddy-jG-YLJ"/>
@@ -21,11 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2M-4e-1zC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="C2M-4e-1zC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KQK-pB-aTv">
-                                        <rect key="frame" x="67" y="64" width="241" height="368"/>
+                                        <rect key="frame" x="67" y="20" width="241" height="348"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N8B-hr-P3s">
                                                 <rect key="frame" x="21" y="20" width="200" height="150"/>
@@ -125,7 +125,7 @@
                                         <constraints>
                                             <constraint firstItem="NAg-b4-Zjz" firstAttribute="centerX" secondItem="KQK-pB-aTv" secondAttribute="centerX" id="3aU-UP-6T9"/>
                                             <constraint firstItem="ljC-U2-tFE" firstAttribute="centerX" secondItem="KQK-pB-aTv" secondAttribute="centerX" id="Dw4-nk-xxk"/>
-                                            <constraint firstAttribute="bottom" secondItem="QLK-6B-Q7t" secondAttribute="bottom" constant="20" id="IJy-Cz-jDw"/>
+                                            <constraint firstAttribute="bottom" secondItem="QLK-6B-Q7t" secondAttribute="bottom" id="K21-di-W9Y"/>
                                             <constraint firstAttribute="trailing" secondItem="N8B-hr-P3s" secondAttribute="trailing" constant="20" id="Qlw-3S-onz"/>
                                             <constraint firstItem="N8B-hr-P3s" firstAttribute="top" secondItem="KQK-pB-aTv" secondAttribute="top" constant="20" id="TRG-5B-Dio"/>
                                             <constraint firstItem="QLK-6B-Q7t" firstAttribute="centerX" secondItem="KQK-pB-aTv" secondAttribute="centerX" id="TbF-ta-3wF"/>
@@ -141,9 +141,9 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="KQK-pB-aTv" secondAttribute="bottom" constant="20" id="UpF-iR-gXR"/>
-                                    <constraint firstItem="KQK-pB-aTv" firstAttribute="top" secondItem="C2M-4e-1zC" secondAttribute="top" constant="64" id="Y1N-Vf-lgb"/>
-                                    <constraint firstAttribute="trailing" secondItem="KQK-pB-aTv" secondAttribute="trailing" id="fSd-wW-h70"/>
+                                    <constraint firstItem="KQK-pB-aTv" firstAttribute="top" secondItem="C2M-4e-1zC" secondAttribute="top" constant="20" id="511-rA-P6A"/>
+                                    <constraint firstAttribute="bottom" secondItem="KQK-pB-aTv" secondAttribute="bottom" constant="20" id="GhZ-Wu-Gic"/>
+                                    <constraint firstAttribute="trailing" secondItem="KQK-pB-aTv" secondAttribute="trailing" id="P6h-yO-xEk"/>
                                     <constraint firstItem="KQK-pB-aTv" firstAttribute="centerX" secondItem="C2M-4e-1zC" secondAttribute="centerX" id="ggz-Cu-01L"/>
                                 </constraints>
                                 <connections>
@@ -159,7 +159,7 @@
                             <constraint firstItem="C2M-4e-1zC" firstAttribute="height" secondItem="iE0-vu-5NM" secondAttribute="height" id="UIr-g0-y1U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Z3i-f8-l1A"/>
+                    <navigationItem key="navigationItem" title="Авторизация" id="Z3i-f8-l1A"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
@@ -275,6 +275,18 @@
                             <constraint firstItem="EBp-A9-sW9" firstAttribute="centerX" secondItem="bZm-Xc-Ryf" secondAttribute="centerX" id="yJY-LI-qcH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Помощь" id="8XR-a4-ANF">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="S9O-tm-2UH">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Email" style="plain" id="tyK-ZA-805">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b9X-Aj-W93">
+                                <rect key="frame" x="334" y="9" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Email"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tT5-Bs-gHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,11 +298,13 @@
             <objects>
                 <navigationController storyboardIdentifier="NavigationControllerLogin" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Inu-yv-Ws4" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="w42-VQ-dBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" backIndicatorImage="Назад" id="w42-VQ-dBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.47058823529411764" green="0.8666666666666667" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
@@ -324,9 +338,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Email" width="25" height="25"/>
         <image name="Menu" width="25" height="25"/>
         <image name="login" width="25" height="25"/>
         <image name="password" width="25" height="25"/>
+        <image name="Назад" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="a9u-rG-tN6"/>
