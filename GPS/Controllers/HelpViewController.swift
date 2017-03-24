@@ -10,7 +10,10 @@ import UIKit
 
 class HelpViewController: UIViewController {
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+
+        self.navigationController?.isNavigationBarHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
