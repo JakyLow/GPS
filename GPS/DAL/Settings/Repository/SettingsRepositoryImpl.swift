@@ -31,8 +31,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     }
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Ошибка", message: "Ваше устройство не может отправить e-mail.  Пожалуйста, проверьте настройки и попробуйте еще раз.", delegate: self, cancelButtonTitle: "ОК")
-        sendMailErrorAlert.show()
+        CRNotifications.showNotification(type: .error, title: "Ошибка отправки", message: "Проверьте настройки e-mail и попробуйте еще раз.", dismissDelay: 4)
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
@@ -40,7 +39,14 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         controller.dismiss(animated: true, completion: nil)
         
             switch result {
-                case .sent: CRNotifications.showNotification(type: .success, title: "Сообщение отправлено!", message: "Мы постараемся ответить на Ваш e-mail в ближайшее время.", dismissDelay: 4)
+                case .sent:
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        CRNotifications.showNotification(type: .success, title: "Сообщение отправлено!", message: "В ближайшее время мы ответим Вам.", dismissDelay: 4)
+                    })
+                    
+                    
+
                 default: return
             }
     }

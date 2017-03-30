@@ -43,8 +43,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Auth.layer.cornerRadius = 5
         loginView.layer.cornerRadius = 5
         passwordView.layer.cornerRadius = 5
-        // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +50,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
 // MARK: Keyboard settings
-    
     func setNotificationKeyboard ()  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
@@ -85,7 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    @IBAction func dismissKeyboard() {
+    @IBAction override func dismissKeyboard() {
         view.endEditing(true)
     }
 

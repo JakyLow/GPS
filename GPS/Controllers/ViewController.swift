@@ -16,9 +16,9 @@ class ViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
     @IBOutlet weak var map: MKMapView!
-    
+
+// MARK: UISegmentedControl
     @IBAction func selector(_ sender: UISegmentedControl) {
-        
         switch sender.selectedSegmentIndex  {
         case 0:
             searchBar.isHidden = false
@@ -31,9 +31,9 @@ class ViewController: UIViewController, UISearchBarDelegate {
         default:
             break;
         }
-
     }
     
+// MARK: UIBarButtonItem
     @IBAction func openMenu(_ sender: UIBarButtonItem) {
             let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
@@ -58,9 +58,19 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTappedAround()
     }
-    
-
 }
 
+// MARK: Hide Keyboard
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
