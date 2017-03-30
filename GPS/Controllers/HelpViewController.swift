@@ -7,23 +7,32 @@
 //
 
 import UIKit
+import MessageUI
 
-class HelpViewController: UIViewController {
+class HelpViewController: UIViewController, MFMailComposeViewControllerDelegate {
+    
+    var settingsService: SettingsService!
 
     override func viewWillAppear(_ animated: Bool) {
 
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    @IBAction func sendEmail(_ sender: UIButton) {
+        let mailComposeViewController = settingsService.configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.settingsService.showSendMailErrorAlert()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
+
 }

@@ -7,26 +7,60 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     
     var navigator: Navigator!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var listOfMarkers: UITableView!
+    @IBOutlet weak var map: MKMapView!
+    
+    @IBAction func selector(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex  {
+        case 0:
+            searchBar.isHidden = false
+            listOfMarkers.isHidden = false
+            map.isHidden = true
+        case 1:
+            searchBar.isHidden = true
+            listOfMarkers.isHidden = true
+            map.isHidden = false
+        default:
+            break;
+        }
 
-    @IBAction func openHelpViewController(_ sender: UIButton) {
-        navigator.viewController(openHelpViewController: self)
+    }
+    
+    @IBAction func openMenu(_ sender: UIBarButtonItem) {
+            let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+            })
+            let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+            })
+            let helpAction = UIAlertAction(title: "Помощь", style: .destructive, handler: {
+                (alert: UIAlertAction!) -> Void in
+                self.navigator.viewController(openHelpViewController: self)
+            })
+            let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: {
+                (alert: UIAlertAction!) -> Void in
+            })
+            optionMenu.addAction(settingsAction)
+            optionMenu.addAction(exitAction)
+            optionMenu.addAction(helpAction)
+            optionMenu.addAction(cancelAction)
+            self.present(optionMenu, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
 
 }
 

@@ -19,7 +19,7 @@ class NavigatorImpl: NSObject, Navigator {
     func viewController(openHelpViewController viewcontroller: ViewController) {
         _ = router.pushViewController(type: .helpViewController)
     }
-    
+
     func loginViewController(openHelpViewController viewcontroller: LoginViewController) {
         _ = router.pushViewController(type: .helpViewController)
     }

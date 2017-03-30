@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -67,9 +67,9 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLK-6B-Q7t">
-                                                <rect key="frame" x="95" y="320" width="51" height="28"/>
+                                                <rect key="frame" x="49" y="320" width="143" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="помощь">
+                                                <state key="normal" title="регистрация / помощь">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
@@ -208,28 +208,77 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" placeholder="Сортировка объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jp7-Ku-fyC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
+                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bsI-Ct-jMk">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bsI-Ct-jMk" id="ieg-FB-V2p">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Jp7-Ku-fyC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="F4h-dv-4lT"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fis-zy-6Zn"/>
+                            <constraint firstItem="Jp7-Ku-fyC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VUQ-f0-BIH"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="YMM-HS-d2N"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="YgA-aY-txg"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-44" id="Yqg-MU-ApS"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dhZ-Xg-hkg"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kJK-jz-xJq"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="top" secondItem="Jp7-Ku-fyC" secondAttribute="bottom" id="mva-AU-PoL"/>
+                            <constraint firstItem="Jp7-Ku-fyC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="pmB-6F-IPP"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="22" id="vmy-Ju-to4"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yuW-gQ-0ll"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Назад" id="dAa-li-O0E">
-                        <barButtonItem key="leftBarButtonItem" image="Menu" style="plain" id="TVb-wT-4AM">
+                        <barButtonItem key="leftBarButtonItem" image="menu" style="plain" id="TVb-wT-4AM">
                             <connections>
                                 <action selector="openMenu:" destination="BYZ-38-t0r" id="rfi-tB-DLV"/>
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="n36-9D-xT2">
-                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Список"/>
                                 <segment title="Карта"/>
                             </segments>
+                            <connections>
+                                <action selector="selector:" destination="BYZ-38-t0r" eventType="valueChanged" id="5df-Qy-YFz"/>
+                            </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="bMa-dx-4Wz"/>
+                        <barButtonItem key="rightBarButtonItem" image="refresh" style="plain" id="bMa-dx-4Wz"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="listOfMarkers" destination="itT-wP-gUk" id="AM9-xP-gfl"/>
+                        <outlet property="map" destination="7uR-Hl-qbx" id="bn6-Gc-Xat"/>
+                        <outlet property="searchBar" destination="Jp7-Ku-fyC" id="ntc-26-bM9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="36"/>
+            <point key="canvasLocation" x="-292" y="35.532233883058474"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Am4-2D-ULH">
@@ -278,11 +327,14 @@
                         <barButtonItem key="backBarButtonItem" title="Назад" id="S9O-tm-2UH">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Email" style="plain" id="tyK-ZA-805">
+                        <barButtonItem key="rightBarButtonItem" image="email" style="plain" id="tyK-ZA-805">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b9X-Aj-W93">
                                 <rect key="frame" x="334" y="9" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Email"/>
+                                <state key="normal" image="email"/>
+                                <connections>
+                                    <action selector="sendEmail:" destination="8B4-70-KfF" eventType="touchUpInside" id="azA-nb-JpO"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -342,10 +394,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Email" width="25" height="25"/>
-        <image name="Menu" width="25" height="25"/>
+        <image name="email" width="25" height="25"/>
         <image name="login" width="25" height="25"/>
+        <image name="menu" width="25" height="25"/>
         <image name="password" width="25" height="25"/>
+        <image name="refresh" width="25" height="25"/>
         <image name="Назад" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>

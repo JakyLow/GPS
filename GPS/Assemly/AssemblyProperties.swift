@@ -66,29 +66,29 @@ extension Assembly {
 
 // MARK: Router Property
 
-//extension Assembly {
-//    
-//    private func _settingRepository() -> AnyObject {
-//        return TyphoonDefinition.withClass(SettingsRepositoryImpl.self) { definition in
-//            definition!.scope = .lazySingleton
-//            definition!.useInitializer(#selector(SettingsRepositoryImpl.init))
-//            } as AnyObject
-//    }
-//    
-//    var settingRepository: AnyObject {
-//        return _settingRepository()
-//    }
-//    
-//    private func _settingService() -> AnyObject {
-//        return TyphoonDefinition.withClass(SettingsServiceImpl.self) { definition in
-//            definition!.scope = .lazySingleton
-//            definition!.useInitializer(#selector(SettingsServiceImpl.init))
-//            definition!.injectProperty(#selector(getter: SettingsServiceImpl.settingsRepository), with: self.settingRepository)
-//            } as AnyObject
-//    }
-//    
-//    var settingService: AnyObject {
-//        return _settingService()
-//    }
-//}
+extension Assembly {
+    
+    private func _settingRepository() -> AnyObject {
+        return TyphoonDefinition.withClass(SettingsRepositoryImpl.self) { definition in
+            definition!.scope = .lazySingleton
+            definition!.useInitializer(#selector(SettingsRepositoryImpl.init))
+            } as AnyObject
+    }
+    
+    var settingRepository: AnyObject {
+        return _settingRepository()
+    }
+    
+    private func _settingService() -> AnyObject {
+        return TyphoonDefinition.withClass(SettingsServiceImpl.self) { definition in
+            definition!.scope = .lazySingleton
+            definition!.useInitializer(#selector(SettingsServiceImpl.init))
+            definition!.injectProperty(#selector(getter: SettingsServiceImpl.settingsRepository), with: self.settingRepository)
+            } as AnyObject
+    }
+    
+    var settingService: AnyObject {
+        return _settingService()
+    }
+}
 

@@ -13,6 +13,15 @@
 		D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A61E7D588800A77F6C /* Main.storyboard */; };
 		D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A91E7D588800A77F6C /* Assets.xcassets */; };
 		D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5AB1E7D588800A77F6C /* LaunchScreen.storyboard */; };
+		D93877AD1E89D81A001F1AF1 /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A51E89D81A001F1AF1 /* SettingsRepository.swift */; };
+		D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A61E89D81A001F1AF1 /* SettingsRepositoryImpl.swift */; };
+		D93877AF1E89D81A001F1AF1 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A81E89D81A001F1AF1 /* SettingsService.swift */; };
+		D93877B01E89D81A001F1AF1 /* SettingsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A91E89D81A001F1AF1 /* SettingsServiceImpl.swift */; };
+		D9639C071E8C894D00A5FC3C /* CRNotificationsMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9639C011E8C894D00A5FC3C /* CRNotificationsMedia.xcassets */; };
+		D9639C081E8C894D00A5FC3C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9639C031E8C894D00A5FC3C /* Colors.swift */; };
+		D9639C091E8C894D00A5FC3C /* CRNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9639C041E8C894D00A5FC3C /* CRNotification.swift */; };
+		D9639C0A1E8C894D00A5FC3C /* CRNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9639C051E8C894D00A5FC3C /* CRNotification.xib */; };
+		D9639C0B1E8C894D00A5FC3C /* CRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9639C061E8C894D00A5FC3C /* CRNotifications.swift */; };
 		D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = D9D6864C1E833AFC00A2B798 /* loginBg.gif */; };
 		D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */; };
 		D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */; };
@@ -36,6 +45,15 @@
 		D930D5A91E7D588800A77F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		D930D5AC1E7D588800A77F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D930D5AE1E7D588800A77F6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		D93877A51E89D81A001F1AF1 /* SettingsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
+		D93877A61E89D81A001F1AF1 /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
+		D93877A81E89D81A001F1AF1 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		D93877A91E89D81A001F1AF1 /* SettingsServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsServiceImpl.swift; sourceTree = "<group>"; };
+		D9639C011E8C894D00A5FC3C /* CRNotificationsMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CRNotificationsMedia.xcassets; sourceTree = "<group>"; };
+		D9639C031E8C894D00A5FC3C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D9639C041E8C894D00A5FC3C /* CRNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotification.swift; sourceTree = "<group>"; };
+		D9639C051E8C894D00A5FC3C /* CRNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CRNotification.xib; sourceTree = "<group>"; };
+		D9639C061E8C894D00A5FC3C /* CRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotifications.swift; sourceTree = "<group>"; };
 		D9D6864C1E833AFC00A2B798 /* loginBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = loginBg.gif; path = GPS/loginBg.gif; sourceTree = SOURCE_ROOT; };
 		D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyProperties.swift; sourceTree = "<group>"; };
@@ -91,14 +109,86 @@
 		D930D5A11E7D588800A77F6C /* GPS */ = {
 			isa = PBXGroup;
 			children = (
+				D93877991E89D81A001F1AF1 /* DAL */,
 				D9EC1DE41E80A41100C925A9 /* Resources */,
 				D9EC1DB91E809A3A00C925A9 /* Assemly */,
 				D9EC1DBD1E809A3A00C925A9 /* Controllers */,
-				D9EC1DC11E809A3A00C925A9 /* DAL */,
 				D9EC1DCB1E809A3A00C925A9 /* Navigator */,
 				D9EC1DCE1E809A3A00C925A9 /* Router */,
 			);
 			path = GPS;
+			sourceTree = "<group>";
+		};
+		D93877991E89D81A001F1AF1 /* DAL */ = {
+			isa = PBXGroup;
+			children = (
+				D9639BFF1E8C894D00A5FC3C /* CRNotifications */,
+				D93877A11E89D81A001F1AF1 /* Settings */,
+			);
+			path = DAL;
+			sourceTree = "<group>";
+		};
+		D93877A11E89D81A001F1AF1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D93877A21E89D81A001F1AF1 /* Model */,
+				D93877A41E89D81A001F1AF1 /* Repository */,
+				D93877A71E89D81A001F1AF1 /* Service */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D93877A21E89D81A001F1AF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D93877A41E89D81A001F1AF1 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D93877A51E89D81A001F1AF1 /* SettingsRepository.swift */,
+				D93877A61E89D81A001F1AF1 /* SettingsRepositoryImpl.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		D93877A71E89D81A001F1AF1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D93877A81E89D81A001F1AF1 /* SettingsService.swift */,
+				D93877A91E89D81A001F1AF1 /* SettingsServiceImpl.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D9639BFF1E8C894D00A5FC3C /* CRNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				D9639C001E8C894D00A5FC3C /* Assets */,
+				D9639C021E8C894D00A5FC3C /* Classes */,
+			);
+			path = CRNotifications;
+			sourceTree = "<group>";
+		};
+		D9639C001E8C894D00A5FC3C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D9639C011E8C894D00A5FC3C /* CRNotificationsMedia.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		D9639C021E8C894D00A5FC3C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D9639C031E8C894D00A5FC3C /* Colors.swift */,
+				D9639C041E8C894D00A5FC3C /* CRNotification.swift */,
+				D9639C051E8C894D00A5FC3C /* CRNotification.xib */,
+				D9639C061E8C894D00A5FC3C /* CRNotifications.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		D9EC1DB91E809A3A00C925A9 /* Assemly */ = {
@@ -119,45 +209,6 @@
 				D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D9EC1DC11E809A3A00C925A9 /* DAL */ = {
-			isa = PBXGroup;
-			children = (
-				D9EC1DC21E809A3A00C925A9 /* Settings */,
-			);
-			path = DAL;
-			sourceTree = "<group>";
-		};
-		D9EC1DC21E809A3A00C925A9 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D9EC1DC31E809A3A00C925A9 /* Model */,
-				D9EC1DC51E809A3A00C925A9 /* Repository */,
-				D9EC1DC81E809A3A00C925A9 /* Service */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		D9EC1DC31E809A3A00C925A9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D9EC1DC51E809A3A00C925A9 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		D9EC1DC81E809A3A00C925A9 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		D9EC1DCB1E809A3A00C925A9 /* Navigator */ = {
@@ -265,9 +316,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */,
+				D9639C071E8C894D00A5FC3C /* CRNotificationsMedia.xcassets in Resources */,
 				D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */,
 				D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */,
 				D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */,
+				D9639C0A1E8C894D00A5FC3C /* CRNotification.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,12 +379,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93877AF1E89D81A001F1AF1 /* SettingsService.swift in Sources */,
+				D9639C091E8C894D00A5FC3C /* CRNotification.swift in Sources */,
 				D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */,
 				D9EC1DE31E809D6700C925A9 /* HelpViewController.swift in Sources */,
+				D9639C081E8C894D00A5FC3C /* Colors.swift in Sources */,
+				D93877B01E89D81A001F1AF1 /* SettingsServiceImpl.swift in Sources */,
+				D9639C0B1E8C894D00A5FC3C /* CRNotifications.swift in Sources */,
+				D93877AD1E89D81A001F1AF1 /* SettingsRepository.swift in Sources */,
 				D9EC1DDE1E809A3A00C925A9 /* NavigatorImpl.swift in Sources */,
 				D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */,
 				D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */,
 				D9EC1DE11E809A3A00C925A9 /* RouterViewControllerType.swift in Sources */,
+				D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */,
 				D9EC1DDF1E809A3A00C925A9 /* Router.swift in Sources */,
 				D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */,
 				D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */,
