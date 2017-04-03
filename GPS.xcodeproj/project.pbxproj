@@ -17,11 +17,12 @@
 		D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A61E89D81A001F1AF1 /* SettingsRepositoryImpl.swift */; };
 		D93877AF1E89D81A001F1AF1 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A81E89D81A001F1AF1 /* SettingsService.swift */; };
 		D93877B01E89D81A001F1AF1 /* SettingsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A91E89D81A001F1AF1 /* SettingsServiceImpl.swift */; };
-		D9639C071E8C894D00A5FC3C /* CRNotificationsMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9639C011E8C894D00A5FC3C /* CRNotificationsMedia.xcassets */; };
-		D9639C081E8C894D00A5FC3C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9639C031E8C894D00A5FC3C /* Colors.swift */; };
-		D9639C091E8C894D00A5FC3C /* CRNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9639C041E8C894D00A5FC3C /* CRNotification.swift */; };
-		D9639C0A1E8C894D00A5FC3C /* CRNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9639C051E8C894D00A5FC3C /* CRNotification.xib */; };
-		D9639C0B1E8C894D00A5FC3C /* CRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9639C061E8C894D00A5FC3C /* CRNotifications.swift */; };
+		D98CEFB91E926AED00F9B008 /* CRNotificationsMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CEFB21E926AED00F9B008 /* CRNotificationsMedia.xcassets */; };
+		D98CEFBA1E926AED00F9B008 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CEFB41E926AED00F9B008 /* Colors.swift */; };
+		D98CEFBB1E926AED00F9B008 /* CRNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CEFB51E926AED00F9B008 /* CRNotification.swift */; };
+		D98CEFBC1E926AED00F9B008 /* CRNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = D98CEFB61E926AED00F9B008 /* CRNotification.xib */; };
+		D98CEFBD1E926AED00F9B008 /* CRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CEFB71E926AED00F9B008 /* CRNotifications.swift */; };
+		D98CEFBE1E926AED00F9B008 /* checkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CEFB81E926AED00F9B008 /* checkConnection.swift */; };
 		D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = D9D6864C1E833AFC00A2B798 /* loginBg.gif */; };
 		D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */; };
 		D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */; };
@@ -49,11 +50,12 @@
 		D93877A61E89D81A001F1AF1 /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		D93877A81E89D81A001F1AF1 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		D93877A91E89D81A001F1AF1 /* SettingsServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsServiceImpl.swift; sourceTree = "<group>"; };
-		D9639C011E8C894D00A5FC3C /* CRNotificationsMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CRNotificationsMedia.xcassets; sourceTree = "<group>"; };
-		D9639C031E8C894D00A5FC3C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		D9639C041E8C894D00A5FC3C /* CRNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotification.swift; sourceTree = "<group>"; };
-		D9639C051E8C894D00A5FC3C /* CRNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CRNotification.xib; sourceTree = "<group>"; };
-		D9639C061E8C894D00A5FC3C /* CRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotifications.swift; sourceTree = "<group>"; };
+		D98CEFB21E926AED00F9B008 /* CRNotificationsMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CRNotificationsMedia.xcassets; sourceTree = "<group>"; };
+		D98CEFB41E926AED00F9B008 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D98CEFB51E926AED00F9B008 /* CRNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotification.swift; sourceTree = "<group>"; };
+		D98CEFB61E926AED00F9B008 /* CRNotification.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CRNotification.xib; sourceTree = "<group>"; };
+		D98CEFB71E926AED00F9B008 /* CRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRNotifications.swift; sourceTree = "<group>"; };
+		D98CEFB81E926AED00F9B008 /* checkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checkConnection.swift; sourceTree = "<group>"; };
 		D9D6864C1E833AFC00A2B798 /* loginBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = loginBg.gif; path = GPS/loginBg.gif; sourceTree = SOURCE_ROOT; };
 		D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyProperties.swift; sourceTree = "<group>"; };
@@ -88,6 +90,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D91562861E8DCEAC00CA4415 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D98CEFB01E926AED00F9B008 /* CRNotifications */,
+				D98CEFB81E926AED00F9B008 /* checkConnection.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		D930D5961E7D588800A77F6C = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +120,7 @@
 		D930D5A11E7D588800A77F6C /* GPS */ = {
 			isa = PBXGroup;
 			children = (
+				D91562861E8DCEAC00CA4415 /* Library */,
 				D93877991E89D81A001F1AF1 /* DAL */,
 				D9EC1DE41E80A41100C925A9 /* Resources */,
 				D9EC1DB91E809A3A00C925A9 /* Assemly */,
@@ -122,7 +134,6 @@
 		D93877991E89D81A001F1AF1 /* DAL */ = {
 			isa = PBXGroup;
 			children = (
-				D9639BFF1E8C894D00A5FC3C /* CRNotifications */,
 				D93877A11E89D81A001F1AF1 /* Settings */,
 			);
 			path = DAL;
@@ -163,30 +174,30 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		D9639BFF1E8C894D00A5FC3C /* CRNotifications */ = {
+		D98CEFB01E926AED00F9B008 /* CRNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				D9639C001E8C894D00A5FC3C /* Assets */,
-				D9639C021E8C894D00A5FC3C /* Classes */,
+				D98CEFB11E926AED00F9B008 /* Assets */,
+				D98CEFB31E926AED00F9B008 /* Classes */,
 			);
 			path = CRNotifications;
 			sourceTree = "<group>";
 		};
-		D9639C001E8C894D00A5FC3C /* Assets */ = {
+		D98CEFB11E926AED00F9B008 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				D9639C011E8C894D00A5FC3C /* CRNotificationsMedia.xcassets */,
+				D98CEFB21E926AED00F9B008 /* CRNotificationsMedia.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		D9639C021E8C894D00A5FC3C /* Classes */ = {
+		D98CEFB31E926AED00F9B008 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D9639C031E8C894D00A5FC3C /* Colors.swift */,
-				D9639C041E8C894D00A5FC3C /* CRNotification.swift */,
-				D9639C051E8C894D00A5FC3C /* CRNotification.xib */,
-				D9639C061E8C894D00A5FC3C /* CRNotifications.swift */,
+				D98CEFB41E926AED00F9B008 /* Colors.swift */,
+				D98CEFB51E926AED00F9B008 /* CRNotification.swift */,
+				D98CEFB61E926AED00F9B008 /* CRNotification.xib */,
+				D98CEFB71E926AED00F9B008 /* CRNotifications.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -316,11 +327,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */,
-				D9639C071E8C894D00A5FC3C /* CRNotificationsMedia.xcassets in Resources */,
+				D98CEFB91E926AED00F9B008 /* CRNotificationsMedia.xcassets in Resources */,
 				D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */,
 				D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */,
 				D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */,
-				D9639C0A1E8C894D00A5FC3C /* CRNotification.xib in Resources */,
+				D98CEFBC1E926AED00F9B008 /* CRNotification.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,12 +391,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D93877AF1E89D81A001F1AF1 /* SettingsService.swift in Sources */,
-				D9639C091E8C894D00A5FC3C /* CRNotification.swift in Sources */,
+				D98CEFBB1E926AED00F9B008 /* CRNotification.swift in Sources */,
 				D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */,
 				D9EC1DE31E809D6700C925A9 /* HelpViewController.swift in Sources */,
-				D9639C081E8C894D00A5FC3C /* Colors.swift in Sources */,
+				D98CEFBA1E926AED00F9B008 /* Colors.swift in Sources */,
 				D93877B01E89D81A001F1AF1 /* SettingsServiceImpl.swift in Sources */,
-				D9639C0B1E8C894D00A5FC3C /* CRNotifications.swift in Sources */,
+				D98CEFBD1E926AED00F9B008 /* CRNotifications.swift in Sources */,
 				D93877AD1E89D81A001F1AF1 /* SettingsRepository.swift in Sources */,
 				D9EC1DDE1E809A3A00C925A9 /* NavigatorImpl.swift in Sources */,
 				D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */,
@@ -393,6 +404,7 @@
 				D9EC1DE11E809A3A00C925A9 /* RouterViewControllerType.swift in Sources */,
 				D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */,
 				D9EC1DDF1E809A3A00C925A9 /* Router.swift in Sources */,
+				D98CEFBE1E926AED00F9B008 /* checkConnection.swift in Sources */,
 				D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */,
 				D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */,
 				D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */,

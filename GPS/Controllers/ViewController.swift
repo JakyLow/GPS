@@ -16,8 +16,8 @@ class ViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
     @IBOutlet weak var map: MKMapView!
-
-// MARK: UISegmentedControl
+    
+    // MARK: UISegmentedControl
     @IBAction func selector(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex  {
         case 0:
@@ -33,27 +33,27 @@ class ViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-// MARK: UIBarButtonItem
+    // MARK: UIBarButtonItem
     @IBAction func openMenu(_ sender: UIBarButtonItem) {
-            let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-            })
-            let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-            })
-            let helpAction = UIAlertAction(title: "Помощь", style: .destructive, handler: {
-                (alert: UIAlertAction!) -> Void in
-                self.navigator.viewController(openHelpViewController: self)
-            })
-            let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: {
-                (alert: UIAlertAction!) -> Void in
-            })
-            optionMenu.addAction(settingsAction)
-            optionMenu.addAction(exitAction)
-            optionMenu.addAction(helpAction)
-            optionMenu.addAction(cancelAction)
-            self.present(optionMenu, animated: true, completion: nil)
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        let helpAction = UIAlertAction(title: "Помощь", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.navigator.viewController(openHelpViewController: self)
+        })
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        optionMenu.addAction(settingsAction)
+        optionMenu.addAction(exitAction)
+        optionMenu.addAction(helpAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

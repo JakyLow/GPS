@@ -12,12 +12,22 @@ import SwiftGifOrigin
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var navigator: Navigator!
-
+    var settingsService: SettingsService!
+    
     @IBAction func openHelp(_ sender: UIButton) {
         navigator.loginViewController(openHelpViewController: self)
     }
+    
     @IBAction func openViewController(_ sender: UIButton) {
-        navigator.loginViewController(openViewController: self)
+        
+        if checkFields() != [:] {
+            
+            self.settingsAPI.authorization().then{response -> Void in
+                if response as! Bool == true {
+                    self.navigator.loginViewController(openViewController: self)
+                }
+            }
+        }
     }
     
     @IBOutlet weak var gifLogin: UIImageView!
@@ -26,15 +36,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var theScrollView: UIScrollView!
     @IBOutlet weak var activeTextField: UITextField?
-  
+    @IBOutlet weak var loginField: UITextField!
+    @IBOutlet weak var passField: UITextField!
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setNotificationKeyboard()
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    fileprivate let settingsAPI = SettingsRepositoryImpl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.settingsAPI.delegate = self
+        
         self.gifLogin.image = UIImage.gif(name: "loginBg")
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -44,12 +60,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.layer.cornerRadius = 5
         passwordView.layer.cornerRadius = 5
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-// MARK: Keyboard settings
+    
+    // MARK: Keyboard settings
     func setNotificationKeyboard ()  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
@@ -73,7 +89,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.theScrollView.scrollIndicatorInsets = contentInsets
         var aRect : CGRect = self.view.frame
         aRect.size.height -= keyboardSize!.height
-        }
+    }
     
     func keyboardWillBeHidden(notification: NSNotification){
         let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0,0.0, 0.0)
@@ -85,7 +101,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction override func dismissKeyboard() {
         view.endEditing(true)
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField
         {
@@ -95,5 +111,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return false
     }
+    
+}
 
+// MARK: TextFieds Delegate
+extension LoginViewController: LoginDelegate {
+    func checkFields() -> [String:String] {
+        
+        var result = [String:String]()
+        if loginField.text == "" && passField.text == "" {
+            CRNotifications.showNotification(type: .info, title: "Введите логин и пароль", message: "Для авторизации в системе укажите логин и пароль", dismissDelay: 4)
+        } else if loginField.text == "" {
+            CRNotifications.showNotification(type: .info, title: "Введите логин", message: "Для авторизации в системе укажите логин", dismissDelay: 4)
+        } else if passField.text == "" {
+            CRNotifications.showNotification(type: .info, title: "Введите пароль", message: "Для авторизации в системе укажите пароль", dismissDelay: 4)
+        } else {
+            result["login"] = loginField.text
+            result["password"] = passField.text
+        }
+        return result
+    }
 }

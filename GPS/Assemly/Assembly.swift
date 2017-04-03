@@ -1,9 +1,9 @@
 //
 //  Assembly.swift
-//  test
+//  GPS
 //
-//  Created by Vasily Bodnarchuk on 18.02.17.
-//  Copyright © 2017 vasilybodnarchuk. All rights reserved.
+//  Created by Maxim Mazhuga on 18.03.17.
+//  Copyright © 2017 Maxim Mazhuga. All rights reserved.
 //
 
 import Foundation

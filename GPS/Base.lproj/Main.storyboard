@@ -165,7 +165,9 @@
                     <connections>
                         <outlet property="Auth" destination="dKX-0u-EyM" id="oDi-WE-vn5"/>
                         <outlet property="gifLogin" destination="N8B-hr-P3s" id="B60-e1-iFa"/>
+                        <outlet property="loginField" destination="Zng-hv-CLv" id="L7s-nh-LWT"/>
                         <outlet property="loginView" destination="ljC-U2-tFE" id="h9a-jO-MGe"/>
+                        <outlet property="passField" destination="Cax-tf-cMs" id="iUT-uD-8b5"/>
                         <outlet property="passwordView" destination="NAg-b4-Zjz" id="8ZR-p1-I01"/>
                         <outlet property="theScrollView" destination="C2M-4e-1zC" id="b9c-Ys-eTc"/>
                     </connections>
