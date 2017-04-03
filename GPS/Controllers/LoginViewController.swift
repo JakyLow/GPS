@@ -19,9 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func openViewController(_ sender: UIButton) {
-        
         if checkFields() != [:] {
-            
             self.settingsAPI.authorization().then{response -> Void in
                 if response as! Bool == true {
                     self.navigator.loginViewController(openViewController: self)

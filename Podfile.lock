@@ -1,0 +1,49 @@
+PODS:
+  - Alamofire (4.3.0)
+  - ObjectMapper (2.2.2)
+  - PromiseKit (4.1.7):
+    - PromiseKit/Foundation (= 4.1.7)
+    - PromiseKit/QuartzCore (= 4.1.7)
+    - PromiseKit/UIKit (= 4.1.7)
+  - PromiseKit/CorePromise (4.1.7)
+  - PromiseKit/Foundation (4.1.7):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.1.7):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.1.7):
+    - PromiseKit/CorePromise
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SwiftGifOrigin (1.6.1)
+  - SwiftyJSON (3.1.4)
+  - Typhoon (4.0.2):
+    - Typhoon/DeallocNotifier (= 4.0.2)
+    - Typhoon/IntrospectionUtils (= 4.0.2)
+    - Typhoon/no-arc (= 4.0.2)
+  - Typhoon/DeallocNotifier (4.0.2)
+  - Typhoon/IntrospectionUtils (4.0.2)
+  - Typhoon/no-arc (4.0.2):
+    - Typhoon/IntrospectionUtils
+
+DEPENDENCIES:
+  - Alamofire
+  - ObjectMapper
+  - PromiseKit
+  - SDWebImage
+  - SwiftGifOrigin
+  - SwiftyJSON
+  - Typhoon
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Typhoon: 05db9d33d798b90c202bf3f754275c03efe93297
+
+PODFILE CHECKSUM: 07d4549d8bc15ca30fcdb7c61f27fbb2687fea69
+
+COCOAPODS: 1.2.0
