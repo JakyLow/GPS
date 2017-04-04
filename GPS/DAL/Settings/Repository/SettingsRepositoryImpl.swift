@@ -11,12 +11,14 @@ import Alamofire
 import SwiftyJSON
 import PromiseKit
 import MessageUI
+import BPStatusBarAlert
 
 protocol LoginDelegate {
     func checkFields() -> [String:String]
 }
 
 class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewControllerDelegate {
+
     
     // MARK: Send Mail
     func configuredMailComposeViewController() -> MFMailComposeViewController {
@@ -34,7 +36,11 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     }
     
     func showSendMailErrorAlert() {
-        CRNotifications.showNotification(type: .error, title: "Ошибка отправки", message: "Проверьте настройки e-mail и попробуйте еще раз", dismissDelay: 4)
+        BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+            .message(message: "Ошибка отправки e-mail")
+            .messageColor(color: .white)
+            .bgColor(color: .flatRed)
+            .show()
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
@@ -45,7 +51,11 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         case .sent:
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                CRNotifications.showNotification(type: .success, title: "Сообщение отправлено!", message: "В ближайшее время мы ответим Вам", dismissDelay: 4)
+                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                    .message(message: "Сообщение отправлено!")
+                    .messageColor(color: .white)
+                    .bgColor(color: .flatGreen)
+                    .show()
             })
             
         default: return
@@ -78,14 +88,22 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                     case .success:
                         fulfill(true)
                     case .failure:
-                        CRNotifications.showNotification(type: .error, title: "Ошибка авторизации", message: "Неправильный логин или пароль", dismissDelay: 4)
+                        BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                            .message(message: "Неправильный логин или пароль")
+                            .messageColor(color: .white)
+                            .bgColor(color: .flatRed)
+                            .show()
                         fulfill(false)
                     }
                 }
             }
             else
             {
-                CRNotifications.showNotification(type: .error, title: "Ошибка связи", message: "Проблема с интернет соединением", dismissDelay: 4)
+                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                    .message(message: "Проблема с интернет соединением")
+                    .messageColor(color: .white)
+                    .bgColor(color: .flatRed)
+                    .show()
             }
             
         }

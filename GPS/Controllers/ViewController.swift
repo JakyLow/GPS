@@ -41,6 +41,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         })
         let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            self.navigator.viewController(openLoginViewController: self)
         })
         let helpAction = UIAlertAction(title: "Помощь", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in

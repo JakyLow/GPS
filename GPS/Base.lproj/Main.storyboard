@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="top" id="4rJ-E0-rAD"/>
                         <viewControllerLayoutGuide type="bottom" id="ddy-jG-YLJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iE0-vu-5NM">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="iE0-vu-5NM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -344,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tT5-Bs-gHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2042" y="827"/>
+            <point key="canvasLocation" x="-2042.4000000000001" y="826.23688155922048"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fyb-mo-Uah">
@@ -404,6 +404,6 @@
         <image name="Назад" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vcN-tq-z2T"/>
+        <segue reference="a9u-rG-tN6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftGifOrigin
+import BPStatusBarAlert
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -109,20 +110,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return false
     }
-    
 }
 
 // MARK: TextFieds Delegate
 extension LoginViewController: LoginDelegate {
     func checkFields() -> [String:String] {
-        
+
         var result = [String:String]()
         if loginField.text == "" && passField.text == "" {
-            CRNotifications.showNotification(type: .info, title: "Введите логин и пароль", message: "Для авторизации в системе укажите логин и пароль", dismissDelay: 4)
+            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                .message(message: "Введите логин и пароль")
+                .messageColor(color: .white)
+                .bgColor(color: .flatRed)
+                .show()
         } else if loginField.text == "" {
-            CRNotifications.showNotification(type: .info, title: "Введите логин", message: "Для авторизации в системе укажите логин", dismissDelay: 4)
+            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                .message(message: "Введите логин")
+                .messageColor(color: .white)
+                .bgColor(color: .flatRed)
+                .show()
         } else if passField.text == "" {
-            CRNotifications.showNotification(type: .info, title: "Введите пароль", message: "Для авторизации в системе укажите пароль", dismissDelay: 4)
+            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                .message(message: "Введите пароль")
+                .messageColor(color: .white)
+                .bgColor(color: .flatRed)
+                .show()
         } else {
             result["login"] = loginField.text
             result["password"] = passField.text

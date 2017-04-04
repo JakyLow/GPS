@@ -28,4 +28,8 @@ class NavigatorImpl: NSObject, Navigator {
         _ = router.presentViewController(type: .viewController)
     }
     
+    func viewController(openLoginViewController viewcontroller: ViewController) {
+        _ = router.presentViewController(type: .loginViewController)
+    }
+    
 }
