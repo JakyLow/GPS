@@ -10,6 +10,8 @@
 		704FE1E634510DEEB3A9A74F /* Pods_GPS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */; };
 		D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */; };
 		D926A6BF1E943DCA0001645C /* notificationsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6BE1E943DCA0001645C /* notificationsColors.swift */; };
+		D926A6C11E944CBD0001645C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6C01E944CBD0001645C /* SettingsViewController.swift */; };
+		D926A6C31E944CE10001645C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6C21E944CE10001645C /* InfoViewController.swift */; };
 		D930D5A31E7D588800A77F6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D930D5A21E7D588800A77F6C /* AppDelegate.swift */; };
 		D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A61E7D588800A77F6C /* Main.storyboard */; };
 		D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A91E7D588800A77F6C /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D926A6BE1E943DCA0001645C /* notificationsColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationsColors.swift; sourceTree = "<group>"; };
+		D926A6C01E944CBD0001645C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D926A6C21E944CE10001645C /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D930D59F1E7D588800A77F6C /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D930D5A21E7D588800A77F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		D930D5A71E7D588800A77F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,18 +138,10 @@
 		D93877A11E89D81A001F1AF1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D93877A21E89D81A001F1AF1 /* Model */,
 				D93877A41E89D81A001F1AF1 /* Repository */,
 				D93877A71E89D81A001F1AF1 /* Service */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		D93877A21E89D81A001F1AF1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D93877A41E89D81A001F1AF1 /* Repository */ = {
@@ -182,6 +178,8 @@
 				D9EC1DE51E80A43000C925A9 /* ViewController.swift */,
 				D9EC1DE21E809D6700C925A9 /* HelpViewController.swift */,
 				D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */,
+				D926A6C01E944CBD0001645C /* SettingsViewController.swift */,
+				D926A6C21E944CE10001645C /* InfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -357,6 +355,7 @@
 				D9EC1DE31E809D6700C925A9 /* HelpViewController.swift in Sources */,
 				D93877B01E89D81A001F1AF1 /* SettingsServiceImpl.swift in Sources */,
 				D93877AD1E89D81A001F1AF1 /* SettingsRepository.swift in Sources */,
+				D926A6C11E944CBD0001645C /* SettingsViewController.swift in Sources */,
 				D9EC1DDE1E809A3A00C925A9 /* NavigatorImpl.swift in Sources */,
 				D926A6BF1E943DCA0001645C /* notificationsColors.swift in Sources */,
 				D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */,
@@ -365,6 +364,7 @@
 				D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */,
 				D9EC1DDF1E809A3A00C925A9 /* Router.swift in Sources */,
 				D98CEFBE1E926AED00F9B008 /* checkConnection.swift in Sources */,
+				D926A6C31E944CE10001645C /* InfoViewController.swift in Sources */,
 				D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */,
 				D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */,
 				D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import SwiftGifOrigin
 import BPStatusBarAlert
+import KeychainSwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -20,13 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func openViewController(_ sender: UIButton) {
-        if checkFields() != [:] {
-            self.settingsAPI.authorization().then{response -> Void in
-                if response as! Bool == true {
-                    self.navigator.loginViewController(openViewController: self)
-                }
-            }
-        }
+        if checkFields() != [:] {   auth()  }
     }
     
     @IBOutlet weak var gifLogin: UIImageView!
@@ -37,11 +32,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var activeTextField: UITextField?
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passField: UITextField!
+    @IBOutlet weak var loadingView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.setNotificationKeyboard()
         self.navigationController?.isNavigationBarHidden = true
-    }
+
+// MARK: AutoLogin
+    if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {   auth()  }
+        
+}
     
     fileprivate let settingsAPI = SettingsRepositoryImpl()
     
@@ -110,34 +111,56 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return false
     }
+    
+// MARK: Auth
+    func auth() {
+        self.loadingView.isHidden = false
+        self.settingsAPI.authorization().then{response -> Void in
+            if response as! Bool == true {
+                self.navigator.loginViewController(openViewController: self)
+            }
+            self.loadingView.isHidden = true
+        }
+        
+    }
+    
 }
 
 // MARK: TextFieds Delegate
 extension LoginViewController: LoginDelegate {
     func checkFields() -> [String:String] {
-
+        
         var result = [String:String]()
-        if loginField.text == "" && passField.text == "" {
-            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                .message(message: "Введите логин и пароль")
-                .messageColor(color: .white)
-                .bgColor(color: .flatRed)
-                .show()
-        } else if loginField.text == "" {
-            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                .message(message: "Введите логин")
-                .messageColor(color: .white)
-                .bgColor(color: .flatRed)
-                .show()
-        } else if passField.text == "" {
-            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                .message(message: "Введите пароль")
-                .messageColor(color: .white)
-                .bgColor(color: .flatRed)
-                .show()
+        if KeychainSwift().get("login") == nil && KeychainSwift().get("password") == nil {
+            if loginField.text == "" && passField.text == "" {
+                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                    .message(message: "Введите логин и пароль")
+                    .messageColor(color: .white)
+                    .bgColor(color: .flatRed)
+                    .show()
+            } else if loginField.text == "" {
+                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                    .message(message: "Введите логин")
+                    .messageColor(color: .white)
+                    .bgColor(color: .flatRed)
+                    .show()
+            } else if passField.text == "" {
+                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                    .message(message: "Введите пароль")
+                    .messageColor(color: .white)
+                    .bgColor(color: .flatRed)
+                    .show()
+            } else {
+                result["login"] = loginField.text
+                result["password"] = passField.text
+                KeychainSwift().set(loginField.text!, forKey: "login")
+                KeychainSwift().set(passField.text!, forKey: "password")
+            }
         } else {
-            result["login"] = loginField.text
-            result["password"] = passField.text
+            result["login"] = KeychainSwift().get("login")
+            result["password"] = KeychainSwift().get("password")
+            loginField.text = KeychainSwift().get("login")
+            passField.text = KeychainSwift().get("password")
         }
         return result
     }

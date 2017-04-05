@@ -139,6 +139,19 @@
                                             <constraint firstItem="N8B-hr-P3s" firstAttribute="leading" secondItem="ljC-U2-tFE" secondAttribute="leading" id="qGp-FM-jZj"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBf-Q1-L5S">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Q9q-Ti-32F">
+                                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="Q9q-Ti-32F" firstAttribute="centerX" secondItem="lBf-Q1-L5S" secondAttribute="centerX" id="rBY-Fd-yea"/>
+                                            <constraint firstItem="Q9q-Ti-32F" firstAttribute="centerY" secondItem="lBf-Q1-L5S" secondAttribute="centerY" id="xIN-tu-9N7"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="KQK-pB-aTv" firstAttribute="top" secondItem="C2M-4e-1zC" secondAttribute="top" constant="20" id="511-rA-P6A"/>
@@ -154,9 +167,13 @@
                         <color key="backgroundColor" red="0.47058823529411764" green="0.8666666666666667" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="C2M-4e-1zC" firstAttribute="width" secondItem="iE0-vu-5NM" secondAttribute="width" id="FPQ-6m-UKm"/>
+                            <constraint firstItem="lBf-Q1-L5S" firstAttribute="height" secondItem="iE0-vu-5NM" secondAttribute="height" id="FgH-Gf-I5m"/>
                             <constraint firstItem="C2M-4e-1zC" firstAttribute="top" secondItem="4rJ-E0-rAD" secondAttribute="bottom" id="PUc-uL-mwd"/>
+                            <constraint firstItem="lBf-Q1-L5S" firstAttribute="width" secondItem="iE0-vu-5NM" secondAttribute="width" id="Qzm-X0-58J"/>
                             <constraint firstItem="C2M-4e-1zC" firstAttribute="leading" secondItem="iE0-vu-5NM" secondAttribute="leading" id="SgJ-8b-G2E"/>
                             <constraint firstItem="C2M-4e-1zC" firstAttribute="height" secondItem="iE0-vu-5NM" secondAttribute="height" id="UIr-g0-y1U"/>
+                            <constraint firstItem="lBf-Q1-L5S" firstAttribute="centerX" secondItem="iE0-vu-5NM" secondAttribute="centerX" id="dVL-XY-SqM"/>
+                            <constraint firstItem="lBf-Q1-L5S" firstAttribute="centerY" secondItem="iE0-vu-5NM" secondAttribute="centerY" id="mLs-PT-Xm2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Назад" id="Z3i-f8-l1A"/>
@@ -165,6 +182,7 @@
                     <connections>
                         <outlet property="Auth" destination="dKX-0u-EyM" id="oDi-WE-vn5"/>
                         <outlet property="gifLogin" destination="N8B-hr-P3s" id="B60-e1-iFa"/>
+                        <outlet property="loadingView" destination="lBf-Q1-L5S" id="93V-qT-tKH"/>
                         <outlet property="loginField" destination="Zng-hv-CLv" id="L7s-nh-LWT"/>
                         <outlet property="loginView" destination="ljC-U2-tFE" id="h9a-jO-MGe"/>
                         <outlet property="passField" destination="Cax-tf-cMs" id="iUT-uD-8b5"/>
@@ -181,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="-2042.4000000000001" y="35.532233883058474"/>
         </scene>
-        <!--View Controller-->
+        <!--Настройки-->
         <scene sceneID="1jb-Lo-fBN">
             <objects>
-                <viewController id="dwW-8k-i1R" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoViewController" title="Настройки" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dwW-8k-i1R" customClass="InfoViewController" customModule="GPS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IUR-Ln-LYc"/>
                         <viewControllerLayoutGuide type="bottom" id="XHl-HP-ibc"/>
@@ -194,6 +212,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="QYd-oX-QGM">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="FyC-rh-l3n"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eh8-qa-VsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -282,10 +303,10 @@
             </objects>
             <point key="canvasLocation" x="-292" y="35.532233883058474"/>
         </scene>
-        <!--View Controller-->
+        <!--Настройки-->
         <scene sceneID="Am4-2D-ULH">
             <objects>
-                <viewController id="UhF-n4-ypt" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UhF-n4-ypt" customClass="SettingsViewController" customModule="GPS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CFj-0q-Qr9"/>
                         <viewControllerLayoutGuide type="bottom" id="57K-dp-gLr"/>
@@ -295,6 +316,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Настройки" id="zeF-VM-boF" userLabel="Настройки">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="mXn-rW-Fz6"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWG-Xh-yHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -309,11 +333,11 @@
                         <viewControllerLayoutGuide type="bottom" id="OhP-u6-ZpG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bZm-Xc-Ryf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBp-A9-sW9">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
+                                <rect key="frame" x="166" y="291" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -340,7 +364,6 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tT5-Bs-gHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -404,6 +427,6 @@
         <image name="Назад" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a9u-rG-tN6"/>
+        <segue reference="vcN-tq-z2T"/>
     </inferredMetricsTieBreakers>
 </document>

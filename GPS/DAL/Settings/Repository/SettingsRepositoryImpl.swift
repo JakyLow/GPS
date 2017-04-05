@@ -12,6 +12,7 @@ import SwiftyJSON
 import PromiseKit
 import MessageUI
 import BPStatusBarAlert
+import KeychainSwift
 
 protocol LoginDelegate {
     func checkFields() -> [String:String]
@@ -27,10 +28,11 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         
         let gAppVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
         let gAppBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? "0"
+        let iosVersion = UIDevice.current.systemVersion
         
         mailComposerVC.setToRecipients(["everly@bk.ru"])
-        mailComposerVC.setSubject("GPS tracking: Bugreport from user [iOS \(gAppVersion) - \(gAppBuild)]")
-        mailComposerVC.setMessageBody("\n\n\n- \(UIDevice.current.model) (\(UIDevice.current.systemVersion))\n- GPS tracking \(gAppVersion) (\(gAppBuild))", isHTML: false)
+        mailComposerVC.setSubject("GPS tracking: Bugreport from user [iOS \(iosVersion) - \(gAppVersion) - \(gAppBuild)]")
+        mailComposerVC.setMessageBody("\n\n\n- \(UIDevice.current.model) (\(iosVersion))\n- GPS tracking \(gAppVersion) (\(gAppBuild))", isHTML: false)
         
         return mailComposerVC
     }
@@ -71,7 +73,6 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         
         let login = (loginAndPassword?["login"])!
         let password = (loginAndPassword?["password"])!
-        
         let url = "http://gps-tracker.com.ua/login.php"
         let parameters: Parameters = [
             "login": login,
@@ -86,6 +87,8 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                 Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
                     switch response.result {
                     case .success:
+                        KeychainSwift().set(login, forKey: "login")
+                        KeychainSwift().set(password, forKey: "password")
                         fulfill(true)
                     case .failure:
                         BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
@@ -93,17 +96,17 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                             .messageColor(color: .white)
                             .bgColor(color: .flatRed)
                             .show()
+                        KeychainSwift().clear()
                         fulfill(false)
                     }
                 }
-            }
-            else
-            {
+            } else {
                 BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
                     .message(message: "Проблема с интернет соединением")
                     .messageColor(color: .white)
                     .bgColor(color: .flatRed)
                     .show()
+                    fulfill(false)
             }
             
         }

@@ -7,8 +7,8 @@ pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'PromiseKit'
 pod 'Typhoon'
-pod 'ObjectMapper'
 pod 'SwiftGifOrigin'
 pod 'BPStatusBarAlert'
+pod 'KeychainSwift'
 end
 

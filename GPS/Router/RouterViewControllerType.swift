@@ -10,7 +10,7 @@ import Foundation
 
 @objc
 enum RouterViewControllerType:Int {
-    case loginViewController, viewController, helpViewController
+    case loginViewController, viewController, helpViewController, settingsViewController, infoViewController
     
     var identifier: String {
         
@@ -24,6 +24,12 @@ enum RouterViewControllerType:Int {
             
         case .helpViewController:
             return "HelpViewController"
+            
+        case .settingsViewController:
+            return "SettingsViewController"
+            
+        case .infoViewController:
+            return "InfoViewController"
             
         }
     }

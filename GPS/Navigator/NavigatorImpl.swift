@@ -15,21 +15,22 @@ class NavigatorImpl: NSObject, Navigator {
     func appDelegate(didFinishLaunchingWithOptions delegate: AppDelegate) {
         _ = router.presentViewController(type: .loginViewController)
     }
-    
     func viewController(openHelpViewController viewcontroller: ViewController) {
         _ = router.pushViewController(type: .helpViewController)
     }
-
     func loginViewController(openHelpViewController viewcontroller: LoginViewController) {
         _ = router.pushViewController(type: .helpViewController)
     }
-    
     func loginViewController(openViewController viewcontroller: LoginViewController) {
         _ = router.presentViewController(type: .viewController)
     }
-    
     func viewController(openLoginViewController viewcontroller: ViewController) {
         _ = router.presentViewController(type: .loginViewController)
     }
-    
+    func viewController(openInfoViewController viewcontroller: ViewController) {
+        _ = router.pushViewController(type: .infoViewController)
+    }
+    func viewController(openSettingsViewController viewcontroller: ViewController) {
+        _ = router.pushViewController(type: .settingsViewController)
+    }
 }

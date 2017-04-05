@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import KeychainSwift
 
 class ViewController: UIViewController, UISearchBarDelegate {
     
@@ -38,9 +39,11 @@ class ViewController: UIViewController, UISearchBarDelegate {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            self.navigator.viewController(openSettingsViewController: self)
         })
         let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            KeychainSwift().clear()
             self.navigator.viewController(openLoginViewController: self)
         })
         let helpAction = UIAlertAction(title: "Помощь", style: .destructive, handler: {
