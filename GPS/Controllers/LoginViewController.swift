@@ -33,6 +33,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var loadingView: UIView!
+   
+// MARK: DemoLogin
+    @IBAction func demoAuth(_ sender: Any) {
+        loginField.text = "demo"
+        passField.text = "accepted"
+        auth()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
