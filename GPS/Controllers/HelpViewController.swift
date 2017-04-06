@@ -11,6 +11,12 @@ import MessageUI
 
 class HelpViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
+    @IBOutlet weak var registerButton: UIButton!
+    @IBAction func registerButton(_ sender: UIButton) {
+        if let url = URL(string: "http://gps-tracker.com.ua/connection.php") {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
     var settingsService: SettingsService!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +35,9 @@ class HelpViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerButton.layer.cornerRadius = 5
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func didReceiveMemoryWarning() {
