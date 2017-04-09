@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var activeTextField: UITextField?
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passField: UITextField!
-    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
    
 // MARK: DemoLogin
     @IBAction func demoAuth(_ sender: Any) {
@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         self.setNotificationKeyboard()
         self.navigationController?.isNavigationBarHidden = true
-
+        
 // MARK: AutoLogin
     if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {   auth()  }
         
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: Keyboard settings
+// MARK: Keyboard settings
     func setNotificationKeyboard ()  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
@@ -121,16 +121,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
 // MARK: Auth
     func auth() {
-        self.loadingView.isHidden = false
+        self.loadingIndicator.isHidden = false
         self.settingsAPI.authorization().then{response -> Void in
             if response as! Bool == true {
                 self.navigator.loginViewController(openViewController: self)
             }
-            self.loadingView.isHidden = true
+        self.loadingIndicator.isHidden = true
         }
-        
     }
-    
 }
 
 // MARK: TextFieds Delegate

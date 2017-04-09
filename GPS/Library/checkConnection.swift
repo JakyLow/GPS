@@ -1,5 +1,5 @@
 //
-//  checkConnection.swift
+//  CheckConnection.swift
 //  GPS
 //
 //  Created by Maxim Mazhuga on 18.03.17.

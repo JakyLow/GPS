@@ -63,8 +63,17 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         default: return
         }
     }
+  
+// MARK: Connection Error
+    func connectionErrorAlert() {
+        BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+            .message(message: "Проблема с интернет соединением")
+            .messageColor(color: .white)
+            .bgColor(color: .flatRed)
+            .show()
+    }
     
-    // MARK: Authorization
+// MARK: Authorization
     var delegate:LoginDelegate?
     
     func authorization() -> AnyPromise {
@@ -101,16 +110,85 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                     }
                 }
             } else {
-                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                    .message(message: "Проблема с интернет соединением")
-                    .messageColor(color: .white)
-                    .bgColor(color: .flatRed)
-                    .show()
-                    fulfill(false)
+                connectionErrorAlert()
+                        fulfill(false)
             }
             
         }
         
         return AnyPromise(promise)
     }
+
+// MARK: SearchBar settings
+    func setSearchButtonText(text:String,searchBar:UISearchBar) {
+        for subview in searchBar.subviews {
+            for innerSubViews in subview.subviews {
+                if let cancelButton = innerSubViews as? UIButton {
+                    cancelButton.setTitle(text, for: .normal)
+                }
+            }
+        }
+        
+    }
+    
+// MARK: Load markers
+    func loadMarkers() -> AnyPromise {
+        
+        let url = "http://gps-tracker.com.ua/loadevents.php"
+        let parameters: Parameters = [
+            "param": "icars"
+        ]
+        
+        let promise = Promise<[[String:String]]> { fulfill, reject in
+            
+            if Reachability.isConnectedToNetwork() == true
+            {
+                
+                Alamofire.request(url, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        var markerProperties = [String:String]()
+                        var markersArray = [[String:String]]()
+                        for item in json["rows"].arrayValue {
+                            markerProperties["markerName"] = item["CarName"].stringValue
+                            markerProperties["gps_level"] = item["gps_level"].stringValue
+                            markerProperties["gsm_level"] = item["gsm_level"].stringValue
+                            markerProperties["bat_level"] = item["bat_level"].stringValue
+                            markerProperties["longitude"] = item["X"].stringValue
+                            markerProperties["latitude"] = item["Y"].stringValue
+                            markerProperties["speed"] = item["Speed"].stringValue
+                            markersArray.append(markerProperties)
+                        }
+                        fulfill(markersArray)
+                    case .failure:
+                        BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                            .message(message: "Ошибка запроса")
+                            .messageColor(color: .white)
+                            .bgColor(color: .flatRed)
+                            .show()
+                    }
+                }
+            } else {
+                connectionErrorAlert()
+            }
+            
+        }
+        
+        return AnyPromise(promise)
+    }
+    
+    
+// MARK: Markers Model
+    
+    var markerName = String()
+    
+    func setMarkerName(name:String) {
+        markerName = name
+    }
+    
+    func getMarkerName() -> String {
+        return markerName
+    }
+    
 }

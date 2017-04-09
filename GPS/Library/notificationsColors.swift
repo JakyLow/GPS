@@ -1,5 +1,5 @@
 //
-//  notificationsColors.swift
+//  NotificationsColors.swift
 //  GPS
 //
 //  Created by Maxim Mazhuga on 04.04.17.

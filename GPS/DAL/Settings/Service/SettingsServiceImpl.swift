@@ -23,4 +23,20 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
     func authorization() -> AnyPromise {
         return settingsRepository.authorization()
     }
+    
+    func loadMarkers() -> AnyPromise {
+        return settingsRepository.loadMarkers()
+    }
+    
+    func setSearchButtonText(text:String,searchBar:UISearchBar) {
+        return settingsRepository.setSearchButtonText(text: text, searchBar: searchBar)
+    }
+    
+    func setMarkerName(name:String) {
+        return settingsRepository.setMarkerName(name: name)
+    }
+    
+    func getMarkerName() -> String {
+        return settingsRepository.getMarkerName()
+    }
 }

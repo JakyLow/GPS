@@ -10,10 +10,6 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.title = "Заголовок"
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -16,6 +16,7 @@ extension Assembly {
     func _viewController() -> AnyObject {
         return TyphoonDefinition.withClass(ViewController.self) { definition in
             definition!.injectProperty(#selector(getter: ViewController.navigator), with: self.navigator)
+            definition!.injectProperty(#selector(getter: ViewController.settingsService), with: self.settingService)
             } as AnyObject
     }
 }
@@ -39,6 +40,17 @@ extension Assembly {
     func _helpViewController() -> AnyObject {
         return TyphoonDefinition.withClass(HelpViewController.self) { definition in
             definition!.injectProperty(#selector(getter: HelpViewController.settingsService), with: self.settingService)
+            } as AnyObject
+    }
+}
+
+// MARK: InfoViewController
+
+extension Assembly {
+    
+    func _infoViewController() -> AnyObject {
+        return TyphoonDefinition.withClass(InfoViewController.self) { definition in
+            definition!.injectProperty(#selector(getter: InfoViewController.settingsService), with: self.settingService)
             } as AnyObject
     }
 }

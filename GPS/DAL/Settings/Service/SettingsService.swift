@@ -15,4 +15,8 @@ protocol SettingsService {
     func configuredMailComposeViewController() -> MFMailComposeViewController
     func showSendMailErrorAlert()
     func authorization() -> AnyPromise
+    func loadMarkers() -> AnyPromise
+    func setSearchButtonText(text:String,searchBar:UISearchBar)
+    func setMarkerName(name:String)
+    func getMarkerName() -> String
 }

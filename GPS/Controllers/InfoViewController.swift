@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import MapKit
 
 class InfoViewController: UIViewController {
+   
+    var settingsService: SettingsService!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = settingsService.getMarkerName()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
