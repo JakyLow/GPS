@@ -22,7 +22,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var ghostView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
-
     
 // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
@@ -101,7 +100,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 self.loadingView.isHidden = true
             } else {
             
-            self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//            self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
             self.tableView.delegate = self
             self.tableView.dataSource = self 
             self.tableView.reloadData()
@@ -120,12 +119,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell!
-        cell.textLabel?.text = markersArray[indexPath.row]["markerName"]
         
-
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-
+        let cell:MarkersTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! MarkersTableViewCell
+        
+        cell.titleTableView?.text = markersArray[indexPath.row]["markerName"]
+        cell.subtitleTableView?.text = markersArray[indexPath.row]["speed"]?.lowercased()
+        
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
     }

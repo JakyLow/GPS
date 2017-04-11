@@ -24,8 +24,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if checkFields() != [:] {   auth()  }
     }
     
-    @IBOutlet weak var gifLogin: UIImageView!
+    @IBOutlet weak var demoButton: UIButton!
     @IBOutlet weak var Auth: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var gifLogin: UIImageView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var theScrollView: UIScrollView!
@@ -121,12 +123,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
 // MARK: Auth
     func auth() {
+        
+        Auth.isEnabled = false
+        registerButton.isEnabled = false
+        demoButton.isEnabled = false
+        
         self.loadingIndicator.isHidden = false
         self.settingsAPI.authorization().then{response -> Void in
             if response as! Bool == true {
                 self.navigator.loginViewController(openViewController: self)
             }
         self.loadingIndicator.isHidden = true
+            
+        self.Auth.isEnabled = true
+        self.registerButton.isEnabled = true
+        self.demoButton.isEnabled = true
         }
     }
 }
