@@ -125,6 +125,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         cell.titleTableView?.text = markersArray[indexPath.row]["markerName"]
         cell.subtitleTableView?.text = markersArray[indexPath.row]["speed"]?.lowercased()
         
+        let _status = (settingsService.getGSMLevel(level: markersArray[indexPath.row]["gsm_level"]!)).text
+        
+        cell.batteryStatus.image = settingsService.getBatLevel(level: markersArray[indexPath.row]["bat_level"]!, status: _status!)
+        cell.gpsStatus.image = settingsService.getGPSLevel(level: markersArray[indexPath.row]["gps_level"]!, status: _status!)
+        cell.status.text = _status
+        cell.status.textColor = (settingsService.getGSMLevel(level: markersArray[indexPath.row]["gsm_level"]!)).textColor
+        
+        cell.subtitleTableView.text = settingsService.getModifySubtitleTableView(subtitle: markersArray[indexPath.row]["info"]!)
+        
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         

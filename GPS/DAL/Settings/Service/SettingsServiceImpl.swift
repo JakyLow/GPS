@@ -39,4 +39,21 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
     func getMarkerName() -> String {
         return settingsRepository.getMarkerName()
     }
+    
+    func getBatLevel(level: String, status: String) -> UIImage {
+        return settingsRepository.getBatLevel(level: level, status: status)
+    }
+    
+    func getGPSLevel(level: String, status: String) -> UIImage {
+        return settingsRepository.getGPSLevel(level: level, status: status)
+    }
+    
+    func getGSMLevel(level: String) -> UILabel {
+        return settingsRepository.getGSMLevel(level: level)
+    }
+    
+    func getModifySubtitleTableView(subtitle: String) -> String {
+        return settingsRepository.getModifySubtitleTableView(subtitle:subtitle)
+    }
+
 }

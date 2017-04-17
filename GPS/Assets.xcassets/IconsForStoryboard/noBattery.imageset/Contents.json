@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "fullBattery.png",
+      "filename" : "noBattery.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "fullBattery-1.png",
+      "filename" : "noBattery-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "fullBattery-2.png",
+      "filename" : "noBattery-2.png",
       "scale" : "3x"
     }
   ],

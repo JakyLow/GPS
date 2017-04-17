@@ -157,7 +157,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                             markerProperties["bat_level"] = item["bat_level"].stringValue
                             markerProperties["longitude"] = item["X"].stringValue
                             markerProperties["latitude"] = item["Y"].stringValue
-                            markerProperties["speed"] = item["Speed"].stringValue
+                            markerProperties["info"] = item["Speed"].stringValue
                             markersArray.append(markerProperties)
                         }
                         fulfill(markersArray)
@@ -189,6 +189,88 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     
     func getMarkerName() -> String {
         return markerName
+    }
+    
+    func getBatLevel(level: String, status: String) -> UIImage {
+        var _level = Int()
+        
+        if level != "" {
+        _level = Int(level)!
+        } else {
+            _level = 0
+        }
+        
+        var result = UIImage()
+        
+        if status == "online" {
+        switch _level {
+        case 0...3:
+            result = #imageLiteral(resourceName: "lowBattery")
+        case 4...6:
+            result = #imageLiteral(resourceName: "normalBattery")
+        case 7...10:
+            result = #imageLiteral(resourceName: "fullBattery")
+        default:
+            result = #imageLiteral(resourceName: "fullBattery")
+        }
+        } else {
+            result = #imageLiteral(resourceName: "noBattery")
+        }
+        
+        return result
+    }
+    
+    func getGPSLevel(level: String, status: String) -> UIImage {
+        var _level = Int()
+        
+        if level != "" {
+            _level = Int(level)!
+        } else {
+            _level = 0
+        }
+        
+        var result = UIImage()
+        
+        if status == "online" {
+        switch _level {
+        case 0:
+            result = #imageLiteral(resourceName: "noGPS")
+        default:
+            result = #imageLiteral(resourceName: "yesGPS")
+        }
+        } else {
+            result = #imageLiteral(resourceName: "noGPS")
+        }
+        return result
+    }
+
+    func getGSMLevel(level: String) -> UILabel {
+        let result = UILabel()
+        
+        if level == "" || level == "0" {
+            result.text = "offline"
+            result.textColor = UIColor.flatRed
+
+        } else {
+            result.text = "online"
+            result.textColor = UIColor.flatGreen
+        }
+        
+        return result
+    }
+    
+    func getModifySubtitleTableView(subtitle: String) -> String {
+        var result = String()
+        
+        if subtitle.lowercased().contains("нет данных") {
+            result = "нет данных"
+        } else if subtitle.lowercased().contains("стоит") {
+            result = subtitle.lowercased().replacingOccurrences(of: "д.", with: " д.")
+        } else if subtitle.lowercased().contains("нет gprs") {
+            result = subtitle.lowercased().replacingOccurrences(of: "gprs:", with: "связи").replacingOccurrences(of: "д.", with: " д.").replacingOccurrences(of: "ч. ", with: ":").replacingOccurrences(of: "м.", with: ":00")
+        }
+        
+        return result
     }
     
 }

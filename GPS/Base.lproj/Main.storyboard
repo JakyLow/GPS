@@ -289,7 +289,7 @@
                                     <constraint firstItem="OTS-Vx-Oyd" firstAttribute="centerY" secondItem="J4x-l3-EsE" secondAttribute="centerY" id="pca-xd-xAW"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" placeholder="Сортировка объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jp7-Ku-fyC">
+                            <searchBar contentMode="redraw" placeholder="Поиск объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jp7-Ku-fyC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <scopeButtonTitles>
@@ -320,13 +320,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lP-yr-6vU">
                                                             <rect key="frame" x="8" y="35" width="255" height="17"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeI-AE-1qA">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="nil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeI-AE-1qA">
                                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="45" id="w7x-tg-BOQ"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <color key="textColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSJ-wv-ybP">

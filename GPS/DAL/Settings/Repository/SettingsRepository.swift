@@ -19,5 +19,9 @@ protocol SettingsRepository {
     func setSearchButtonText(text:String,searchBar:UISearchBar)
     func setMarkerName(name:String)
     func getMarkerName() -> String
+    func getBatLevel(level: String, status: String) -> UIImage
+    func getGPSLevel(level: String, status: String) -> UIImage
+    func getGSMLevel(level: String) -> UILabel
+    func getModifySubtitleTableView(subtitle: String) -> String
 }
 
