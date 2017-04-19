@@ -255,7 +255,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OTS-Vx-Oyd" userLabel="GhostView">
-                                        <rect key="frame" x="47.5" y="236.5" width="280" height="130"/>
+                                        <rect key="frame" x="48" y="237" width="280" height="130"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ghost" translatesAutoresizingMaskIntoConstraints="NO" id="Hb8-aQ-ojg">
                                                 <rect key="frame" x="115" y="20" width="50" height="50"/>
@@ -289,15 +289,7 @@
                                     <constraint firstItem="OTS-Vx-Oyd" firstAttribute="centerY" secondItem="J4x-l3-EsE" secondAttribute="centerY" id="pca-xd-xAW"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" placeholder="Поиск объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jp7-Ku-fyC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
                                 <rect key="frame" x="0.0" y="44" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -305,7 +297,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bsI-Ct-jMk" id="ieg-FB-V2p">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oJu-55-dHE">
@@ -348,7 +340,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yesGPS" translatesAutoresizingMaskIntoConstraints="NO" id="p6N-l3-Uef">
-                                                    <rect key="frame" x="312" y="18" width="22" height="22"/>
+                                                    <rect key="frame" x="312" y="19" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="2oj-83-qau"/>
                                                         <constraint firstAttribute="width" constant="22" id="vCL-e4-KrT"/>
@@ -378,6 +370,10 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="Поиск объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-hz-eUv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </searchBar>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnR-g4-DnR" userLabel="Loading View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
@@ -411,20 +407,19 @@
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5cM-g3-xTP"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6wZ-fM-Qlk"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="7Y2-eq-jB6"/>
-                            <constraint firstItem="Jp7-Ku-fyC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="F4h-dv-4lT"/>
+                            <constraint firstItem="ldh-hz-eUv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C5N-hc-EFt"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fis-zy-6Zn"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="H9j-Bu-4qT"/>
+                            <constraint firstItem="ldh-hz-eUv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="HRZ-1L-jC1"/>
+                            <constraint firstItem="ldh-hz-eUv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="K2z-Qi-ow8"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="R6S-0V-99Q"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="TSz-Zr-2Bs"/>
-                            <constraint firstItem="Jp7-Ku-fyC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VUQ-f0-BIH"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="YMM-HS-d2N"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="YgA-aY-txg"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-44" id="Yqg-MU-ApS"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dhZ-Xg-hkg"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kJK-jz-xJq"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="mQH-Q6-19w"/>
-                            <constraint firstItem="itT-wP-gUk" firstAttribute="top" secondItem="Jp7-Ku-fyC" secondAttribute="bottom" id="mva-AU-PoL"/>
-                            <constraint firstItem="Jp7-Ku-fyC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="pmB-6F-IPP"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="22" id="vmy-Ju-to4"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yuW-gQ-0ll"/>
                         </constraints>
@@ -457,12 +452,21 @@
                         <outlet property="listOfMarkers" destination="itT-wP-gUk" id="CHa-hd-fSN"/>
                         <outlet property="loadingView" destination="bnR-g4-DnR" id="Vqz-jf-GXV"/>
                         <outlet property="map" destination="7uR-Hl-qbx" id="bn6-Gc-Xat"/>
-                        <outlet property="searchBar" destination="Jp7-Ku-fyC" id="ntc-26-bM9"/>
+                        <outlet property="searchBar" destination="ldh-hz-eUv" id="OLm-Am-gyP"/>
+                        <outlet property="searchDisplayController" destination="INh-SF-oQB" id="MTZ-Mw-TYA"/>
                         <outlet property="tableView" destination="itT-wP-gUk" id="Q6j-P4-sD9"/>
                         <segue destination="dwW-8k-i1R" kind="showDetail" action="showViewController:sender:" id="0aj-3N-iNH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="INh-SF-oQB">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="58N-Pl-ldw"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="Hba-EM-Opp"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="YYo-h0-uaI"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="i3Y-BA-5FI"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-293.60000000000002" y="34.632683658170919"/>
         </scene>

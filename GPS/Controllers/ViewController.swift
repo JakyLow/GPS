@@ -22,12 +22,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var ghostView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
+    let searchController = UISearchController(searchResultsController: nil)
     
 // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
         getMarkers()
     }
-    // MARK: UISegmentedControl
+// MARK: UISegmentedControl
     @IBAction func selector(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex  {
         case 0:
@@ -45,7 +46,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }
     }
     
-    // MARK: UIBarButtonItem
+// MARK: UIBarButtonItem
     @IBAction func openMenu(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
@@ -84,11 +85,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
+        searchBar.delegate = self
+
         getMarkers()
+        
     }
     
-// MARK: Show markers
+// MARK: GetMarkers
     var markersArray = [[String:String]]()
+    var markersArrayFiltered = [[String:String]]()
+    
     func getMarkers() {
 
         self.loadingView.isHidden = false
@@ -100,11 +106,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 self.loadingView.isHidden = true
             } else {
             
-//            self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
             self.tableView.delegate = self
-            self.tableView.dataSource = self 
+            self.tableView.dataSource = self
+            self.markersArrayFiltered = self.markersArray
             self.tableView.reloadData()
-            
+                
             self.loadingView.isHidden = true
             self.listOfMarkers.isHidden = false
             }
@@ -115,24 +121,26 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
 // MARK: TableView Settings
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.markersArray.count
+        return self.markersArrayFiltered.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:MarkersTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! MarkersTableViewCell
         
-        cell.titleTableView?.text = markersArray[indexPath.row]["markerName"]
-        cell.subtitleTableView?.text = markersArray[indexPath.row]["speed"]?.lowercased()
-        
-        let _status = (settingsService.getGSMLevel(level: markersArray[indexPath.row]["gsm_level"]!)).text
-        
-        cell.batteryStatus.image = settingsService.getBatLevel(level: markersArray[indexPath.row]["bat_level"]!, status: _status!)
-        cell.gpsStatus.image = settingsService.getGPSLevel(level: markersArray[indexPath.row]["gps_level"]!, status: _status!)
+        if (indexPath.row % 2) != 0 {
+            cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.7)
+        }
+    
+        cell.titleTableView?.text = markersArrayFiltered[indexPath.row]["markerName"]
+        cell.subtitleTableView?.text = markersArrayFiltered[indexPath.row]["speed"]?.lowercased()
+        let _status = (settingsService.getGSMLevel(level: markersArrayFiltered[indexPath.row]["gsm_level"]!)).text
+        cell.batteryStatus.image = settingsService.getBatLevel(level: markersArrayFiltered[indexPath.row]["bat_level"]!, status: _status!)
+        cell.gpsStatus.image = settingsService.getGPSLevel(level: markersArrayFiltered[indexPath.row]["gps_level"]!, status: _status!)
         cell.status.text = _status
-        cell.status.textColor = (settingsService.getGSMLevel(level: markersArray[indexPath.row]["gsm_level"]!)).textColor
-        
-        cell.subtitleTableView.text = settingsService.getModifySubtitleTableView(subtitle: markersArray[indexPath.row]["info"]!)
+        cell.status.textColor = (settingsService.getGSMLevel(level: markersArrayFiltered[indexPath.row]["gsm_level"]!)).textColor
+        cell.subtitleTableView.text = settingsService.getModifySubtitleTableView(subtitle: markersArrayFiltered[indexPath.row]["info"]!)
+
         
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -142,7 +150,17 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigator.viewController(openInfoViewController: self)
-        settingsService.setMarkerName(name: markersArray[indexPath.row]["markerName"]!)
+        settingsService.setMarkerName(name: markersArrayFiltered[indexPath.row]["markerName"]!)
+    }
+    
+// MARK: Search
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray.filter{
+            let string = $0["markerName"]!
+            return string.range(of: searchText) != nil
+        }
+        
+        tableView.reloadData()
     }
 
 }

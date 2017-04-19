@@ -263,13 +263,14 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         var result = String()
         
         if subtitle.lowercased().contains("нет данных") {
-            result = "нет данных"
+            result = subtitle.lowercased().replacingOccurrences(of: "нет данных:", with: "нет данных").replacingOccurrences(of: "д.", with: " д.").replacingOccurrences(of: "ч. ", with: ":").replacingOccurrences(of: "м.", with: ":")
         } else if subtitle.lowercased().contains("стоит") {
             result = subtitle.lowercased().replacingOccurrences(of: "д.", with: " д.")
         } else if subtitle.lowercased().contains("нет gprs") {
             result = subtitle.lowercased().replacingOccurrences(of: "gprs:", with: "связи").replacingOccurrences(of: "д.", with: " д.").replacingOccurrences(of: "ч. ", with: ":").replacingOccurrences(of: "м.", with: ":00")
+        } else if subtitle.lowercased().contains("едет") {
+            result = subtitle.lowercased().replacingOccurrences(of: "едет", with: "в движении, ")
         }
-        
         return result
     }
     
