@@ -13,6 +13,7 @@ import PromiseKit
 import MessageUI
 import BPStatusBarAlert
 import KeychainSwift
+import MapKit
 
 protocol LoginDelegate {
     func checkFields() -> [String:String]
@@ -80,8 +81,17 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         
         let loginAndPassword = delegate?.checkFields()
         
-        let login = (loginAndPassword?["login"])!
-        let password = (loginAndPassword?["password"])!
+        var login = String()
+        var password = String()
+        
+        if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {
+            login = KeychainSwift().get("login")!
+            password = KeychainSwift().get("password")!
+        } else {
+        login = (loginAndPassword?["login"])!
+        password = (loginAndPassword?["password"])!
+        }
+        
         let url = "http://gps-tracker.com.ua/login.php"
         let parameters: Parameters = [
             "login": login,
@@ -153,10 +163,9 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                         for item in json["rows"].arrayValue {
                             markerProperties["markerName"] = item["CarName"].stringValue
                             markerProperties["gps_level"] = item["gps_level"].stringValue
-                            markerProperties["gsm_level"] = item["gsm_level"].stringValue
                             markerProperties["bat_level"] = item["bat_level"].stringValue
-                            markerProperties["longitude"] = item["X"].stringValue
-                            markerProperties["latitude"] = item["Y"].stringValue
+                            markerProperties["longitude"] = item["Y"].stringValue
+                            markerProperties["latitude"] = item["X"].stringValue
                             markerProperties["info"] = item["Speed"].stringValue
                             markersArray.append(markerProperties)
                         }
@@ -182,13 +191,67 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
 // MARK: Markers Model
     
     var markerName = String()
+    var markerInfo = String()
+    var markerLongitude = String()
+    var markerLatitude = String()
+    var markerStatus = UILabel()
+    var markerBatteryStatus = UIImage()
+    var markerGPSstatus = UIImage()
     
     func setMarkerName(name:String) {
         markerName = name
     }
     
+    func setMarkerInfo(info:String) {
+        markerInfo = info
+    }
+    
+    func setMarkerLongitude(longitude:String) {
+        markerLongitude = longitude
+    }
+    
+    func setMarkerLatitude(latitude:String) {
+        markerLatitude = latitude
+    }
+
     func getMarkerName() -> String {
         return markerName
+    }
+    
+    func setMarkerStatus(info: String) {
+        markerStatus = getStatus(status: info)
+    }
+    
+    func getMarkerStatus() -> UILabel {
+        return markerStatus
+    }
+    
+    func setMarkerBatteryStatus(img: UIImage) {
+        markerBatteryStatus = img
+    }
+    
+    func getMarkerBatteryStatus() -> UIImage {
+        return markerBatteryStatus
+    }
+    
+    func setMarkerGPSstatus(img: UIImage) {
+        markerGPSstatus = img
+    }
+    
+    func getMarkerGPSstatus() -> UIImage {
+        return markerGPSstatus
+    }
+    
+    func getMarkerInfo() -> String {
+        return markerInfo
+    }
+    
+    func getMarkerLongitude() -> String {
+        return markerLongitude
+    }
+    
+    func getMarkerLatitude() -> String {
+        return markerLatitude
     }
     
     func getBatLevel(level: String, status: String) -> UIImage {
@@ -244,13 +307,12 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         return result
     }
 
-    func getGSMLevel(level: String) -> UILabel {
+    func getStatus(status: String) -> UILabel {
         let result = UILabel()
         
-        if level == "" || level == "0" {
+        if status.lowercased().contains("gprs") {
             result.text = "offline"
             result.textColor = UIColor.flatRed
-
         } else {
             result.text = "online"
             result.textColor = UIColor.flatGreen
@@ -263,15 +325,78 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         var result = String()
         
         if subtitle.lowercased().contains("нет данных") {
-            result = subtitle.lowercased().replacingOccurrences(of: "нет данных:", with: "нет данных").replacingOccurrences(of: "д.", with: " д.").replacingOccurrences(of: "ч. ", with: ":").replacingOccurrences(of: "м.", with: ":")
+            result = subtitle.lowercased().replacingOccurrences(of: "нет данных:", with: "нет данных").replacingOccurrences(of: "д.", with: " д. ").replacingOccurrences(of: "ч. ", with: " ч. ").replacingOccurrences(of: "м.", with: " м.")
+            
         } else if subtitle.lowercased().contains("стоит") {
             result = subtitle.lowercased().replacingOccurrences(of: "д.", with: " д.")
         } else if subtitle.lowercased().contains("нет gprs") {
-            result = subtitle.lowercased().replacingOccurrences(of: "gprs:", with: "связи").replacingOccurrences(of: "д.", with: " д.").replacingOccurrences(of: "ч. ", with: ":").replacingOccurrences(of: "м.", with: ":00")
+            result = subtitle.lowercased().replacingOccurrences(of: "gprs:", with: "связи").replacingOccurrences(of: "д.", with: " д.").replacingOccurrences(of: "ч. ", with: " ч. ").replacingOccurrences(of: "м.", with: " м.")
         } else if subtitle.lowercased().contains("едет") {
             result = subtitle.lowercased().replacingOccurrences(of: "едет", with: "в движении, ")
         }
         return result
     }
     
+// MARK: Find adress 
+    func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
+        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let lat: Double = Double("\(pdblLatitude)")!
+        let lon: Double = Double("\(pdblLongitude)")!
+        
+        let ceo: CLGeocoder = CLGeocoder()
+        center.latitude = lat
+        center.longitude = lon
+        
+        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+        
+        let promise = Promise<String> { fulfill, reject in
+    
+            ceo.reverseGeocodeLocation(loc, completionHandler:
+                {(placemarks, error) in
+                    if (error != nil)
+                    {
+                        print("reverse geodcode fail: \(error!.localizedDescription)")
+                        fulfill("reverse geodcode fail: \(error!.localizedDescription)")
+                    }
+                    let pm = placemarks! as [CLPlacemark]
+                    
+                    var addressString : String = ""
+                    if pm.count > 0 {
+                        let pm = placemarks![0]
+                        
+                        if pm.postalCode != nil {
+                            addressString = addressString + pm.postalCode!
+                            if pm.country != nil {
+                                addressString = addressString + ", "
+                            }
+                        }
+                        if pm.country != nil {
+                            addressString = addressString + pm.country!
+                            if pm.locality != nil {
+                                addressString = addressString + ", "
+                            }
+                        }
+                        if pm.locality != nil {
+                            addressString = addressString + pm.locality!
+                            if pm.thoroughfare != nil {
+                                addressString = addressString + ", "
+                            }
+                        }
+                        if pm.thoroughfare != nil {
+                            addressString = addressString + pm.thoroughfare!
+                            if pm.subThoroughfare != nil {
+                                addressString = addressString + ", "
+                            }
+                        }
+                        if pm.subThoroughfare != nil {
+                            addressString = addressString + "д. " + pm.subThoroughfare!
+                        }
+                        fulfill(addressString)
+                    }
+            })
+            
+        }
+        return AnyPromise(promise)
+    }
+  
 }

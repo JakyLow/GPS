@@ -86,10 +86,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         searchBar.delegate = self
-
+        
         getMarkers()
         
+        
     }
+    
     
 // MARK: GetMarkers
     var markersArray = [[String:String]]()
@@ -98,7 +100,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     func getMarkers() {
 
         self.loadingView.isHidden = false
-          settingsService.loadMarkers().then{response -> Void in
+        
+        
+        settingsService.authorization().then{response -> Void in
+            if response as! Bool == true {
+        
+          self.settingsService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [[String:String]])!
             
             if self.markersArray.count == 0 {
@@ -114,8 +121,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             self.loadingView.isHidden = true
             self.listOfMarkers.isHidden = false
             }
-        }
-
+                }
+            } else {
+                KeychainSwift().clear()
+                self.navigator.viewController(openLoginViewController: self)
+            }
+                }
     }
 
     
@@ -133,12 +144,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }
     
         cell.titleTableView?.text = markersArrayFiltered[indexPath.row]["markerName"]
-        cell.subtitleTableView?.text = markersArrayFiltered[indexPath.row]["speed"]?.lowercased()
-        let _status = (settingsService.getGSMLevel(level: markersArrayFiltered[indexPath.row]["gsm_level"]!)).text
+        let _status = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).text
         cell.batteryStatus.image = settingsService.getBatLevel(level: markersArrayFiltered[indexPath.row]["bat_level"]!, status: _status!)
         cell.gpsStatus.image = settingsService.getGPSLevel(level: markersArrayFiltered[indexPath.row]["gps_level"]!, status: _status!)
         cell.status.text = _status
-        cell.status.textColor = (settingsService.getGSMLevel(level: markersArrayFiltered[indexPath.row]["gsm_level"]!)).textColor
+        cell.status.textColor = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).textColor
         cell.subtitleTableView.text = settingsService.getModifySubtitleTableView(subtitle: markersArrayFiltered[indexPath.row]["info"]!)
 
         
@@ -151,6 +161,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigator.viewController(openInfoViewController: self)
         settingsService.setMarkerName(name: markersArrayFiltered[indexPath.row]["markerName"]!)
+        settingsService.setMarkerInfo(info: settingsService.getModifySubtitleTableView(subtitle: markersArrayFiltered[indexPath.row]["info"]!))
+        settingsService.setMarkerStatus(info: markersArrayFiltered[indexPath.row]["info"]!)
+        settingsService.setMarkerLongitude(longitude: markersArrayFiltered[indexPath.row]["longitude"]!)
+        settingsService.setMarkerLatitude(latitude: markersArrayFiltered[indexPath.row]["latitude"]!)
+        let _status = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).text
+        settingsService.setMarkerBatteryStatus(img: settingsService.getBatLevel(level: markersArrayFiltered[indexPath.row]["bat_level"]!, status: _status!))
+        settingsService.setMarkerGPSstatus(img: settingsService.getGPSLevel(level: markersArrayFiltered[indexPath.row]["gps_level"]!, status: _status!))
     }
     
 // MARK: Search
@@ -160,6 +177,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             return string.range(of: searchText) != nil
         }
         
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        markersArrayFiltered = markersArray
+        searchBar.text = ""
         tableView.reloadData()
     }
 
