@@ -14,5 +14,4 @@ class MarkersTableViewCell: UITableViewCell {
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var batteryStatus: UIImageView!
     @IBOutlet weak var gpsStatus: UIImageView!
-    
 }

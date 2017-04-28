@@ -89,7 +89,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         getMarkers()
         
+        let marker = Marker(title: "Pepa", info: "Едет", status: "o", gpsLevel: "1", batteryLevel: "1", coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
         
+        var array = [Marker]()
+        array.append(marker)
+        
+//        map.addAnnotation(marker)
+        map.delegate = self
+        
+        map.showAnnotations(array, animated: true)
     }
     
     

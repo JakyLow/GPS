@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,7 +86,7 @@
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="Авторизация">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -370,7 +370,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Подробнее" id="QYd-oX-QGM">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="FyC-rh-l3n"/>
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="UnW-3Y-zYj"/>
                     </navigationItem>
                     <connections>
                         <outlet property="adress" destination="lq9-Uh-uXe" id="kCk-ub-DFn"/>
@@ -583,8 +583,8 @@
                             <constraint firstItem="itT-wP-gUk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yuW-gQ-0ll"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Назад" id="dAa-li-O0E">
-                        <barButtonItem key="leftBarButtonItem" image="menu" style="plain" id="TVb-wT-4AM">
+                    <navigationItem key="navigationItem" title="Назад" id="dAa-li-O0E" userLabel="ViewMenu">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="TVb-wT-4AM">
                             <connections>
                                 <action selector="openMenu:" destination="BYZ-38-t0r" id="rfi-tB-DLV"/>
                             </connections>
@@ -600,7 +600,7 @@
                                 <action selector="selector:" destination="BYZ-38-t0r" eventType="valueChanged" id="5df-Qy-YFz"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" image="refresh" style="plain" id="bMa-dx-4Wz">
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="bMa-dx-4Wz">
                             <connections>
                                 <action selector="updateMarkers:" destination="BYZ-38-t0r" id="Lop-dL-6sa"/>
                             </connections>
@@ -614,7 +614,7 @@
                         <outlet property="searchBar" destination="ldh-hz-eUv" id="OLm-Am-gyP"/>
                         <outlet property="searchDisplayController" destination="INh-SF-oQB" id="MTZ-Mw-TYA"/>
                         <outlet property="tableView" destination="itT-wP-gUk" id="Q6j-P4-sD9"/>
-                        <segue destination="dwW-8k-i1R" kind="show" id="0aj-3N-iNH"/>
+                        <segue destination="dwW-8k-i1R" kind="show" identifier="viewToInfo" id="0aj-3N-iNH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -643,7 +643,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="zeF-VM-boF" userLabel="Настройки">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="mXn-rW-Fz6"/>
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="req-BC-lAC"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWG-Xh-yHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -680,11 +680,11 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wI1-eS-4Pf">
                                         <rect key="frame" x="20" y="132" width="335" height="301"/>
-                                        <string key="text">Сервис мониторинга европейского уровня, основанный на технической базе веб-сервера gps-tracker.com.ua
+                                        <mutableString key="text">Сервис мониторинга европейского уровня, основанный на технической базе веб-сервера gps-tracker.com.ua
 
 Сервис поддерживает более 300 GPS трекеров для решения любых задач бизнеса или индивидуальных потребностей. Поддерживаемые устройства обладают широким диапазоном рабочей температуры, а также стабильно работают в условиях повышенной влажности.
-
-Приложение позволяет владельцам устройств не только отследить передвижение по карте, но и в online режиме получить максимально полные сведения об отслеживаемом объекте. Статистические данные хранятся в архиве в течение трех лет с момента события.</string>
+                                    
+Приложение позволяет владельцам устройств не только отследить передвижение по карте, но и в online режиме получить максимально полные сведения об отслеживаемом объекте. Статистические данные хранятся в архиве в течение трех лет с момента события.</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -732,10 +732,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Помощь" id="8XR-a4-ANF">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="S9O-tm-2UH">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="email" style="plain" id="tyK-ZA-805">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="FAJ-X5-9j1"/>
+                        <barButtonItem key="rightBarButtonItem" image="email" id="tyK-ZA-805">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b9X-Aj-W93">
                                 <rect key="frame" x="334" y="9" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -759,7 +757,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NavigationControllerLogin" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Inu-yv-Ws4" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="Назад" id="w42-VQ-dBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="w42-VQ-dBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -771,7 +769,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="FCO-fM-BZl" kind="relationship" relationship="rootViewController" id="azJ-aP-duc"/>
-                        <segue destination="8B4-70-KfF" kind="show" id="a9u-rG-tN6"/>
+                        <segue destination="8B4-70-KfF" kind="show" identifier="loginToHelp" id="a9u-rG-tN6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3f-NZ-VTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -794,8 +792,8 @@
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0pn-eD-g3E"/>
-                        <segue destination="8B4-70-KfF" kind="show" id="vcN-tq-z2T"/>
-                        <segue destination="UhF-n4-ypt" kind="show" id="PXI-oV-xNS"/>
+                        <segue destination="8B4-70-KfF" kind="show" identifier="viewToHelp" id="vcN-tq-z2T"/>
+                        <segue destination="UhF-n4-ypt" kind="show" identifier="viewToSettings" id="PXI-oV-xNS"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Pz-X1-NSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -815,7 +813,6 @@
         <image name="password" width="25" height="25"/>
         <image name="refresh" width="25" height="25"/>
         <image name="yesGPS" width="50" height="50"/>
-        <image name="Назад" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vcN-tq-z2T"/>

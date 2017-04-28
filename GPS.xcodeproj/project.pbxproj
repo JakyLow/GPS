@@ -23,6 +23,8 @@
 		D9473BDB1E9C5ADB009B0C94 /* MarkersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9473BDA1E9C5ADB009B0C94 /* MarkersTableViewCell.swift */; };
 		D98CEFBE1E926AED00F9B008 /* CheckConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CEFB81E926AED00F9B008 /* CheckConnection.swift */; };
 		D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = D9D6864C1E833AFC00A2B798 /* loginBg.gif */; };
+		D9D9ABF61EB3840700B1188A /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9ABF51EB3840700B1188A /* Marker.swift */; };
+		D9D9ABF81EB387B800B1188A /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9ABF71EB387B800B1188A /* VCMapView.swift */; };
 		D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */; };
 		D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */; };
 		D9EC1DD41E809A3A00C925A9 /* AssemblyViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EC1DBC1E809A3A00C925A9 /* AssemblyViewControllers.swift */; };
@@ -55,6 +57,8 @@
 		D9473BDA1E9C5ADB009B0C94 /* MarkersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkersTableViewCell.swift; sourceTree = "<group>"; };
 		D98CEFB81E926AED00F9B008 /* CheckConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckConnection.swift; sourceTree = "<group>"; };
 		D9D6864C1E833AFC00A2B798 /* loginBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = loginBg.gif; path = GPS/loginBg.gif; sourceTree = SOURCE_ROOT; };
+		D9D9ABF51EB3840700B1188A /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		D9D9ABF71EB387B800B1188A /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapView.swift; sourceTree = "<group>"; };
 		D9EC1DBA1E809A3A00C925A9 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		D9EC1DBB1E809A3A00C925A9 /* AssemblyProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyProperties.swift; sourceTree = "<group>"; };
 		D9EC1DBC1E809A3A00C925A9 /* AssemblyViewControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyViewControllers.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				D98CEFB81E926AED00F9B008 /* CheckConnection.swift */,
 				D926A6BE1E943DCA0001645C /* NotificationsColors.swift */,
 				D9473BDA1E9C5ADB009B0C94 /* MarkersTableViewCell.swift */,
+				D9D9ABF51EB3840700B1188A /* Marker.swift */,
+				D9D9ABF71EB387B800B1188A /* VCMapView.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				D9EC1DDE1E809A3A00C925A9 /* NavigatorImpl.swift in Sources */,
 				D926A6BF1E943DCA0001645C /* NotificationsColors.swift in Sources */,
 				D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */,
+				D9D9ABF81EB387B800B1188A /* VCMapView.swift in Sources */,
 				D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */,
 				D9EC1DE11E809A3A00C925A9 /* RouterViewControllerType.swift in Sources */,
 				D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */,
@@ -370,6 +377,7 @@
 				D98CEFBE1E926AED00F9B008 /* CheckConnection.swift in Sources */,
 				D926A6C31E944CE10001645C /* InfoViewController.swift in Sources */,
 				D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */,
+				D9D9ABF61EB3840700B1188A /* Marker.swift in Sources */,
 				D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */,
 				D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */,
 				D930D5A31E7D588800A77F6C /* AppDelegate.swift in Sources */,
