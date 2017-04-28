@@ -1,5 +1,5 @@
 //
-//  Markers.swift
+//  MarkerModel.swift
 //  GPS
 //
 //  Created by Maxim Mazhuga on 28.04.17.

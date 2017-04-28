@@ -138,6 +138,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.Auth.isEnabled = true
         self.registerButton.isEnabled = true
         self.demoButton.isEnabled = true
+            }.catch { error in
+                
         }
     }
 }

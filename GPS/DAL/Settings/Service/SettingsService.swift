@@ -29,7 +29,6 @@ protocol SettingsService {
     func setMarkerLatitude(latitude:String)
     func getMarkerLongitude() -> String
     func getMarkerLatitude() -> String
-    func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise
     func setMarkerStatus(info: String)
     func getMarkerStatus() -> UILabel
     func setMarkerBatteryStatus(img: UIImage)

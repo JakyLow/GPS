@@ -80,10 +80,6 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
         return settingsRepository.getMarkerLatitude()
     }
     
-    func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
-        return settingsRepository.getAddressFromLatLon(pdblLatitude: pdblLatitude, pdblLongitude: pdblLongitude)
-    }
-    
     func setMarkerStatus(info: String) {
         return settingsRepository.setMarkerStatus(info: info)
     }

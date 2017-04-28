@@ -12,6 +12,7 @@ import MapKit
 class InfoViewController: UIViewController {
    
     var settingsService: SettingsService!
+    var markersService: MarkersService!
 
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var map: MKMapView!
@@ -37,7 +38,7 @@ class InfoViewController: UIViewController {
         status.textColor  = settingsService.getMarkerStatus().textColor
         batteryStatus.image = settingsService.getMarkerBatteryStatus()
         
-        settingsService.getAddressFromLatLon(pdblLatitude: settingsService.getMarkerLatitude(), pdblLongitude: settingsService.getMarkerLongitude()).then{response -> Void in
+        markersService.getAddressFromLatLon(pdblLatitude: settingsService.getMarkerLatitude(), pdblLongitude: settingsService.getMarkerLongitude()).then{response -> Void in
             self.adress.text = (response as! String)
         }
         

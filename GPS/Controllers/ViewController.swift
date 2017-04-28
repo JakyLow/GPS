@@ -134,7 +134,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 KeychainSwift().clear()
                 self.navigator.viewController(openLoginViewController: self)
             }
-                }
+        }
     }
 
     

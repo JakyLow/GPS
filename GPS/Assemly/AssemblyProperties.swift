@@ -10,7 +10,6 @@ import Foundation
 import Typhoon
 
 // MARK: storyboard
-
 extension Assembly {
     
     private func _mainStoryBoard() -> AnyObject {
@@ -30,7 +29,6 @@ extension Assembly {
 
 
 // MARK: Navigator Property
-
 extension Assembly {
     
     private func _navigator() -> AnyObject {
@@ -48,7 +46,6 @@ extension Assembly {
 
 
 // MARK: Router Property
-
 extension Assembly {
     
     private func _router() -> AnyObject {
@@ -64,8 +61,7 @@ extension Assembly {
     }
 }
 
-// MARK: Router Property
-
+// MARK: Settings Property
 extension Assembly {
     
     private func _settingRepository() -> AnyObject {
@@ -92,3 +88,29 @@ extension Assembly {
     }
 }
 
+// MARK: Markers Property
+extension Assembly {
+    
+    private func _markersRepository() -> AnyObject {
+        return TyphoonDefinition.withClass(MarkersRepositoryImpl.self) { definition in
+            definition!.scope = .lazySingleton
+            definition!.useInitializer(#selector(MarkersRepositoryImpl.init))
+            } as AnyObject
+    }
+    
+    var markersRepository: AnyObject {
+        return _markersRepository()
+    }
+    
+    private func _markersService() -> AnyObject {
+        return TyphoonDefinition.withClass(MarkersServiceImpl.self) { definition in
+            definition!.scope = .lazySingleton
+            definition!.useInitializer(#selector(MarkersServiceImpl.init))
+            definition!.injectProperty(#selector(getter: MarkersServiceImpl.markersRepository), with: self.markersRepository)
+            } as AnyObject
+    }
+    
+    var markersService: AnyObject {
+        return _markersService()
+    }
+}

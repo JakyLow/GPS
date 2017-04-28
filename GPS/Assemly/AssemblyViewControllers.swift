@@ -10,7 +10,6 @@ import Foundation
 import Typhoon
 
 // MARK: ViewController
-
 extension Assembly {
     
     func _viewController() -> AnyObject {
@@ -22,7 +21,6 @@ extension Assembly {
 }
 
 // MARK: LoginViewController
-
 extension Assembly {
     
     func _loginViewController() -> AnyObject {
@@ -34,7 +32,6 @@ extension Assembly {
 }
 
 // MARK: HelpViewController
-
 extension Assembly {
     
     func _helpViewController() -> AnyObject {
@@ -45,12 +42,12 @@ extension Assembly {
 }
 
 // MARK: InfoViewController
-
 extension Assembly {
     
     func _infoViewController() -> AnyObject {
         return TyphoonDefinition.withClass(InfoViewController.self) { definition in
             definition!.injectProperty(#selector(getter: InfoViewController.settingsService), with: self.settingService)
+            definition!.injectProperty(#selector(getter: InfoViewController.markersService), with: self.markersService)
             } as AnyObject
     }
 }
