@@ -15,12 +15,28 @@ import BPStatusBarAlert
 import KeychainSwift
 import MapKit
 
-protocol LoginDelegate {
-    func checkFields() -> [String:String]
-}
-
 class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewControllerDelegate {
 
+    
+    // MARK: BPStatusBarAlert Error & Confirmation
+    func getAlert(type: String, message: String) {
+        if type.lowercased() == "error" {
+            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                .message(message: message)
+                .messageColor(color: .white)
+                .bgColor(color: .flatRed)
+                .show()
+        } else if type.lowercased() == "confirmation" {
+            BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                .message(message: message)
+                .messageColor(color: .white)
+                .bgColor(color: .flatGreen)
+                .show()
+        } else {
+            print("Такой тип alert не поддерживается функцией getAlert")
+        }
+    }
+    
     
     // MARK: Send Mail
     func configuredMailComposeViewController() -> MFMailComposeViewController {
@@ -64,8 +80,8 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         default: return
         }
     }
-  
-// MARK: Connection Error
+    
+    // MARK: Connection Error
     func connectionErrorAlert() {
         BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
             .message(message: "Проблема с интернет соединением")
@@ -74,28 +90,13 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
             .show()
     }
     
-// MARK: Authorization
-    var delegate:LoginDelegate?
-    
+    // MARK: Authorization
     func authorization() -> AnyPromise {
-        
-        let loginAndPassword = delegate?.checkFields()
-        
-        var login = String()
-        var password = String()
-        
-        if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {
-            login = KeychainSwift().get("login")!
-            password = KeychainSwift().get("password")!
-        } else {
-        login = (loginAndPassword?["login"])!
-        password = (loginAndPassword?["password"])!
-        }
         
         let url = "http://gps-tracker.com.ua/login.php"
         let parameters: Parameters = [
-            "login": login,
-            "password": password
+            "login": KeychainSwift().get("login")!,
+            "password": KeychainSwift().get("password")!
         ]
         
         let promise = Promise<Bool> { fulfill, reject in
@@ -106,8 +107,6 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                 Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
                     switch response.result {
                     case .success:
-                        KeychainSwift().set(login, forKey: "login")
-                        KeychainSwift().set(password, forKey: "password")
                         fulfill(true)
                     case .failure:
                         BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
@@ -121,15 +120,15 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
                 }
             } else {
                 connectionErrorAlert()
-                        fulfill(false)
+                fulfill(false)
             }
             
         }
         
         return AnyPromise(promise)
     }
-
-// MARK: SearchBar settings
+    
+    // MARK: SearchBar settings
     func setSearchButtonText(text:String,searchBar:UISearchBar) {
         for subview in searchBar.subviews {
             for innerSubViews in subview.subviews {
@@ -141,7 +140,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         
     }
     
-// MARK: Load markers
+    // MARK: Load markers
     func loadMarkers() -> AnyPromise {
         
         let url = "http://gps-tracker.com.ua/loadevents.php"
@@ -188,7 +187,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     }
     
     
-// MARK: Markers Model
+    // MARK: Markers Model
     
     var markerName = String()
     var markerInfo = String()
@@ -213,7 +212,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     func setMarkerLatitude(latitude:String) {
         markerLatitude = latitude
     }
-
+    
     func getMarkerName() -> String {
         return markerName
     }
@@ -258,7 +257,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         var _level = Int()
         
         if level != "" {
-        _level = Int(level)!
+            _level = Int(level)!
         } else {
             _level = 0
         }
@@ -266,16 +265,16 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         var result = UIImage()
         
         if status == "online" {
-        switch _level {
-        case 0...3:
-            result = #imageLiteral(resourceName: "lowBattery")
-        case 4...6:
-            result = #imageLiteral(resourceName: "normalBattery")
-        case 7...10:
-            result = #imageLiteral(resourceName: "fullBattery")
-        default:
-            result = #imageLiteral(resourceName: "fullBattery")
-        }
+            switch _level {
+            case 0...3:
+                result = #imageLiteral(resourceName: "lowBattery")
+            case 4...6:
+                result = #imageLiteral(resourceName: "normalBattery")
+            case 7...10:
+                result = #imageLiteral(resourceName: "fullBattery")
+            default:
+                result = #imageLiteral(resourceName: "fullBattery")
+            }
         } else {
             result = #imageLiteral(resourceName: "noBattery")
         }
@@ -295,18 +294,18 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         var result = UIImage()
         
         if status == "online" {
-        switch _level {
-        case 0:
-            result = #imageLiteral(resourceName: "noGPS")
-        default:
-            result = #imageLiteral(resourceName: "yesGPS")
-        }
+            switch _level {
+            case 0:
+                result = #imageLiteral(resourceName: "noGPS")
+            default:
+                result = #imageLiteral(resourceName: "yesGPS")
+            }
         } else {
             result = #imageLiteral(resourceName: "noGPS")
         }
         return result
     }
-
+    
     func getStatus(status: String) -> UILabel {
         let result = UILabel()
         
@@ -336,5 +335,5 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         }
         return result
     }
-  
+    
 }

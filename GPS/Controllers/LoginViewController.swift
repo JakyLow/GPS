@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func openViewController(_ sender: UIButton) {
-        if checkFields() != [:] {   auth()  }
+        if checkFields() == true {   auth()  }
     }
     
     @IBOutlet weak var demoButton: UIButton!
@@ -35,11 +35,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-   
-// MARK: DemoLogin
+    
+    // MARK: DemoLogin
     @IBAction func demoAuth(_ sender: Any) {
         loginField.text = "demo"
         passField.text = "accepted"
+        KeychainSwift().set(loginField.text!, forKey: "login")
+        KeychainSwift().set(passField.text!, forKey: "password")
         auth()
     }
     
@@ -48,17 +50,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.setNotificationKeyboard()
         self.navigationController?.isNavigationBarHidden = true
         
-// MARK: AutoLogin
-    if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {   auth()  }
+        // MARK: AutoLogin
+        if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {
+            loginField.text = KeychainSwift().get("login")
+            passField.text = KeychainSwift().get("password")
+            auth()
+        }
         
-}
-    
-    fileprivate let settingsAPI = SettingsRepositoryImpl()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.settingsAPI.delegate = self
         
         self.gifLogin.image = UIImage.gif(name: "loginBg")
         
@@ -74,23 +76,66 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-// MARK: Keyboard settings
+    // MARK: Auth
+    func auth() {
+        
+        Auth.isEnabled = false
+        registerButton.isEnabled = false
+        demoButton.isEnabled = false
+        
+        self.loadingIndicator.isHidden = false
+        self.settingsService.authorization().then{response -> Void in
+            if response as! Bool == true {
+                self.navigator.loginViewController(openViewController: self)
+            }
+            self.loadingIndicator.isHidden = true
+            
+            self.Auth.isEnabled = true
+            self.registerButton.isEnabled = true
+            self.demoButton.isEnabled = true
+            }.catch { error in
+                self.settingsService.getAlert(type: "error", message: "Ошибка авторизации - \(error)")
+        }
+    }
+    
+    // MARK: TextFieds check
+    func checkFields() -> Bool {
+        if KeychainSwift().get("login") == nil && KeychainSwift().get("password") == nil {
+            if loginField.text == "" && passField.text == "" {
+                settingsService.getAlert(type: "error", message: "Введите логин и пароль")
+                return false
+            } else if loginField.text == "" {
+                settingsService.getAlert(type: "error", message: "Введите логин")
+                return false
+            } else if passField.text == "" {
+                settingsService.getAlert(type: "error", message: "Введите пароль")
+                return false
+            } else {
+                KeychainSwift().set(loginField.text!, forKey: "login")
+                KeychainSwift().set(passField.text!, forKey: "password")
+                return true
+            }
+        } else {
+            loginField.text = KeychainSwift().get("login")
+            passField.text = KeychainSwift().get("password")
+            return true
+        }
+    }
+    
+    // MARK: Keyboard settings
     func setNotificationKeyboard ()  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField=textField;
     }
-    func textFieldDidEndEditing(_ textField: UITextField)
-    {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField=nil;
     }
     
-    func keyboardWasShown(notification: NSNotification)
-    {
+    func keyboardWasShown(notification: NSNotification) {
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height+10, 0.0)
@@ -100,7 +145,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         aRect.size.height -= keyboardSize!.height
     }
     
-    func keyboardWillBeHidden(notification: NSNotification){
+    func keyboardWillBeHidden(notification: NSNotification) {
         let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0,0.0, 0.0)
         self.theScrollView.contentInset = contentInsets
         self.theScrollView.scrollIndicatorInsets = contentInsets
@@ -120,66 +165,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return false
     }
-    
-// MARK: Auth
-    func auth() {
-        
-        Auth.isEnabled = false
-        registerButton.isEnabled = false
-        demoButton.isEnabled = false
-        
-        self.loadingIndicator.isHidden = false
-        self.settingsAPI.authorization().then{response -> Void in
-            if response as! Bool == true {
-                self.navigator.loginViewController(openViewController: self)
-            }
-        self.loadingIndicator.isHidden = true
-            
-        self.Auth.isEnabled = true
-        self.registerButton.isEnabled = true
-        self.demoButton.isEnabled = true
-            }.catch { error in
-                
-        }
-    }
 }
 
-// MARK: TextFieds Delegate
-extension LoginViewController: LoginDelegate {
-    func checkFields() -> [String:String] {
-        
-        var result = [String:String]()
-        if KeychainSwift().get("login") == nil && KeychainSwift().get("password") == nil {
-            if loginField.text == "" && passField.text == "" {
-                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                    .message(message: "Введите логин и пароль")
-                    .messageColor(color: .white)
-                    .bgColor(color: .flatRed)
-                    .show()
-            } else if loginField.text == "" {
-                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                    .message(message: "Введите логин")
-                    .messageColor(color: .white)
-                    .bgColor(color: .flatRed)
-                    .show()
-            } else if passField.text == "" {
-                BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
-                    .message(message: "Введите пароль")
-                    .messageColor(color: .white)
-                    .bgColor(color: .flatRed)
-                    .show()
-            } else {
-                result["login"] = loginField.text
-                result["password"] = passField.text
-                KeychainSwift().set(loginField.text!, forKey: "login")
-                KeychainSwift().set(passField.text!, forKey: "password")
-            }
-        } else {
-            result["login"] = KeychainSwift().get("login")
-            result["password"] = KeychainSwift().get("password")
-            loginField.text = KeychainSwift().get("login")
-            passField.text = KeychainSwift().get("password")
-        }
-        return result
-    }
-}

@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 extension ViewController: MKMapViewDelegate {
-
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? Marker {
             let identifier = "pin"

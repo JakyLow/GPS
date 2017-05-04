@@ -13,6 +13,10 @@ class MarkersServiceImpl: NSObject, MarkersService {
     
     var markersRepository: MarkersRepository!
     
+    func loadMarkers() -> AnyPromise {
+        return markersRepository.loadMarkers()
+    }
+    
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
         return markersRepository.getAddressFromLatLon(pdblLatitude: pdblLatitude, pdblLongitude: pdblLongitude)
     }

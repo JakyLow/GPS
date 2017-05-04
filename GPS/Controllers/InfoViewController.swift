@@ -10,10 +10,10 @@ import UIKit
 import MapKit
 
 class InfoViewController: UIViewController {
-   
+    
     var settingsService: SettingsService!
     var markersService: MarkersService!
-
+    
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lat: UILabel!
@@ -63,5 +63,5 @@ class InfoViewController: UIViewController {
         map.addAnnotation(annotation)
         
     }
-
+    
 }

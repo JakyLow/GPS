@@ -16,6 +16,8 @@ protocol SettingsService {
     func showSendMailErrorAlert()
     func authorization() -> AnyPromise
     func loadMarkers() -> AnyPromise
+    func connectionErrorAlert()
+    func getAlert(type: String, message: String)
     func setSearchButtonText(text:String,searchBar:UISearchBar)
     func setMarkerName(name:String)
     func getMarkerName() -> String

@@ -11,5 +11,6 @@ import PromiseKit
 
 @objc
 protocol MarkersRepository {
+    func loadMarkers() -> AnyPromise
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise
 }

@@ -7,10 +7,51 @@
 //
 
 import Foundation
-import PromiseKit
 import MapKit
+import Alamofire
+import SwiftyJSON
+import PromiseKit
+import BPStatusBarAlert
 
 class MarkersRepositoryImpl: NSObject, MarkersService {
+    
+    var settingsService: SettingsService!
+ 
+    // MARK: Load markers
+    func loadMarkers() -> AnyPromise {
+        
+        let url = "http://gps-tracker.com.ua/loadevents.php"
+        let parameters: Parameters = [
+            "param": "icars"]
+        
+        let promise = Promise<[Marker]> { fulfill, reject in
+            
+            if Reachability.isConnectedToNetwork() == true
+            {
+                Alamofire.request(url, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        var markersArray = [Marker]()
+                        for item in json["rows"].arrayValue {
+                            let _marker = Marker(title: item["CarName"].stringValue, info: item["Speed"].stringValue, gpsLevel: item["gps_level"].stringValue, batteryLevel: item["bat_level"].stringValue, coordinate: CLLocationCoordinate2D(latitude: Double(item["X"].stringValue)!, longitude: Double(item["Y"].stringValue)!))
+                            markersArray.append(_marker)
+                        }
+                        fulfill(markersArray)
+                    case .failure:
+                        BPStatusBarAlert(duration: 0.3, delay: 2, position: .statusBar)
+                            .message(message: "Ошибка запроса")
+                            .messageColor(color: .white)
+                            .bgColor(color: .flatRed)
+                            .show()
+                    }
+                }
+            } else {
+                settingsService.connectionErrorAlert()
+            }
+        }
+        return AnyPromise(promise)
+    }
     
     // MARK: Find address
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {

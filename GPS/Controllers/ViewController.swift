@@ -21,14 +21,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var ghostView: UIView!
     @IBOutlet weak var tableView: UITableView!
-
+    
     let searchController = UISearchController(searchResultsController: nil)
     
-// MARK: Update markers
+    // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
         getMarkers()
     }
-// MARK: UISegmentedControl
+    // MARK: UISegmentedControl
     @IBAction func selector(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex  {
         case 0:
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }
     }
     
-// MARK: UIBarButtonItem
+    // MARK: UIBarButtonItem
     @IBAction func openMenu(_ sender: UIBarButtonItem) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let settingsAction = UIAlertAction(title: "Настройки", style: .default, handler: {
@@ -89,46 +89,46 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         getMarkers()
         
-        let marker = Marker(title: "Pepa", info: "Едет", status: "o", gpsLevel: "1", batteryLevel: "1", coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
+////        let marker = Marker(title: "Pepa", info: "Едет", status: "o", gpsLevel: "1", batteryLevel: "1", coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
+//        
+//        var array = [Marker]()
+//        array.append(marker)
         
-        var array = [Marker]()
-        array.append(marker)
-        
-//        map.addAnnotation(marker)
-        map.delegate = self
-        
-        map.showAnnotations(array, animated: true)
+        //        map.addAnnotation(marker)
+//        map.delegate = self
+//        
+//        map.showAnnotations(array, animated: true)
     }
     
     
-// MARK: GetMarkers
+    // MARK: GetMarkers
     var markersArray = [[String:String]]()
     var markersArrayFiltered = [[String:String]]()
     
     func getMarkers() {
-
+        
         self.loadingView.isHidden = false
         
         
         settingsService.authorization().then{response -> Void in
             if response as! Bool == true {
-        
-          self.settingsService.loadMarkers().then{response -> Void in
-            self.markersArray = (response as? [[String:String]])!
-            
-            if self.markersArray.count == 0 {
-                self.listOfMarkers.isHidden = true
-                self.loadingView.isHidden = true
-            } else {
-            
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.markersArrayFiltered = self.markersArray
-            self.tableView.reloadData()
                 
-            self.loadingView.isHidden = true
-            self.listOfMarkers.isHidden = false
-            }
+                self.settingsService.loadMarkers().then{response -> Void in
+                    self.markersArray = (response as? [[String:String]])!
+                    
+                    if self.markersArray.count == 0 {
+                        self.listOfMarkers.isHidden = true
+                        self.loadingView.isHidden = true
+                    } else {
+                        
+                        self.tableView.delegate = self
+                        self.tableView.dataSource = self
+                        self.markersArrayFiltered = self.markersArray
+                        self.tableView.reloadData()
+                        
+                        self.loadingView.isHidden = true
+                        self.listOfMarkers.isHidden = false
+                    }
                 }
             } else {
                 KeychainSwift().clear()
@@ -136,9 +136,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             }
         }
     }
-
     
-// MARK: TableView Settings
+    
+    // MARK: TableView Settings
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.markersArrayFiltered.count
     }
@@ -150,7 +150,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         if (indexPath.row % 2) != 0 {
             cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.7)
         }
-    
+        
         cell.titleTableView?.text = markersArrayFiltered[indexPath.row]["markerName"]
         let _status = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).text
         cell.batteryStatus.image = settingsService.getBatLevel(level: markersArrayFiltered[indexPath.row]["bat_level"]!, status: _status!)
@@ -158,14 +158,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         cell.status.text = _status
         cell.status.textColor = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).textColor
         cell.subtitleTableView.text = settingsService.getModifySubtitleTableView(subtitle: markersArrayFiltered[indexPath.row]["info"]!)
-
+        
         
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigator.viewController(openInfoViewController: self)
         settingsService.setMarkerName(name: markersArrayFiltered[indexPath.row]["markerName"]!)
@@ -178,7 +178,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         settingsService.setMarkerGPSstatus(img: settingsService.getGPSLevel(level: markersArrayFiltered[indexPath.row]["gps_level"]!, status: _status!))
     }
     
-// MARK: Search
+    // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray.filter{
             let string = $0["markerName"]!
@@ -193,7 +193,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         searchBar.text = ""
         tableView.reloadData()
     }
-
+    
 }
 
 // MARK: Hide Keyboard

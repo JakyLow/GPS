@@ -28,6 +28,14 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
         return settingsRepository.loadMarkers()
     }
     
+    func connectionErrorAlert() {
+        return settingsRepository.connectionErrorAlert()
+    }
+    
+    func getAlert(type: String, message: String) {
+        return settingsRepository.getAlert(type: type, message: message)
+    }
+    
     func setSearchButtonText(text:String,searchBar:UISearchBar) {
         return settingsRepository.setSearchButtonText(text: text, searchBar: searchBar)
     }
@@ -91,12 +99,12 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
     func setMarkerBatteryStatus(img: UIImage) {
         return settingsRepository.setMarkerBatteryStatus(img: img)
     }
-
+    
     
     func getMarkerBatteryStatus() -> UIImage {
         return settingsRepository.getMarkerBatteryStatus()
     }
-
+    
     func setMarkerGPSstatus(img: UIImage) {
         return settingsRepository.setMarkerGPSstatus(img: img)
     }
