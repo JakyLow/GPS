@@ -401,9 +401,6 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4x-l3-EsE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
@@ -443,17 +440,21 @@
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" placeholder="Поиск объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-hz-eUv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="tintColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="-1" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
+                                <rect key="frame" x="0.0" y="41" width="375" height="561"/>
+                            </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
-                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="561"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" editingAccessoryType="disclosureIndicator" rowHeight="60" id="bsI-Ct-jMk" customClass="MarkersTableViewCell" customModule="GPS" customModuleProvider="target">
@@ -537,10 +538,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-c8-sGF">
-                                        <rect key="frame" x="177" y="291" width="20" height="20"/>
+                                        <rect key="frame" x="177.5" y="272.5" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="поиск объектов..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-9t-qjC">
-                                        <rect key="frame" x="74" y="319" width="227" height="38"/>
+                                        <rect key="frame" x="74" y="300.5" width="227" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="227" id="RPp-LC-r7p"/>
                                             <constraint firstAttribute="height" constant="38" id="q01-iL-f4u"/>
@@ -555,7 +556,7 @@
                                 <constraints>
                                     <constraint firstItem="3f7-9t-qjC" firstAttribute="top" secondItem="QeR-c8-sGF" secondAttribute="bottom" constant="8" id="I54-G4-Ygs"/>
                                     <constraint firstItem="3f7-9t-qjC" firstAttribute="centerX" secondItem="bnR-g4-DnR" secondAttribute="centerX" id="RmK-r1-w6O"/>
-                                    <constraint firstItem="QeR-c8-sGF" firstAttribute="centerY" secondItem="bnR-g4-DnR" secondAttribute="centerY" id="UaL-UV-vSr"/>
+                                    <constraint firstItem="QeR-c8-sGF" firstAttribute="centerY" secondItem="bnR-g4-DnR" secondAttribute="centerY" constant="-19" id="UaL-UV-vSr"/>
                                     <constraint firstItem="QeR-c8-sGF" firstAttribute="centerX" secondItem="bnR-g4-DnR" secondAttribute="centerX" id="Uj5-wh-oAk"/>
                                 </constraints>
                             </view>
@@ -570,16 +571,16 @@
                             <constraint firstItem="itT-wP-gUk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fis-zy-6Zn"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="H9j-Bu-4qT"/>
                             <constraint firstItem="ldh-hz-eUv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="HRZ-1L-jC1"/>
-                            <constraint firstItem="ldh-hz-eUv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="K2z-Qi-ow8"/>
+                            <constraint firstItem="ldh-hz-eUv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-1" id="K2z-Qi-ow8"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="R6S-0V-99Q"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="TSz-Zr-2Bs"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="YMM-HS-d2N"/>
-                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="YgA-aY-txg"/>
-                            <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-44" id="Yqg-MU-ApS"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-42" id="YgA-aY-txg"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-42" id="Yqg-MU-ApS"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dhZ-Xg-hkg"/>
-                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kJK-jz-xJq"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="20" id="kJK-jz-xJq"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="mQH-Q6-19w"/>
-                            <constraint firstItem="itT-wP-gUk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="22" id="vmy-Ju-to4"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="20" id="vmy-Ju-to4"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yuW-gQ-0ll"/>
                         </constraints>
                     </view>
@@ -680,11 +681,11 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wI1-eS-4Pf">
                                         <rect key="frame" x="20" y="132" width="335" height="301"/>
-                                        <mutableString key="text">Сервис мониторинга европейского уровня, основанный на технической базе веб-сервера gps-tracker.com.ua
+                                        <string key="text">Сервис мониторинга европейского уровня, основанный на технической базе веб-сервера gps-tracker.com.ua
 
 Сервис поддерживает более 300 GPS трекеров для решения любых задач бизнеса или индивидуальных потребностей. Поддерживаемые устройства обладают широким диапазоном рабочей температуры, а также стабильно работают в условиях повышенной влажности.
                                     
-Приложение позволяет владельцам устройств не только отследить передвижение по карте, но и в online режиме получить максимально полные сведения об отслеживаемом объекте. Статистические данные хранятся в архиве в течение трех лет с момента события.</mutableString>
+Приложение позволяет владельцам устройств не только отследить передвижение по карте, но и в online режиме получить максимально полные сведения об отслеживаемом объекте. Статистические данные хранятся в архиве в течение трех лет с момента события.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

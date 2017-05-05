@@ -79,7 +79,7 @@ class Marker: NSObject, MKAnnotation {
         if status.text == "online" {
             switch _level {
             case 0:
-                result = #imageLiteral(resourceName: "noBattery")
+                result = #imageLiteral(resourceName: "chargingBattery")
             case 1...3:
                 result = #imageLiteral(resourceName: "lowBattery")
             case 4...6:

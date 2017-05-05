@@ -33,7 +33,8 @@ extension ViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
-    print("ha-ha")
+        markersService.setMarker(marker: view.annotation as!  Marker)
+        navigator.viewController(openInfoViewController: self)
     }
 }
 

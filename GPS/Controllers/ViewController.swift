@@ -33,13 +33,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBAction func selector(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex  {
         case 0:
-            searchBar.isHidden = false
             ghostView.isHidden = false
             listOfMarkers.isHidden = false
             map.isHidden = true
         case 1:
-            searchBar.isHidden = true
-            ghostView.isHidden = true
+            ghostView.isHidden = false
             listOfMarkers.isHidden = true
             map.isHidden = false
         default:
@@ -75,6 +73,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.mapView()
         self.tableView.reloadData()
     }
     
@@ -114,7 +113,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                         self.markersArrayFiltered = self.markersArray
                         self.tableView.reloadData()
                         self.loadingView.isHidden = true
-                        self.listOfMarkers.isHidden = false
                         self.mapView()
                     }
                 }.catch { error in
@@ -125,7 +123,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     // MARK: MapView
     func mapView() {
         map.layoutMargins = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        map.showAnnotations(markersArray, animated: true)
+        map.showAnnotations(markersArrayFiltered, animated: true)
     }
 
     // MARK: TableView Settings
@@ -155,23 +153,26 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigator.viewController(openInfoViewController: self)
         markersService.setMarker(marker: markersArrayFiltered[indexPath.row])
+        navigator.viewController(openInfoViewController: self)
         }
     
     // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        map.removeAnnotations(markersArrayFiltered)
         markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray.filter{
             let string = $0.title
             return string!.range(of: searchText) != nil
         }
-        
+
+        mapView()
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         markersArrayFiltered = markersArray
         searchBar.text = ""
+        mapView()
         tableView.reloadData()
     }
     
