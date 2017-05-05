@@ -12,5 +12,7 @@ import PromiseKit
 @objc
 protocol MarkersService {
     func loadMarkers() -> AnyPromise
+    func setMarker(marker: Marker)
+    func getMarker() -> Marker
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise
 }

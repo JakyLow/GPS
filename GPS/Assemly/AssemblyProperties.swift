@@ -95,6 +95,7 @@ extension Assembly {
         return TyphoonDefinition.withClass(MarkersRepositoryImpl.self) { definition in
             definition!.scope = .lazySingleton
             definition!.useInitializer(#selector(MarkersRepositoryImpl.init))
+            definition!.injectProperty(#selector(getter: MarkersRepositoryImpl.settingsService), with: self.settingService)
             } as AnyObject
     }
     

@@ -14,6 +14,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     var navigator: Navigator!
     var settingsService: SettingsService!
+    var markersService: MarkersService!
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
@@ -79,6 +80,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        map.delegate = self
         self.hideKeyboardWhenTappedAround()
         settingsService.setSearchButtonText(text: "Отмена", searchBar: searchBar)
         
@@ -89,55 +91,43 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         getMarkers()
         
-////        let marker = Marker(title: "Pepa", info: "Едет", status: "o", gpsLevel: "1", batteryLevel: "1", coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
-//        
-//        var array = [Marker]()
-//        array.append(marker)
         
-        //        map.addAnnotation(marker)
-//        map.delegate = self
-//        
-//        map.showAnnotations(array, animated: true)
     }
     
     
     // MARK: GetMarkers
-    var markersArray = [[String:String]]()
-    var markersArrayFiltered = [[String:String]]()
+    var markersArray = [Marker]()
+    var markersArrayFiltered = [Marker]()
     
     func getMarkers() {
-        
         self.loadingView.isHidden = false
-        
-        
-        settingsService.authorization().then{response -> Void in
-            if response as! Bool == true {
-                
-                self.settingsService.loadMarkers().then{response -> Void in
-                    self.markersArray = (response as? [[String:String]])!
+
+                self.markersService.loadMarkers().then{response -> Void in
+                    self.markersArray = (response as? [Marker])!
                     
                     if self.markersArray.count == 0 {
                         self.listOfMarkers.isHidden = true
                         self.loadingView.isHidden = true
                     } else {
-                        
                         self.tableView.delegate = self
                         self.tableView.dataSource = self
                         self.markersArrayFiltered = self.markersArray
                         self.tableView.reloadData()
-                        
                         self.loadingView.isHidden = true
                         self.listOfMarkers.isHidden = false
+                        self.mapView()
                     }
-                }
-            } else {
-                KeychainSwift().clear()
-                self.navigator.viewController(openLoginViewController: self)
-            }
-        }
+                }.catch { error in
+        self.navigator.viewController(openLoginViewController: self)
     }
-    
-    
+    }
+
+    // MARK: MapView
+    func mapView() {
+        map.layoutMargins = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        map.showAnnotations(markersArray, animated: true)
+    }
+
     // MARK: TableView Settings
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.markersArrayFiltered.count
@@ -151,14 +141,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.7)
         }
         
-        cell.titleTableView?.text = markersArrayFiltered[indexPath.row]["markerName"]
-        let _status = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).text
-        cell.batteryStatus.image = settingsService.getBatLevel(level: markersArrayFiltered[indexPath.row]["bat_level"]!, status: _status!)
-        cell.gpsStatus.image = settingsService.getGPSLevel(level: markersArrayFiltered[indexPath.row]["gps_level"]!, status: _status!)
-        cell.status.text = _status
-        cell.status.textColor = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).textColor
-        cell.subtitleTableView.text = settingsService.getModifySubtitleTableView(subtitle: markersArrayFiltered[indexPath.row]["info"]!)
-        
+        cell.titleTableView?.text = markersArrayFiltered[indexPath.row].title
+        cell.batteryStatus.image = markersArrayFiltered[indexPath.row].batteryLevelImage
+        cell.gpsStatus.image = markersArrayFiltered[indexPath.row].gpsLevelImage
+        cell.status.text = markersArrayFiltered[indexPath.row].status.text
+        cell.status.textColor = markersArrayFiltered[indexPath.row].status.textColor
+        cell.subtitleTableView.text = markersArrayFiltered[indexPath.row].subtitle
         
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -168,21 +156,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigator.viewController(openInfoViewController: self)
-        settingsService.setMarkerName(name: markersArrayFiltered[indexPath.row]["markerName"]!)
-        settingsService.setMarkerInfo(info: settingsService.getModifySubtitleTableView(subtitle: markersArrayFiltered[indexPath.row]["info"]!))
-        settingsService.setMarkerStatus(info: markersArrayFiltered[indexPath.row]["info"]!)
-        settingsService.setMarkerLongitude(longitude: markersArrayFiltered[indexPath.row]["longitude"]!)
-        settingsService.setMarkerLatitude(latitude: markersArrayFiltered[indexPath.row]["latitude"]!)
-        let _status = (settingsService.getStatus(status: markersArrayFiltered[indexPath.row]["info"]!)).text
-        settingsService.setMarkerBatteryStatus(img: settingsService.getBatLevel(level: markersArrayFiltered[indexPath.row]["bat_level"]!, status: _status!))
-        settingsService.setMarkerGPSstatus(img: settingsService.getGPSLevel(level: markersArrayFiltered[indexPath.row]["gps_level"]!, status: _status!))
-    }
+        markersService.setMarker(marker: markersArrayFiltered[indexPath.row])
+        }
     
     // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray.filter{
-            let string = $0["markerName"]!
-            return string.range(of: searchText) != nil
+            let string = $0.title
+            return string!.range(of: searchText) != nil
         }
         
         tableView.reloadData()

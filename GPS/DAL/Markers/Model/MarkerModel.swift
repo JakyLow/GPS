@@ -13,8 +13,8 @@ class Marker: NSObject, MKAnnotation {
     
     let title: String?
     let info: String
-    let gpsLevel: String
-    let batteryLevel: String
+    private let gpsLevel: String
+    private let batteryLevel: String
     let coordinate: CLLocationCoordinate2D
     
     init(title: String, info: String, gpsLevel: String, batteryLevel: String, coordinate: CLLocationCoordinate2D) {
@@ -78,12 +78,12 @@ class Marker: NSObject, MKAnnotation {
         
         if status.text == "online" {
             switch _level {
-            case 0...3:
+            case 0:
+                result = #imageLiteral(resourceName: "noBattery")
+            case 1...3:
                 result = #imageLiteral(resourceName: "lowBattery")
             case 4...6:
                 result = #imageLiteral(resourceName: "normalBattery")
-            case 7...10:
-                result = #imageLiteral(resourceName: "fullBattery")
             default:
                 result = #imageLiteral(resourceName: "fullBattery")
             }
@@ -95,7 +95,7 @@ class Marker: NSObject, MKAnnotation {
     }
     
     var subtitle: String? {
-        var result = String()
+        var result = "нет данных"
         
         if info.contains("нет данных") {
             result = info.replacingOccurrences(of: "нет данных:", with: "нет данных").replacingOccurrences(of: "д.", with: " д. ").replacingOccurrences(of: "ч. ", with: " ч. ").replacingOccurrences(of: "м.", with: " м.")
@@ -107,6 +107,7 @@ class Marker: NSObject, MKAnnotation {
         } else if info.contains("едет") {
             result = info.replacingOccurrences(of: "едет", with: "в движении, ")
         }
+        
         return result
     }
     

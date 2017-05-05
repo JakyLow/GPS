@@ -12,29 +12,8 @@ import MessageUI
 
 @objc
 protocol SettingsService {
-    func configuredMailComposeViewController() -> MFMailComposeViewController
-    func showSendMailErrorAlert()
-    func authorization() -> AnyPromise
-    func loadMarkers() -> AnyPromise
-    func connectionErrorAlert()
     func getAlert(type: String, message: String)
+    func configuredMailComposeViewController() -> MFMailComposeViewController
+    func authorization() -> AnyPromise
     func setSearchButtonText(text:String,searchBar:UISearchBar)
-    func setMarkerName(name:String)
-    func getMarkerName() -> String
-    func setMarkerInfo(info:String)
-    func getMarkerInfo() -> String
-    func getBatLevel(level: String, status: String) -> UIImage
-    func getGPSLevel(level: String, status: String) -> UIImage
-    func getStatus(status: String) -> UILabel
-    func getModifySubtitleTableView(subtitle: String) -> String
-    func setMarkerLongitude(longitude:String)
-    func setMarkerLatitude(latitude:String)
-    func getMarkerLongitude() -> String
-    func getMarkerLatitude() -> String
-    func setMarkerStatus(info: String)
-    func getMarkerStatus() -> UILabel
-    func setMarkerBatteryStatus(img: UIImage)
-    func getMarkerBatteryStatus() -> UIImage
-    func setMarkerGPSstatus(img: UIImage)
-    func getMarkerGPSstatus() -> UIImage
 }

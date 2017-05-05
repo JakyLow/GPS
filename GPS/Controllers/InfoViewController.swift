@@ -29,38 +29,38 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        infoView.layer.cornerRadius = 10
-        lat.text = settingsService.getMarkerLatitude()
-        lon.text = settingsService.getMarkerLongitude()
-        titleMarker.text = settingsService.getMarkerName()
-        subtitle.text = settingsService.getMarkerInfo()
-        status.text = settingsService.getMarkerStatus().text
-        status.textColor  = settingsService.getMarkerStatus().textColor
-        batteryStatus.image = settingsService.getMarkerBatteryStatus()
+        map.delegate = self
         
-        markersService.getAddressFromLatLon(pdblLatitude: settingsService.getMarkerLatitude(), pdblLongitude: settingsService.getMarkerLongitude()).then{response -> Void in
-            self.adress.text = (response as! String)
-        }
+        let _marker = markersService.getMarker()
         
-        self.title = settingsService.getMarkerName()
+        self.title = _marker.title
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
+        infoView.layer.cornerRadius = 10
         
-        map.mapType = MKMapType.standard
-        let location = CLLocationCoordinate2D(latitude: Double(settingsService.getMarkerLatitude())!, longitude: Double(settingsService.getMarkerLongitude())!)
+        let _lat = String(_marker.coordinate.latitude)
+        let _lon = String(_marker.coordinate.longitude)
         
-        let centerLocation = CLLocationCoordinate2D(latitude: (Double(settingsService.getMarkerLatitude())! - 0.004), longitude: Double(settingsService.getMarkerLongitude())!)
+        lat.text = _lat
+        lon.text = _lon
+        titleMarker.text = _marker.title
+        subtitle.text = _marker.subtitle
+        status.text = _marker.status.text
+        status.textColor  = _marker.status.textColor
+        batteryStatus.image = _marker.batteryLevelImage
         
+        markersService.getAddressFromLatLon(pdblLatitude: _lat, pdblLongitude: _lon).then{response -> Void in
+            self.adress.text = (response as! String)
+            }.catch { error in
+                self.adress.text = "адрес не найден"
+        }
+        
+        let centerLocation = CLLocationCoordinate2D(latitude: (Double(_lat)! - 0.004), longitude: Double(_lon)!)
         let span = MKCoordinateSpanMake(0.04, 0.04)
         let region = MKCoordinateRegion(center: centerLocation, span: span)
         map.setRegion(region, animated: true)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = settingsService.getMarkerName()
-        annotation.subtitle = settingsService.getMarkerStatus().text
-        map.addAnnotation(annotation)
+        map.addAnnotation(_marker)
         
     }
     

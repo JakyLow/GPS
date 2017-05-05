@@ -29,7 +29,7 @@ class HelpViewController: UIViewController, MFMailComposeViewControllerDelegate 
         if MFMailComposeViewController.canSendMail() {
             self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
-            self.settingsService.showSendMailErrorAlert()
+            self.settingsService.getAlert(type: "error", message: "Ошибка отправки e-mail")
         }
     }
     

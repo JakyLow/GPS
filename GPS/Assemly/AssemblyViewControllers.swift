@@ -16,6 +16,7 @@ extension Assembly {
         return TyphoonDefinition.withClass(ViewController.self) { definition in
             definition!.injectProperty(#selector(getter: ViewController.navigator), with: self.navigator)
             definition!.injectProperty(#selector(getter: ViewController.settingsService), with: self.settingService)
+            definition!.injectProperty(#selector(getter: ViewController.markersService), with: self.markersService)
             } as AnyObject
     }
 }
