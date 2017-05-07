@@ -18,5 +18,6 @@ protocol Navigator {
     func viewController(openLoginViewController viewcontroller: ViewController)
     func viewController(openInfoViewController viewcontroller: ViewController)
     func viewController(openSettingsViewController viewcontroller: ViewController)
+    func infoController(openViewController viewcontroller: InfoViewController)
 }
 

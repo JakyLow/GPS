@@ -16,13 +16,15 @@ class Marker: NSObject, MKAnnotation {
     private let gpsLevel: String
     private let batteryLevel: String
     let coordinate: CLLocationCoordinate2D
+    let id: String
     
-    init(title: String, info: String, gpsLevel: String, batteryLevel: String, coordinate: CLLocationCoordinate2D) {
+    init(title: String, id: String, info: String, gpsLevel: String, batteryLevel: String, coordinate: CLLocationCoordinate2D) {
         self.title = title
         self.info = info.lowercased()
         self.gpsLevel = gpsLevel
         self.batteryLevel = batteryLevel
         self.coordinate = coordinate
+        self.id = id
         
         super.init()
     }

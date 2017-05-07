@@ -33,4 +33,7 @@ class NavigatorImpl: NSObject, Navigator {
     func viewController(openSettingsViewController viewcontroller: ViewController) {
         _ = router.pushViewController(type: .settingsViewController)
     }
+    func infoController(openViewController viewcontroller: InfoViewController) {
+        _ = router.pushViewController(type: .viewController)
+    }
 }

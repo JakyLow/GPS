@@ -450,7 +450,7 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
                                 <rect key="frame" x="0.0" y="41" width="375" height="561"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
@@ -613,20 +613,11 @@
                         <outlet property="loadingView" destination="bnR-g4-DnR" id="Vqz-jf-GXV"/>
                         <outlet property="map" destination="7uR-Hl-qbx" id="bn6-Gc-Xat"/>
                         <outlet property="searchBar" destination="ldh-hz-eUv" id="OLm-Am-gyP"/>
-                        <outlet property="searchDisplayController" destination="INh-SF-oQB" id="MTZ-Mw-TYA"/>
                         <outlet property="tableView" destination="itT-wP-gUk" id="Q6j-P4-sD9"/>
                         <segue destination="dwW-8k-i1R" kind="show" identifier="viewToInfo" id="0aj-3N-iNH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="INh-SF-oQB">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="58N-Pl-ldw"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="Hba-EM-Opp"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="YYo-h0-uaI"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="i3Y-BA-5FI"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-293.60000000000002" y="34.632683658170919"/>
         </scene>

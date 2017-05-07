@@ -33,7 +33,7 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
                             let json = JSON(value)
                             var markersArray = [Marker]()
                             for item in json["rows"].arrayValue {
-                                let _marker = Marker(title: item["CarName"].stringValue, info: item["Speed"].stringValue, gpsLevel: item["gps_level"].stringValue, batteryLevel: item["bat_level"].stringValue, coordinate: CLLocationCoordinate2D(latitude: Double(item["X"].stringValue)!, longitude: Double(item["Y"].stringValue)!))
+                                let _marker = Marker(title: item["CarName"].stringValue, id: item["CarId"].stringValue, info: item["Speed"].stringValue, gpsLevel: item["gps_level"].stringValue, batteryLevel: item["bat_level"].stringValue, coordinate: CLLocationCoordinate2D(latitude: Double(item["X"].stringValue)!, longitude: Double(item["Y"].stringValue)!))
                                 markersArray.append(_marker)
                             }
                             fulfill(markersArray)

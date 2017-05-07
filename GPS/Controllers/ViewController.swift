@@ -25,6 +25,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    var timer = Timer()
+    
     // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
         getMarkers()
@@ -73,7 +75,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mapView()
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+
         self.tableView.reloadData()
     }
     
@@ -89,46 +92,76 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         searchBar.delegate = self
         
         getMarkers()
-        
-        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer.invalidate()
+    }
     
     // MARK: GetMarkers
-    var markersArray = [Marker]()
-    var markersArrayFiltered = [Marker]()
+    var markersArray:[Marker]?
+    var markersArrayFiltered:[Marker]?
     
     func getMarkers() {
         self.loadingView.isHidden = false
-
-                self.markersService.loadMarkers().then{response -> Void in
-                    self.markersArray = (response as? [Marker])!
-                    
-                    if self.markersArray.count == 0 {
-                        self.listOfMarkers.isHidden = true
-                        self.loadingView.isHidden = true
-                    } else {
-                        self.tableView.delegate = self
-                        self.tableView.dataSource = self
-                        self.markersArrayFiltered = self.markersArray
-                        self.tableView.reloadData()
-                        self.loadingView.isHidden = true
-                        self.mapView()
-                    }
-                }.catch { error in
-        self.navigator.viewController(openLoginViewController: self)
+        
+        self.markersService.loadMarkers().then{response -> Void in
+            self.markersArray = (response as? [Marker])!
+            
+            if self.markersArray?.count == 0 {
+                self.listOfMarkers.isHidden = true
+                self.map.isHidden = true
+                self.searchBar.isHidden = true
+                self.loadingView.isHidden = true
+            } else {
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                self.markersArrayFiltered = self.markersArray
+                self.tableView.reloadData()
+                self.loadingView.isHidden = true
+                self.mapView()
+            }
+            }.catch { error in
+                self.navigator.viewController(openLoginViewController: self)
+        }
     }
-    }
+    
+    // MARK: Quiet GetMarkers
+    func quietGetMarkers() {
+        self.markersService.loadMarkers().then{response -> Void in
+            self.markersArray = (response as? [Marker])!
+            
+            if self.markersArray?.count == 0 {
+                self.listOfMarkers.isHidden = true
+                self.map.isHidden = true
+                self.searchBar.isHidden = true
+            } else {
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                
+                if self.markersArrayFiltered != nil {
+                    self.map.removeAnnotations(self.markersArrayFiltered!)
+                }
 
+                self.markersArrayFiltered = self.markersArray
+                self.tableView.reloadData()
+                self.mapView()
+            }
+            }.catch { error in
+                self.navigator.viewController(openLoginViewController: self)
+        }
+    }
+    
     // MARK: MapView
     func mapView() {
         map.layoutMargins = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        map.showAnnotations(markersArrayFiltered, animated: true)
+        map.showAnnotations(markersArrayFiltered!, animated: true)
     }
-
+    
     // MARK: TableView Settings
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.markersArrayFiltered.count
+        return self.markersArrayFiltered!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,12 +172,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.7)
         }
         
-        cell.titleTableView?.text = markersArrayFiltered[indexPath.row].title
-        cell.batteryStatus.image = markersArrayFiltered[indexPath.row].batteryLevelImage
-        cell.gpsStatus.image = markersArrayFiltered[indexPath.row].gpsLevelImage
-        cell.status.text = markersArrayFiltered[indexPath.row].status.text
-        cell.status.textColor = markersArrayFiltered[indexPath.row].status.textColor
-        cell.subtitleTableView.text = markersArrayFiltered[indexPath.row].subtitle
+        cell.titleTableView?.text = markersArrayFiltered?[indexPath.row].title
+        cell.batteryStatus.image = markersArrayFiltered?[indexPath.row].batteryLevelImage
+        cell.gpsStatus.image = markersArrayFiltered?[indexPath.row].gpsLevelImage
+        cell.status.text = markersArrayFiltered?[indexPath.row].status.text
+        cell.status.textColor = markersArrayFiltered?[indexPath.row].status.textColor
+        cell.subtitleTableView.text = markersArrayFiltered?[indexPath.row].subtitle
         
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -153,23 +186,29 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        markersService.setMarker(marker: markersArrayFiltered[indexPath.row])
+        markersService.setMarker(marker: (markersArrayFiltered?[indexPath.row])!)
         navigator.viewController(openInfoViewController: self)
-        }
+    }
     
     // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        map.removeAnnotations(markersArrayFiltered)
-        markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray.filter{
+        
+        timer.invalidate()
+        
+        map.removeAnnotations(markersArrayFiltered!)
+        markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray?.filter{
             let string = $0.title
             return string!.range(of: searchText) != nil
         }
-
+        
         mapView()
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        
         markersArrayFiltered = markersArray
         searchBar.text = ""
         mapView()
