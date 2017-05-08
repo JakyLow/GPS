@@ -82,8 +82,10 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
                         print("reverse geodcode fail: \(error!.localizedDescription)")
                         fulfill("reverse geodcode fail: \(error!.localizedDescription)")
                     }
-                    let pm = placemarks! as [CLPlacemark]
                     
+                    if placemarks != nil {
+                    let pm = placemarks! as [CLPlacemark]
+
                     var addressString : String = ""
                     if pm.count > 0 {
                         let pm = placemarks![0]
@@ -116,6 +118,7 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
                             addressString = addressString + "д. " + pm.subThoroughfare!
                         }
                         fulfill(addressString)
+                                }
                     }
             })
             

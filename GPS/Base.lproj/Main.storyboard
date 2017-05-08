@@ -357,6 +357,17 @@
                                     <constraint firstItem="aoO-lV-GwG" firstAttribute="leading" secondItem="Pvo-y7-AdK" secondAttribute="trailing" constant="8" id="z5j-cJ-cnc"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGI-0S-B54">
+                                <rect key="frame" x="314" y="397" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="EAd-dT-63r"/>
+                                    <constraint firstAttribute="height" constant="50" id="kFH-Fz-On7"/>
+                                </constraints>
+                                <state key="normal" image="centerMap"/>
+                                <connections>
+                                    <action selector="centerMap:" destination="dwW-8k-i1R" eventType="touchUpInside" id="MD2-1c-zm7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -364,7 +375,9 @@
                             <constraint firstItem="XHl-HP-ibc" firstAttribute="top" secondItem="8Es-oU-mgn" secondAttribute="bottom" constant="-10" id="9FF-cw-sEv"/>
                             <constraint firstItem="8Es-oU-mgn" firstAttribute="width" secondItem="7p0-fZ-qKF" secondAttribute="width" constant="-22" id="Cii-LX-C9f"/>
                             <constraint firstItem="8Es-oU-mgn" firstAttribute="centerX" secondItem="7p0-fZ-qKF" secondAttribute="centerX" id="P9t-rO-Tqi"/>
+                            <constraint firstItem="8Es-oU-mgn" firstAttribute="top" secondItem="VGI-0S-B54" secondAttribute="bottom" constant="20" id="WSR-ZA-rZU"/>
                             <constraint firstItem="EWg-nA-0Bp" firstAttribute="top" secondItem="IUR-Ln-LYc" secondAttribute="bottom" id="jd8-Fr-e90"/>
+                            <constraint firstItem="VGI-0S-B54" firstAttribute="trailing" secondItem="EWg-nA-0Bp" secondAttribute="trailing" constant="-11" id="tpO-gL-rwT"/>
                             <constraint firstItem="EWg-nA-0Bp" firstAttribute="width" secondItem="7p0-fZ-qKF" secondAttribute="width" id="u0K-nY-YOK"/>
                             <constraint firstItem="XHl-HP-ibc" firstAttribute="top" secondItem="EWg-nA-0Bp" secondAttribute="bottom" id="yPS-xs-6jt"/>
                         </constraints>
@@ -375,6 +388,7 @@
                     <connections>
                         <outlet property="adress" destination="lq9-Uh-uXe" id="kCk-ub-DFn"/>
                         <outlet property="batteryStatus" destination="EfG-Og-fYg" id="ZPj-dr-2Ig"/>
+                        <outlet property="centerMap" destination="VGI-0S-B54" id="DR1-Ha-ZvF"/>
                         <outlet property="gpsStatus" destination="D2v-OO-2TL" id="5JZ-Vl-wDE"/>
                         <outlet property="infoView" destination="8Es-oU-mgn" id="AZm-Mb-Tb2"/>
                         <outlet property="lat" destination="aoO-lV-GwG" id="pv5-m5-HG3"/>
@@ -794,6 +808,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="centerMap" width="37" height="37"/>
         <image name="email" width="25" height="25"/>
         <image name="fullBattery" width="50" height="50"/>
         <image name="ghost" width="50" height="50"/>

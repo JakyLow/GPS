@@ -116,6 +116,6 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     }
     
     func getTimeForTimer() -> Double {
-        return 3.0
+        return 8.0
     }
 }

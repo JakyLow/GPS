@@ -16,8 +16,10 @@ class InfoViewController: UIViewController {
     var markersService: MarkersService!
     var timer = Timer()
     var sleepTimer = Timer()
-    var markersArray = [Marker]()
+    var markersArray:[Marker]?
     var reserveMarker:Marker?
+    var flag = 0
+    var _marker:Marker?
     
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var map: MKMapView!
@@ -29,6 +31,7 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var batteryStatus: UIImageView!
     @IBOutlet weak var gpsStatus: UIImageView!
+    @IBOutlet weak var centerMap: UIButton!
     
     
     override func viewDidLoad() {
@@ -39,8 +42,8 @@ class InfoViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         infoView.layer.cornerRadius = 10
         
-        let _marker = markersService.getMarker()
-        reloadData(marker: _marker)
+        _marker = markersService.getMarker()
+        reloadData(marker: _marker!)
         
         mapView(map, regionWillChangeAnimated: true)
     }
@@ -53,6 +56,25 @@ class InfoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timersInvalidate()
+    }
+    
+    // MARK: Center map
+    @IBAction func centerMap(_ sender: Any) {
+        if markersArray != nil {
+            
+            for item in self.markersArray! {
+                if item.id == _marker!.id {
+                    if self.reserveMarker != nil {
+                        self.map.removeAnnotation(self.reserveMarker!)
+                    }
+                    self.reloadData(marker: item)
+                }
+            }
+        } else {
+            self.reloadData(marker: _marker!)
+        }
+        print("center map")
+        centerMap.isHidden = true
     }
     
     // MARK: Reload data
@@ -88,20 +110,22 @@ class InfoViewController: UIViewController {
         reserveMarker = marker
     }
     
+    
     // MARK: Quiet GetMarkers
     func quietGetMarkers() {
         self.markersService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [Marker])!
-            if self.markersArray.count == 0 {
+            if self.markersArray?.count == 0 {
                 self.navigator.infoController(openViewController: self)
             } else {
-                let _marker = self.markersService.getMarker()
-                for item in self.markersArray {
-                    if item.id == _marker.id {
+                for item in self.markersArray! {
+                    if item.id == self._marker!.id {
                         if self.reserveMarker != nil {
                             self.map.removeAnnotation(self.reserveMarker!)
                         }
                         self.reloadData(marker: item)
+                        print("update map")
+                        self.centerMap.isHidden = true
                     }
                 }
             }
@@ -115,14 +139,25 @@ class InfoViewController: UIViewController {
         timersInvalidate()
         
         sleepTimer = Timer.scheduledTimer(timeInterval: settingsService.getSleepTime(), target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+        print("start sleep timer")
+        
+        if flag == 2 {
+            centerMap.isHidden = false
+        }
+        
+        if flag < 2 {
+            flag += 1
+        }
     }
     
     func startTimer() {
+        print("start timer")
         timer = Timer.scheduledTimer(timeInterval: settingsService.getTimeForTimer(), target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
     }
     
     func timersInvalidate() {
         timer.invalidate()
         sleepTimer.invalidate()
+        print("stop all timers")
     }
 }
