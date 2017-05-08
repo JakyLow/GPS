@@ -15,6 +15,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var navigator: Navigator!
     var settingsService: SettingsService!
     var markersService: MarkersService!
+    var timer = Timer()
+    var sleepTimer = Timer()
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
@@ -24,8 +26,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
-    
-    var timer = Timer()
     
     // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        startTimer()
 
         self.tableView.reloadData()
     }
@@ -92,11 +92,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         searchBar.delegate = self
         
         getMarkers()
+        mapView(map, regionWillChangeAnimated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.timer.invalidate()
+        timersInvalidate()
     }
     
     // MARK: GetMarkers
@@ -193,7 +194,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        timer.invalidate()
+        timersInvalidate()
         
         map.removeAnnotations(markersArrayFiltered!)
         markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray?.filter{
@@ -207,7 +208,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        startTimer()
         
         markersArrayFiltered = markersArray
         searchBar.text = ""
@@ -215,6 +216,22 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         tableView.reloadData()
     }
     
+    // MARK: Pause timer if touch map
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        timersInvalidate()
+        
+        sleepTimer = Timer.scheduledTimer(timeInterval: settingsService.getSleepTime(), target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+    }
+    
+    // MARK: Start timer
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: settingsService.getTimeForTimer(), target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+    }
+    
+    func timersInvalidate() {
+        timer.invalidate()
+        sleepTimer.invalidate()
+    }
 }
 
 // MARK: Hide Keyboard

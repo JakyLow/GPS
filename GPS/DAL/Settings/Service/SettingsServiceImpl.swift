@@ -29,4 +29,12 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
     func setSearchButtonText(text:String,searchBar:UISearchBar) {
         return settingsRepository.setSearchButtonText(text: text, searchBar: searchBar)
     }
+    
+    func getSleepTime() -> Double {
+        return settingsRepository.getSleepTime()
+    }
+    
+    func getTimeForTimer() -> Double {
+        return settingsRepository.getTimeForTimer()
+    }
 }

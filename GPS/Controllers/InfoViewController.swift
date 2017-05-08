@@ -15,6 +15,7 @@ class InfoViewController: UIViewController {
     var settingsService: SettingsService!
     var markersService: MarkersService!
     var timer = Timer()
+    var sleepTimer = Timer()
     var markersArray = [Marker]()
     var reserveMarker:Marker?
     
@@ -40,16 +41,18 @@ class InfoViewController: UIViewController {
         
         let _marker = markersService.getMarker()
         reloadData(marker: _marker)
+        
+        mapView(map, regionWillChangeAnimated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        startTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.timer.invalidate()
+        timersInvalidate()
     }
     
     // MARK: Reload data
@@ -86,17 +89,17 @@ class InfoViewController: UIViewController {
     }
     
     // MARK: Quiet GetMarkers
-    func quietGetMarkers() {        
+    func quietGetMarkers() {
         self.markersService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [Marker])!
             if self.markersArray.count == 0 {
-              self.navigator.infoController(openViewController: self)
+                self.navigator.infoController(openViewController: self)
             } else {
                 let _marker = self.markersService.getMarker()
                 for item in self.markersArray {
                     if item.id == _marker.id {
                         if self.reserveMarker != nil {
-                        self.map.removeAnnotation(self.reserveMarker!)
+                            self.map.removeAnnotation(self.reserveMarker!)
                         }
                         self.reloadData(marker: item)
                     }
@@ -107,5 +110,19 @@ class InfoViewController: UIViewController {
         }
     }
     
+    // MARK: Pause timer if touch map
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        timersInvalidate()
+        
+        sleepTimer = Timer.scheduledTimer(timeInterval: settingsService.getSleepTime(), target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+    }
     
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: settingsService.getTimeForTimer(), target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+    }
+    
+    func timersInvalidate() {
+        timer.invalidate()
+        sleepTimer.invalidate()
+    }
 }

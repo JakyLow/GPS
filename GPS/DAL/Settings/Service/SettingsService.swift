@@ -16,4 +16,6 @@ protocol SettingsService {
     func configuredMailComposeViewController() -> MFMailComposeViewController
     func authorization() -> AnyPromise
     func setSearchButtonText(text:String,searchBar:UISearchBar)
+    func getSleepTime() -> Double
+    func getTimeForTimer() -> Double
 }
