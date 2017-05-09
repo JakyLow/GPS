@@ -61,6 +61,16 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
         return _marker!
     }
     
+    // MARK: Set&Get marker's array for fast present
+    var _markersArray: [Marker]?
+    func setMarkersArray(markers: [Marker]) {
+        _markersArray = markers
+    }
+    
+    func getMarkersArray() -> [Marker]? {
+        return _markersArray
+    }
+    
     // MARK: Find address
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
@@ -79,8 +89,7 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
                 {(placemarks, error) in
                     if (error != nil)
                     {
-                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                        fulfill("reverse geodcode fail: \(error!.localizedDescription)")
+                        fulfill("адрес не найден")
                     }
                     
                     if placemarks != nil {

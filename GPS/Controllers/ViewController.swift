@@ -76,6 +76,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTimer()
+        
+        // MARK: Fast reload data
+        let reserverdArray = markersService.getMarkersArray()
+        if reserverdArray != nil {
+            markersArrayFiltered = reserverdArray
+        }
 
         self.tableView.reloadData()
     }

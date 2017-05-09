@@ -14,5 +14,7 @@ protocol MarkersService {
     func loadMarkers() -> AnyPromise
     func setMarker(marker: Marker)
     func getMarker() -> Marker
+    func setMarkersArray(markers: [Marker])
+    func getMarkersArray() -> [Marker]?
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise
 }

@@ -32,7 +32,16 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var batteryStatus: UIImageView!
     @IBOutlet weak var gpsStatus: UIImageView!
     @IBOutlet weak var centerMap: UIButton!
+    @IBOutlet weak var loadingView: UIView!
     
+    @IBAction func updateMarker(_ sender: Any) {
+        getMarkers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTimer()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +57,6 @@ class InfoViewController: UIViewController {
         mapView(map, regionWillChangeAnimated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startTimer()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timersInvalidate()
@@ -61,7 +65,6 @@ class InfoViewController: UIViewController {
     // MARK: Center map
     @IBAction func centerMap(_ sender: Any) {
         if markersArray != nil {
-            
             for item in self.markersArray! {
                 if item.id == _marker!.id {
                     if self.reserveMarker != nil {
@@ -73,7 +76,6 @@ class InfoViewController: UIViewController {
         } else {
             self.reloadData(marker: _marker!)
         }
-        print("center map")
         centerMap.isHidden = true
     }
     
@@ -110,11 +112,13 @@ class InfoViewController: UIViewController {
         reserveMarker = marker
     }
     
-    
-    // MARK: Quiet GetMarkers
-    func quietGetMarkers() {
+    // MARK: GetMarkers
+    func getMarkers() {
+        self.loadingView.isHidden = false
+        
         self.markersService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [Marker])!
+            
             if self.markersArray?.count == 0 {
                 self.navigator.infoController(openViewController: self)
             } else {
@@ -124,7 +128,30 @@ class InfoViewController: UIViewController {
                             self.map.removeAnnotation(self.reserveMarker!)
                         }
                         self.reloadData(marker: item)
-                        print("update map")
+                    }
+                }
+                self.loadingView.isHidden = true
+                self.centerMap.isHidden = true
+            }
+            }.catch { error in
+                self.navigator.infoController(openViewController: self)
+        }
+    }
+    
+    // MARK: Quiet GetMarkers
+    func quietGetMarkers() {        print("info")
+        self.markersService.loadMarkers().then{response -> Void in
+            self.markersArray = (response as? [Marker])!
+            if self.markersArray?.count == 0 {
+                self.navigator.infoController(openViewController: self)
+            } else {
+                self.markersService.setMarkersArray(markers: self.markersArray!)
+                for item in self.markersArray! {
+                    if item.id == self._marker!.id {
+                        if self.reserveMarker != nil {
+                            self.map.removeAnnotation(self.reserveMarker!)
+                        }
+                        self.reloadData(marker: item)
                         self.centerMap.isHidden = true
                     }
                 }
@@ -139,7 +166,6 @@ class InfoViewController: UIViewController {
         timersInvalidate()
         
         sleepTimer = Timer.scheduledTimer(timeInterval: settingsService.getSleepTime(), target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
-        print("start sleep timer")
         
         if flag == 2 {
             centerMap.isHidden = false
@@ -151,13 +177,11 @@ class InfoViewController: UIViewController {
     }
     
     func startTimer() {
-        print("start timer")
         timer = Timer.scheduledTimer(timeInterval: settingsService.getTimeForTimer(), target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
     }
     
     func timersInvalidate() {
         timer.invalidate()
         sleepTimer.invalidate()
-        print("stop all timers")
     }
 }

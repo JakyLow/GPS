@@ -68,7 +68,7 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
     // MARK: Authorization
     func authorization() -> AnyPromise {
         
-        let url = "http://gps-tracker.com.ua/login.php"
+        let url = "http://gps-tracker.com.ua/login.php"        
         let parameters: Parameters = [
             "login": KeychainSwift().get("login")!,
             "password": KeychainSwift().get("password")!

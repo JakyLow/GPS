@@ -25,6 +25,14 @@ class MarkersServiceImpl: NSObject, MarkersService {
         return markersRepository.getMarker()
     }
     
+    func setMarkersArray(markers: [Marker]) {
+        return markersRepository.setMarkersArray(markers: markers)
+    }
+    
+    func getMarkersArray() -> [Marker]? {
+        return markersRepository.getMarkersArray()
+    }
+    
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
         return markersRepository.getAddressFromLatLon(pdblLatitude: pdblLatitude, pdblLongitude: pdblLongitude)
     }

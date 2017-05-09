@@ -269,7 +269,7 @@
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                             </stackView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fullBattery" translatesAutoresizingMaskIntoConstraints="NO" id="EfG-Og-fYg">
-                                                <rect key="frame" x="285" y="17.5" width="25" height="25"/>
+                                                <rect key="frame" x="285" y="18" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="oXO-8x-NGr"/>
                                                     <constraint firstAttribute="width" constant="25" id="vy5-1Z-wZW"/>
@@ -368,13 +368,43 @@
                                     <action selector="centerMap:" destination="dwW-8k-i1R" eventType="touchUpInside" id="MD2-1c-zm7"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxT-LV-jVG" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vfe-xy-z4G">
+                                        <rect key="frame" x="178" y="273" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="поиск объекта..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj8-fj-q8T">
+                                        <rect key="frame" x="74" y="301" width="227" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="227" id="4am-fJ-vU7"/>
+                                            <constraint firstAttribute="height" constant="38" id="Ttr-Kg-AeH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vfe-xy-z4G" firstAttribute="centerX" secondItem="PxT-LV-jVG" secondAttribute="centerX" id="HRH-Ui-Qgv"/>
+                                    <constraint firstItem="vfe-xy-z4G" firstAttribute="centerY" secondItem="PxT-LV-jVG" secondAttribute="centerY" constant="-19" id="f9a-kL-IYd"/>
+                                    <constraint firstItem="Wj8-fj-q8T" firstAttribute="centerX" secondItem="PxT-LV-jVG" secondAttribute="centerX" id="h2n-wM-LAf"/>
+                                    <constraint firstItem="Wj8-fj-q8T" firstAttribute="top" secondItem="vfe-xy-z4G" secondAttribute="bottom" constant="8" id="kTS-0C-cXv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EWg-nA-0Bp" firstAttribute="centerX" secondItem="7p0-fZ-qKF" secondAttribute="centerX" id="0bx-u7-Gcu"/>
                             <constraint firstItem="XHl-HP-ibc" firstAttribute="top" secondItem="8Es-oU-mgn" secondAttribute="bottom" constant="-10" id="9FF-cw-sEv"/>
+                            <constraint firstItem="PxT-LV-jVG" firstAttribute="top" secondItem="EWg-nA-0Bp" secondAttribute="top" id="AId-W1-YP1"/>
                             <constraint firstItem="8Es-oU-mgn" firstAttribute="width" secondItem="7p0-fZ-qKF" secondAttribute="width" constant="-22" id="Cii-LX-C9f"/>
                             <constraint firstItem="8Es-oU-mgn" firstAttribute="centerX" secondItem="7p0-fZ-qKF" secondAttribute="centerX" id="P9t-rO-Tqi"/>
+                            <constraint firstItem="PxT-LV-jVG" firstAttribute="bottom" secondItem="XHl-HP-ibc" secondAttribute="top" id="PjC-kF-79G"/>
+                            <constraint firstItem="PxT-LV-jVG" firstAttribute="leading" secondItem="EWg-nA-0Bp" secondAttribute="leading" id="Sgi-FH-EYM"/>
+                            <constraint firstItem="PxT-LV-jVG" firstAttribute="trailing" secondItem="EWg-nA-0Bp" secondAttribute="trailing" id="W5H-5r-zhP"/>
                             <constraint firstItem="8Es-oU-mgn" firstAttribute="top" secondItem="VGI-0S-B54" secondAttribute="bottom" constant="20" id="WSR-ZA-rZU"/>
                             <constraint firstItem="EWg-nA-0Bp" firstAttribute="top" secondItem="IUR-Ln-LYc" secondAttribute="bottom" id="jd8-Fr-e90"/>
                             <constraint firstItem="VGI-0S-B54" firstAttribute="trailing" secondItem="EWg-nA-0Bp" secondAttribute="trailing" constant="-11" id="tpO-gL-rwT"/>
@@ -384,6 +414,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Подробнее" id="QYd-oX-QGM">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="UnW-3Y-zYj"/>
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="wAD-nL-2GW" userLabel="refresh">
+                            <connections>
+                                <action selector="updateMarker:" destination="dwW-8k-i1R" id="XgT-cd-mv9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="adress" destination="lq9-Uh-uXe" id="kCk-ub-DFn"/>
@@ -392,6 +427,7 @@
                         <outlet property="gpsStatus" destination="D2v-OO-2TL" id="5JZ-Vl-wDE"/>
                         <outlet property="infoView" destination="8Es-oU-mgn" id="AZm-Mb-Tb2"/>
                         <outlet property="lat" destination="aoO-lV-GwG" id="pv5-m5-HG3"/>
+                        <outlet property="loadingView" destination="PxT-LV-jVG" id="3AZ-Nw-Yaa"/>
                         <outlet property="lon" destination="T8Y-Qb-nwV" id="D5T-wR-skD"/>
                         <outlet property="map" destination="EWg-nA-0Bp" id="vkZ-Hf-dVv"/>
                         <outlet property="status" destination="5ua-1Z-3CE" id="64p-y4-Nfi"/>
@@ -615,7 +651,7 @@
                                 <action selector="selector:" destination="BYZ-38-t0r" eventType="valueChanged" id="5df-Qy-YFz"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" image="refresh" id="bMa-dx-4Wz">
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="bMa-dx-4Wz" userLabel="refresh">
                             <connections>
                                 <action selector="updateMarkers:" destination="BYZ-38-t0r" id="Lop-dL-6sa"/>
                             </connections>
