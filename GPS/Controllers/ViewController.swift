@@ -29,6 +29,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
+        if self.markersArrayFiltered != nil {
+            self.map.removeAnnotations(self.markersArrayFiltered!)
+        }
         getMarkers()
     }
     // MARK: UISegmentedControl
