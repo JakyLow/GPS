@@ -53,3 +53,25 @@ extension Assembly {
             } as AnyObject
     }
 }
+
+// MARK: SettingsViewController
+extension Assembly {
+    
+    func _settingsViewController() -> AnyObject {
+        return TyphoonDefinition.withClass(SettingsViewController.self) { definition in
+            definition!.injectProperty(#selector(getter: SettingsViewController.settingsService), with: self.settingService)
+            definition!.injectProperty(#selector(getter: SettingsViewController.navigator), with: self.navigator)
+            } as AnyObject
+    }
+}
+
+// MARK: DetailSettingsController
+extension Assembly {
+    
+    func _detailSettingsController() -> AnyObject {
+        return TyphoonDefinition.withClass(DetailSettingsController.self) { definition in
+            definition!.injectProperty(#selector(getter: DetailSettingsController.settingsService), with: self.settingService)
+            definition!.injectProperty(#selector(getter: DetailSettingsController.navigator), with: self.navigator)
+            } as AnyObject
+    }
+}

@@ -19,5 +19,7 @@ protocol Navigator {
     func viewController(openInfoViewController viewcontroller: ViewController)
     func viewController(openSettingsViewController viewcontroller: ViewController)
     func infoController(openViewController viewcontroller: InfoViewController)
+    func settingsViewController(openDetailSettingsController viewcontroller: SettingsViewController)
+    func detailSettingsController(openSettingsViewController viewcontroller: DetailSettingsController)
 }
 

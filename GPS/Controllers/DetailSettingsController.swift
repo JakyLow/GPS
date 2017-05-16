@@ -1,15 +1,15 @@
 //
-//  SettingsViewController.swift
+//  DetailSettings.swift
 //  GPS
 //
-//  Created by Maxim Mazhuga on 05.04.17.
+//  Created by Maxim Mazhuga on 16.05.17.
 //  Copyright © 2017 Maxim Mazhuga. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
-    
+class DetailSettingsController: UITableViewController {
+
     var navigator: Navigator!
     var settingsService: SettingsService!
     
@@ -19,7 +19,7 @@ class SettingsViewController: UITableViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        self.navigationController?.title = "Назад"
+        
     }
     
 }

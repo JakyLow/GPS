@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		704FE1E634510DEEB3A9A74F /* Pods_GPS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */; };
 		D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */; };
+		D90B925F1ECB68BA007D5AA2 /* DetailSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90B925E1ECB68BA007D5AA2 /* DetailSettingsController.swift */; };
 		D926A6C11E944CBD0001645C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6C01E944CBD0001645C /* SettingsViewController.swift */; };
 		D926A6C31E944CE10001645C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6C21E944CE10001645C /* InfoViewController.swift */; };
+		D92C7B1F1EC91D710009EA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D92C7B1E1EC91D710009EA42 /* Assets.xcassets */; };
 		D930D5A31E7D588800A77F6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D930D5A21E7D588800A77F6C /* AppDelegate.swift */; };
 		D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A61E7D588800A77F6C /* Main.storyboard */; };
-		D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D930D5A91E7D588800A77F6C /* Assets.xcassets */; };
 		D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D930D5AB1E7D588800A77F6C /* LaunchScreen.storyboard */; };
 		D93877AD1E89D81A001F1AF1 /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A51E89D81A001F1AF1 /* SettingsRepository.swift */; };
 		D93877AE1E89D81A001F1AF1 /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93877A61E89D81A001F1AF1 /* SettingsRepositoryImpl.swift */; };
@@ -45,12 +46,13 @@
 		161060B766C21D295F184046 /* Pods-GPS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS/Pods-GPS.release.xcconfig"; sourceTree = "<group>"; };
 		BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D90B925E1ECB68BA007D5AA2 /* DetailSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingsController.swift; sourceTree = "<group>"; };
 		D926A6C01E944CBD0001645C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D926A6C21E944CE10001645C /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		D92C7B1E1EC91D710009EA42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GPS/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		D930D59F1E7D588800A77F6C /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D930D5A21E7D588800A77F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		D930D5A71E7D588800A77F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D930D5A91E7D588800A77F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		D930D5AC1E7D588800A77F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D930D5AE1E7D588800A77F6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		D93877A51E89D81A001F1AF1 /* SettingsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */,
 				D926A6C01E944CBD0001645C /* SettingsViewController.swift */,
 				D926A6C21E944CE10001645C /* InfoViewController.swift */,
+				D90B925E1ECB68BA007D5AA2 /* DetailSettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -278,7 +281,7 @@
 				D9D6864C1E833AFC00A2B798 /* loginBg.gif */,
 				D930D5A21E7D588800A77F6C /* AppDelegate.swift */,
 				D930D5A61E7D588800A77F6C /* Main.storyboard */,
-				D930D5A91E7D588800A77F6C /* Assets.xcassets */,
+				D92C7B1E1EC91D710009EA42 /* Assets.xcassets */,
 				D930D5AB1E7D588800A77F6C /* LaunchScreen.storyboard */,
 				D930D5AE1E7D588800A77F6C /* Info.plist */,
 			);
@@ -359,7 +362,7 @@
 			files = (
 				D930D5AD1E7D588800A77F6C /* LaunchScreen.storyboard in Resources */,
 				D9D6864D1E833AFC00A2B798 /* loginBg.gif in Resources */,
-				D930D5AA1E7D588800A77F6C /* Assets.xcassets in Resources */,
+				D92C7B1F1EC91D710009EA42 /* Assets.xcassets in Resources */,
 				D930D5A81E7D588800A77F6C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +433,7 @@
 				D9EC1DE01E809A3A00C925A9 /* RouterImpl.swift in Sources */,
 				D9D9AC141EB3A58200B1188A /* MarkersService.swift in Sources */,
 				D9EC1DD31E809A3A00C925A9 /* AssemblyProperties.swift in Sources */,
+				D90B925F1ECB68BA007D5AA2 /* DetailSettingsController.swift in Sources */,
 				D9D9AC061EB3A4A500B1188A /* VCMapView.swift in Sources */,
 				D9EC1DE11E809A3A00C925A9 /* RouterViewControllerType.swift in Sources */,
 				D9D9AC021EB3A4A500B1188A /* CheckConnection.swift in Sources */,
