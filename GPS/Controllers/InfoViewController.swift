@@ -20,7 +20,7 @@ class InfoViewController: UIViewController {
     var reserveMarker:Marker?
     var flag = 0
     var _marker:Marker?
-    
+
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lat: UILabel!
@@ -120,7 +120,7 @@ class InfoViewController: UIViewController {
             self.markersArray = (response as? [Marker])!
             
             if self.markersArray?.count == 0 {
-                self.navigator.infoController(openViewController: self)
+                self.navigationController?.popViewController(animated: true)
             } else {
                 for item in self.markersArray! {
                     if item.id == self._marker!.id {
@@ -134,7 +134,7 @@ class InfoViewController: UIViewController {
                 self.centerMap.isHidden = true
             }
             }.catch { error in
-                self.navigator.infoController(openViewController: self)
+                self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -143,7 +143,7 @@ class InfoViewController: UIViewController {
         self.markersService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [Marker])!
             if self.markersArray?.count == 0 {
-                self.navigator.infoController(openViewController: self)
+                self.navigationController?.popViewController(animated: true)
             } else {
                 self.markersService.setMarkersArray(markers: self.markersArray!)
                 for item in self.markersArray! {
@@ -157,7 +157,7 @@ class InfoViewController: UIViewController {
                 }
             }
             }.catch { error in
-                self.navigator.infoController(openViewController: self)
+                self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -177,7 +177,10 @@ class InfoViewController: UIViewController {
     }
     
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: settingsService.getTimeForTimer(), target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        let time = settingsService.getTimeForTimer()
+        if time != 0.0 {
+        timer = Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        }
     }
     
     func timersInvalidate() {

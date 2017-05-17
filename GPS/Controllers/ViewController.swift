@@ -60,7 +60,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             KeychainSwift().clear()
-            self.navigator.viewController(openLoginViewController: self)
+            self.dismiss(animated: true, completion: nil)
+            
         })
         let helpAction = UIAlertAction(title: "Помощь", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -133,7 +134,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 self.mapView()
             }
             }.catch { error in
-                self.navigator.viewController(openLoginViewController: self)
+                self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -159,7 +160,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 self.mapView()
             }
             }.catch { error in
-                self.navigator.viewController(openLoginViewController: self)
+                self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -234,7 +235,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     // MARK: Start timer
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: settingsService.getTimeForTimer(), target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        let time = settingsService.getTimeForTimer()
+        if time != 0.0 {
+            timer = Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        }
     }
     
     func timersInvalidate() {

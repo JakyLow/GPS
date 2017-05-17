@@ -62,7 +62,7 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
     }
     
     // MARK: Set&Get marker's array for fast present
-    var _markersArray: [Marker]?
+    private var _markersArray: [Marker]?
     func setMarkersArray(markers: [Marker]) {
         _markersArray = markers
     }

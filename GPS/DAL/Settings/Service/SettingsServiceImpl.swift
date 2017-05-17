@@ -37,4 +37,8 @@ class SettingsServiceImpl: NSObject, SettingsService, MFMailComposeViewControlle
     func getTimeForTimer() -> Double {
         return settingsRepository.getTimeForTimer()
     }
+    
+    func getNameForTimer() -> String {
+        return settingsRepository.getNameForTimer()
+    }
 }

@@ -71,7 +71,6 @@ extension Assembly {
     func _detailSettingsController() -> AnyObject {
         return TyphoonDefinition.withClass(DetailSettingsController.self) { definition in
             definition!.injectProperty(#selector(getter: DetailSettingsController.settingsService), with: self.settingService)
-            definition!.injectProperty(#selector(getter: DetailSettingsController.navigator), with: self.navigator)
             } as AnyObject
     }
 }

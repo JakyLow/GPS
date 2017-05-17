@@ -18,5 +18,6 @@ protocol SettingsRepository {
     func setSearchButtonText(text:String,searchBar:UISearchBar)
     func getSleepTime() -> Double
     func getTimeForTimer() -> Double
+    func getNameForTimer() -> String
 }
 

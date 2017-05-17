@@ -109,13 +109,4 @@ class SettingsRepositoryImpl: NSObject, SettingsService, MFMailComposeViewContro
         }
         
     }
-    
-    // MARK: Timers
-    func getSleepTime() -> Double {
-        return 3.0
-    }
-    
-    func getTimeForTimer() -> Double {
-        return 8.0
-    }
 }

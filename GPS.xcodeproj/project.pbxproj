@@ -10,6 +10,7 @@
 		704FE1E634510DEEB3A9A74F /* Pods_GPS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */; };
 		D902CB2E1E81F17500D5B8E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */; };
 		D90B925F1ECB68BA007D5AA2 /* DetailSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90B925E1ECB68BA007D5AA2 /* DetailSettingsController.swift */; };
+		D90B92641ECBA570007D5AA2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90B92631ECBA570007D5AA2 /* Settings.swift */; };
 		D926A6C11E944CBD0001645C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6C01E944CBD0001645C /* SettingsViewController.swift */; };
 		D926A6C31E944CE10001645C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926A6C21E944CE10001645C /* InfoViewController.swift */; };
 		D92C7B1F1EC91D710009EA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D92C7B1E1EC91D710009EA42 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		BB9BEFB8BE940B82ACB4ADA6 /* Pods_GPS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D90B925E1ECB68BA007D5AA2 /* DetailSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingsController.swift; sourceTree = "<group>"; };
+		D90B92631ECBA570007D5AA2 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D926A6C01E944CBD0001645C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D926A6C21E944CE10001645C /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D92C7B1E1EC91D710009EA42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GPS/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -191,6 +193,7 @@
 		D9D9ABFF1EB3A4A500B1188A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D90B92631ECBA570007D5AA2 /* Settings.swift */,
 				D9D9AC001EB3A4A500B1188A /* NotificationsColors.swift */,
 				D9D9AC011EB3A4A500B1188A /* VCMapView.swift */,
 			);
@@ -246,12 +249,12 @@
 		D9EC1DBD1E809A3A00C925A9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D9EC1DE51E80A43000C925A9 /* ViewController.swift */,
-				D9EC1DE21E809D6700C925A9 /* HelpViewController.swift */,
 				D902CB2D1E81F17500D5B8E0 /* LoginViewController.swift */,
-				D926A6C01E944CBD0001645C /* SettingsViewController.swift */,
+				D9EC1DE51E80A43000C925A9 /* ViewController.swift */,
 				D926A6C21E944CE10001645C /* InfoViewController.swift */,
+				D926A6C01E944CBD0001645C /* SettingsViewController.swift */,
 				D90B925E1ECB68BA007D5AA2 /* DetailSettingsController.swift */,
+				D9EC1DE21E809D6700C925A9 /* HelpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				D9EC1DE61E80A43000C925A9 /* ViewController.swift in Sources */,
 				D9D9AC041EB3A4A500B1188A /* MarkersTableViewCell.swift in Sources */,
 				D9EC1DDD1E809A3A00C925A9 /* Navigator.swift in Sources */,
+				D90B92641ECBA570007D5AA2 /* Settings.swift in Sources */,
 				D9EC1DD21E809A3A00C925A9 /* Assembly.swift in Sources */,
 				D9D9AC101EB3A56700B1188A /* MarkersRepository.swift in Sources */,
 				D9D9AC121EB3A57900B1188A /* MarkersServiceImpl.swift in Sources */,
