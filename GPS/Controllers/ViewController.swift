@@ -45,11 +45,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBAction func selector(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex  {
         case 0:
-            ghostView.isHidden = false
             listOfMarkers.isHidden = false
             map.isHidden = true
         case 1:
-            ghostView.isHidden = false
             listOfMarkers.isHidden = true
             map.isHidden = false
         default:
@@ -67,6 +65,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let exitAction = UIAlertAction(title: "Сменить аккаунт", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             KeychainSwift().clear()
+            self.timeLoading = nil
+            self.markersArray?.removeAll()
+            self.markersArrayFiltered?.removeAll()
             self.dismiss(animated: true, completion: nil)
             
         })
@@ -113,7 +114,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         searchBar.delegate = self
-        
+
+
         getMarkers()
         mapView(map, regionWillChangeAnimated: true)
     }
@@ -143,16 +145,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             self.markersArray = (response as? [Marker])!
             
             if self.markersArray?.count == 0 {
-                self.listOfMarkers.isHidden = true
-                self.map.isHidden = true
-                self.searchBar.isHidden = true
+                self.ghostView.isHidden = false
                 self.loadingView.isHidden = true
+                self.markersArrayFiltered = []
             } else {
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
                 self.markersArrayFiltered = self.markersArray
                 self.tableView.reloadData()
                 self.loadingView.isHidden = true
+                self.ghostView.isHidden = true
                 self.mapView()
                 self.centerMap.isHidden = true
             }
@@ -168,12 +170,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             self.markersArray = (response as? [Marker])!
             
             if self.markersArray?.count == 0 {
-                self.listOfMarkers.isHidden = true
-                self.map.isHidden = true
-                self.searchBar.isHidden = true
+                self.ghostView.isHidden = false
             } else {
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
+                self.ghostView.isHidden = true
                 
                 if self.markersArrayFiltered != nil {
                     self.map.removeAnnotations(self.markersArrayFiltered!)
