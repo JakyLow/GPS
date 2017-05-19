@@ -507,6 +507,18 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
                                 <rect key="frame" x="0.0" y="41" width="375" height="561"/>
                             </mapView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bz-Et-j1C">
+                                <rect key="frame" x="324" y="406" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="HKY-f7-kek"/>
+                                    <constraint firstAttribute="height" constant="40" id="xWH-mH-Ya2"/>
+                                </constraints>
+                                <state key="normal" image="centerMap"/>
+                                <connections>
+                                    <action selector="centerMap:" destination="dwW-8k-i1R" eventType="touchUpInside" id="lyp-N2-WHB"/>
+                                    <action selector="centerMap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ydV-m6-4E0"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
                                 <rect key="frame" x="0.0" y="41" width="375" height="561"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -623,8 +635,10 @@
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="7Y2-eq-jB6"/>
                             <constraint firstItem="ldh-hz-eUv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C5N-hc-EFt"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fis-zy-6Zn"/>
+                            <constraint firstItem="0Bz-Et-j1C" firstAttribute="trailing" secondItem="7uR-Hl-qbx" secondAttribute="trailing" constant="-11" id="G6R-ez-a5w"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="H9j-Bu-4qT"/>
                             <constraint firstItem="ldh-hz-eUv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="HRZ-1L-jC1"/>
+                            <constraint firstItem="0Bz-Et-j1C" firstAttribute="bottom" secondItem="7uR-Hl-qbx" secondAttribute="bottom" constant="-156" id="JAE-KK-Gwf"/>
                             <constraint firstItem="ldh-hz-eUv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-1" id="K2z-Qi-ow8"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="R6S-0V-99Q"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="TSz-Zr-2Bs"/>
@@ -662,6 +676,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="centerMap" destination="0Bz-Et-j1C" id="gzo-be-y0S"/>
                         <outlet property="ghostView" destination="J4x-l3-EsE" id="Tsh-fc-Oox"/>
                         <outlet property="listOfMarkers" destination="itT-wP-gUk" id="CHa-hd-fSN"/>
                         <outlet property="loadingView" destination="bnR-g4-DnR" id="Vqz-jf-GXV"/>
@@ -807,7 +822,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wI1-eS-4Pf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wI1-eS-4Pf">
                                         <rect key="frame" x="20" y="132" width="335" height="301"/>
                                         <string key="text">Сервис мониторинга европейского уровня, основанный на технической базе веб-сервера gps-tracker.com.ua
 
@@ -819,7 +834,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6N4-fJ-3PT">
-                                        <rect key="frame" x="20" y="453" width="335" height="38"/>
+                                        <rect key="frame" x="20" y="506.5" width="335" height="38"/>
                                         <color key="backgroundColor" red="0.92156862745098034" green="0.33333333333333331" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="l7c-Gi-ao2"/>
@@ -833,6 +848,12 @@
                                             <action selector="registerButton:" destination="8B4-70-KfF" eventType="touchUpInside" id="lay-8y-Po9"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Зарегистрируйте своё устройство, чтобы начать отслеживать его местоположение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IE5-pq-UTt">
+                                        <rect key="frame" x="19.5" y="453" width="335" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -844,9 +865,12 @@
                                     <constraint firstItem="wI1-eS-4Pf" firstAttribute="width" secondItem="CVV-nS-Tkv" secondAttribute="width" constant="-40" id="Mjt-U5-Xtv"/>
                                     <constraint firstAttribute="bottom" secondItem="6N4-fJ-3PT" secondAttribute="bottom" constant="20" id="Nhp-CA-nF7"/>
                                     <constraint firstItem="YzR-5h-dT2" firstAttribute="top" secondItem="CVV-nS-Tkv" secondAttribute="top" constant="10" id="O9E-Hf-LUD"/>
-                                    <constraint firstItem="6N4-fJ-3PT" firstAttribute="top" secondItem="wI1-eS-4Pf" secondAttribute="bottom" constant="20" id="Pm8-nF-xsK"/>
+                                    <constraint firstItem="IE5-pq-UTt" firstAttribute="top" secondItem="wI1-eS-4Pf" secondAttribute="bottom" constant="20" id="Q5s-Ov-wn1"/>
+                                    <constraint firstItem="IE5-pq-UTt" firstAttribute="centerX" secondItem="CVV-nS-Tkv" secondAttribute="centerX" id="RxZ-gM-uII"/>
                                     <constraint firstAttribute="trailing" secondItem="wI1-eS-4Pf" secondAttribute="trailing" constant="20" id="WeV-vm-xkL"/>
                                     <constraint firstItem="6N4-fJ-3PT" firstAttribute="centerX" secondItem="CVV-nS-Tkv" secondAttribute="centerX" id="WsE-mi-h3N"/>
+                                    <constraint firstItem="IE5-pq-UTt" firstAttribute="width" secondItem="CVV-nS-Tkv" secondAttribute="width" constant="-40" id="nKn-Ku-0BP"/>
+                                    <constraint firstItem="6N4-fJ-3PT" firstAttribute="top" secondItem="IE5-pq-UTt" secondAttribute="bottom" constant="20" id="qfA-Mw-uzf"/>
                                     <constraint firstItem="wI1-eS-4Pf" firstAttribute="top" secondItem="NYr-U4-Yfe" secondAttribute="bottom" constant="20" id="sN8-pQ-9Lk"/>
                                 </constraints>
                             </scrollView>

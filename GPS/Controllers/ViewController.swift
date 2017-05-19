@@ -17,6 +17,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var markersService: MarkersService!
     var timer = Timer()
     var sleepTimer = Timer()
+    var flag = 0
+    let notificationCenter = NotificationCenter.default
+    var sleepTime:Double?
+    var timeLoading:Double?
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
@@ -24,16 +28,19 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var ghostView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var centerMap: UIButton!
     
     let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
-        if self.markersArrayFiltered != nil {
+        if self.markersArrayFiltered?.count != 0 {
             self.map.removeAnnotations(self.markersArrayFiltered!)
         }
         getMarkers()
+        self.centerMap.isHidden = true
     }
+    
     // MARK: UISegmentedControl
     @IBAction func selector(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex  {
@@ -79,14 +86,20 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        timeLoading = settingsService.getTimeForTimer()
+        sleepTime = settingsService.getSleepTime()
         startTimer()
+        
+        notificationCenter.addObserver(self, selector: #selector(timersInvalidate), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(timerDidBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
         
         // MARK: Fast reload data
         let reserverdArray = markersService.getMarkersArray()
         if reserverdArray != nil {
             markersArrayFiltered = reserverdArray
         }
-
+        
         self.tableView.reloadData()
     }
     
@@ -108,6 +121,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timersInvalidate()
+        
+        notificationCenter.removeObserver(self, name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        notificationCenter.removeObserver(self, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    // MARK: Center map
+    @IBAction func centerMap(_ sender: UIButton) {
+        mapView()
+        centerMap.isHidden = true
     }
     
     // MARK: GetMarkers
@@ -140,6 +162,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     // MARK: Quiet GetMarkers
     func quietGetMarkers() {
+        print("ViewController - quietGetMarkers")
         self.markersService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [Marker])!
             
@@ -154,9 +177,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 if self.markersArrayFiltered != nil {
                     self.map.removeAnnotations(self.markersArrayFiltered!)
                 }
-
+                
                 self.markersArrayFiltered = self.markersArray
                 self.tableView.reloadData()
+                self.centerMap.isHidden = true
                 self.mapView()
             }
             }.catch { error in
@@ -228,20 +252,35 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     // MARK: Pause timer if touch map
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        timersInvalidate()
         
-        sleepTimer = Timer.scheduledTimer(timeInterval: settingsService.getSleepTime(), target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+        if flag == 3 {
+            timersInvalidate()
+            centerMap.isHidden = false
+            print("ViewController - sleep timer")
+            sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+        }
+        
+        if flag < 3 {
+            flag += 1
+        }
+    }
+
+    func timerDidBecomeActive() {
+        print("ViewController - didBecomeActive")
+        quietGetMarkers()
+        startTimer()
     }
     
-    // MARK: Start timer
+    // MARK: Timers
     func startTimer() {
-        let time = settingsService.getTimeForTimer()
-        if time != 0.0 {
-            timer = Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        print("ViewController - start timer")
+        if timeLoading != 0.0 {
+            timer = Timer.scheduledTimer(timeInterval: timeLoading!, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
         }
     }
     
     func timersInvalidate() {
+        print("ViewController - stop timers")
         timer.invalidate()
         sleepTimer.invalidate()
     }

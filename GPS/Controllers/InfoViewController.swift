@@ -20,7 +20,10 @@ class InfoViewController: UIViewController {
     var reserveMarker:Marker?
     var flag = 0
     var _marker:Marker?
-
+    let notificationCenter = NotificationCenter.default
+    var sleepTime:Double?
+    var timeLoading:Double?
+    
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lat: UILabel!
@@ -40,7 +43,13 @@ class InfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        timeLoading = settingsService.getTimeForTimer()
+        sleepTime = settingsService.getSleepTime()
         startTimer()
+        
+        notificationCenter.addObserver(self, selector: #selector(timersInvalidate), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(timerDidBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
     override func viewDidLoad() {
@@ -60,10 +69,13 @@ class InfoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timersInvalidate()
+        
+        notificationCenter.removeObserver(self, name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        notificationCenter.removeObserver(self, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
     // MARK: Center map
-    @IBAction func centerMap(_ sender: Any) {
+    @IBAction func centerMap(_ sender: UIButton) {
         if markersArray != nil {
             for item in self.markersArray! {
                 if item.id == _marker!.id {
@@ -139,7 +151,8 @@ class InfoViewController: UIViewController {
     }
     
     // MARK: Quiet GetMarkers
-    func quietGetMarkers() {        print("info")
+    func quietGetMarkers() {
+        print("InfoViewController - quietGetMarkers")
         self.markersService.loadMarkers().then{response -> Void in
             self.markersArray = (response as? [Marker])!
             if self.markersArray?.count == 0 {
@@ -163,27 +176,36 @@ class InfoViewController: UIViewController {
     
     // MARK: Pause timer if touch map
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        timersInvalidate()
-        
-        sleepTimer = Timer.scheduledTimer(timeInterval: settingsService.getSleepTime(), target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
         
         if flag == 2 {
+            timersInvalidate()
             centerMap.isHidden = false
+            print("InfoViewController - sleep timer")
+            sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+            startTimer()
         }
-        
+
         if flag < 2 {
             flag += 1
         }
     }
     
+    func timerDidBecomeActive() {
+        print("InfoViewController - didBecomeActive")
+        quietGetMarkers()
+        startTimer()
+    }
+    
+    // MARK: Timers
     func startTimer() {
-        let time = settingsService.getTimeForTimer()
-        if time != 0.0 {
-        timer = Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
+        print("InfoViewController - start timer")
+        if timeLoading != 0.0 {
+            timer = Timer.scheduledTimer(timeInterval: timeLoading!, target: self, selector: #selector(self.quietGetMarkers), userInfo: nil, repeats: true)
         }
     }
     
     func timersInvalidate() {
+        print("InfoViewController - stop timers")
         timer.invalidate()
         sleepTimer.invalidate()
     }

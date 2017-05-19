@@ -50,6 +50,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.setNotificationKeyboard()
         self.navigationController?.isNavigationBarHidden = true
         
+        loginField.text?.removeAll()
+        passField.text?.removeAll()
+        
         // MARK: AutoLogin
         if KeychainSwift().get("login") != nil && KeychainSwift().get("password") != nil {
             loginField.text = KeychainSwift().get("login")
