@@ -154,6 +154,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 self.tableView.reloadData()
                 self.loadingView.isHidden = true
                 self.mapView()
+                self.centerMap.isHidden = true
             }
             }.catch { error in
                 self.dismiss(animated: true, completion: nil)
@@ -180,8 +181,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 
                 self.markersArrayFiltered = self.markersArray
                 self.tableView.reloadData()
-                self.centerMap.isHidden = true
                 self.mapView()
+                self.centerMap.isHidden = true
             }
             }.catch { error in
                 self.dismiss(animated: true, completion: nil)
