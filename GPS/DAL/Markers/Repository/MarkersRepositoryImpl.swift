@@ -71,6 +71,10 @@ class MarkersRepositoryImpl: NSObject, MarkersService {
         return _markersArray
     }
     
+    func clearMarkersArray() {
+        _markersArray = nil
+    }
+    
     // MARK: Find address
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()

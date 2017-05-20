@@ -182,7 +182,6 @@ class InfoViewController: UIViewController {
             centerMap.isHidden = false
             print("InfoViewController - sleep timer")
             sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
-            startTimer()
         }
 
         if flag < 2 {

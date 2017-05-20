@@ -21,6 +21,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     let notificationCenter = NotificationCenter.default
     var sleepTime:Double?
     var timeLoading:Double?
+    var reserverdArray:[Marker]?
+    var reserverdOfHeightOfCenterMap:CGFloat?
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
@@ -29,6 +31,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var ghostView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var centerMap: UIButton!
+    @IBOutlet weak var heightOfCenterMap: NSLayoutConstraint!
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -68,6 +71,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             self.timeLoading = nil
             self.markersArray?.removeAll()
             self.markersArrayFiltered?.removeAll()
+            self.reserverdArray = nil
+            self.markersService.clearMarkersArray()
             self.dismiss(animated: true, completion: nil)
             
         })
@@ -96,9 +101,22 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         notificationCenter.addObserver(self, selector: #selector(timerDidBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
         
         // MARK: Fast reload data
-        let reserverdArray = markersService.getMarkersArray()
+        reserverdArray = markersService.getMarkersArray()
         if reserverdArray != nil {
-            markersArrayFiltered = reserverdArray
+            
+            var tmpArray = [Marker]()
+            
+            for item in markersArrayFiltered! {
+                for reservedItem in reserverdArray! {
+                    if reservedItem.id == item.id {
+                        tmpArray.append(reservedItem)
+                    }
+                }
+            }
+            markersArrayFiltered = tmpArray
+        }
+        if searchBar?.text != "" {
+        timersInvalidate()
         }
         
         self.tableView.reloadData()
@@ -113,6 +131,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
+        
         searchBar.delegate = self
 
 
@@ -123,7 +144,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timersInvalidate()
-        
+        markersService.clearMarkersArray()
         notificationCenter.removeObserver(self, name: Notification.Name.UIApplicationWillResignActive, object: nil)
         notificationCenter.removeObserver(self, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
     }
@@ -132,6 +153,17 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBAction func centerMap(_ sender: UIButton) {
         mapView()
         centerMap.isHidden = true
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        reserverdOfHeightOfCenterMap = heightOfCenterMap.constant
+        heightOfCenterMap.constant = -((keyboardSize!.height)+10)
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        heightOfCenterMap.constant = reserverdOfHeightOfCenterMap!
     }
     
     // MARK: GetMarkers
@@ -230,7 +262,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        timersInvalidate()
+
         
         map.removeAnnotations(markersArrayFiltered!)
         markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray?.filter{
@@ -242,11 +274,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         tableView.reloadData()
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+                timersInvalidate()
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         startTimer()
         
         markersArrayFiltered = markersArray
+        centerMap.isHidden = true
         searchBar.text = ""
         mapView()
         tableView.reloadData()
@@ -256,10 +293,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         
         if flag == 3 {
-            timersInvalidate()
             centerMap.isHidden = false
+            if searchBar?.text == "" {
+            timersInvalidate()
             print("ViewController - sleep timer")
             sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+            }
         }
         
         if flag < 3 {

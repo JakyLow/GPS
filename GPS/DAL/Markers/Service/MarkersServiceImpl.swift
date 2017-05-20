@@ -33,6 +33,10 @@ class MarkersServiceImpl: NSObject, MarkersService {
         return markersRepository.getMarkersArray()
     }
     
+    func clearMarkersArray() {
+        return markersRepository.clearMarkersArray()
+    }
+    
     func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) -> AnyPromise {
         return markersRepository.getAddressFromLatLon(pdblLatitude: pdblLatitude, pdblLongitude: pdblLongitude)
     }

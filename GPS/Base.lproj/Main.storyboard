@@ -678,6 +678,7 @@
                     <connections>
                         <outlet property="centerMap" destination="0Bz-Et-j1C" id="gzo-be-y0S"/>
                         <outlet property="ghostView" destination="J4x-l3-EsE" id="Tsh-fc-Oox"/>
+                        <outlet property="heightOfCenterMap" destination="JAE-KK-Gwf" id="fis-Cj-kKp"/>
                         <outlet property="listOfMarkers" destination="itT-wP-gUk" id="CHa-hd-fSN"/>
                         <outlet property="loadingView" destination="bnR-g4-DnR" id="Vqz-jf-GXV"/>
                         <outlet property="map" destination="7uR-Hl-qbx" id="bn6-Gc-Xat"/>
