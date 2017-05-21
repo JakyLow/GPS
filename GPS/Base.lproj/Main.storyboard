@@ -684,6 +684,7 @@
                         <outlet property="map" destination="7uR-Hl-qbx" id="bn6-Gc-Xat"/>
                         <outlet property="searchBar" destination="ldh-hz-eUv" id="OLm-Am-gyP"/>
                         <outlet property="tableView" destination="itT-wP-gUk" id="Q6j-P4-sD9"/>
+                        <outlet property="updateBtn" destination="bMa-dx-4Wz" id="9ap-v4-55l"/>
                         <segue destination="dwW-8k-i1R" kind="show" identifier="viewToInfo" id="0aj-3N-iNH"/>
                     </connections>
                 </viewController>

@@ -23,6 +23,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var timeLoading:Double?
     var reserverdArray:[Marker]?
     var reserverdOfHeightOfCenterMap:CGFloat?
+    var keyboardSize: CGSize?
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listOfMarkers: UITableView!
@@ -32,6 +33,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var centerMap: UIButton!
     @IBOutlet weak var heightOfCenterMap: NSLayoutConstraint!
+    @IBOutlet weak var updateBtn: UIBarButtonItem!
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -94,7 +96,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         super.viewWillAppear(animated)
         timeLoading = settingsService.getTimeForTimer()
         sleepTime = settingsService.getSleepTime()
-        startTimer()
+        
+        if searchBar?.text == "" {
+            startTimer()
+        }
         
         notificationCenter.addObserver(self, selector: #selector(timersInvalidate), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         
@@ -103,7 +108,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         // MARK: Fast reload data
         reserverdArray = markersService.getMarkersArray()
         if reserverdArray != nil {
-            
+            markersArray = reserverdArray
             var tmpArray = [Marker]()
             
             for item in markersArrayFiltered! {
@@ -113,10 +118,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                     }
                 }
             }
+            
+            map.removeAnnotations(markersArrayFiltered!)
             markersArrayFiltered = tmpArray
+            mapView()
+            centerMap.isHidden = true
         }
         if searchBar?.text != "" {
-        timersInvalidate()
+            timersInvalidate()
         }
         
         self.tableView.reloadData()
@@ -125,7 +134,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         map.delegate = self
-        self.hideKeyboardWhenTappedAround()
+        
+//        self.hideKeyboardWhenTappedAround()
         settingsService.setSearchButtonText(text: "Отмена", searchBar: searchBar)
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -135,8 +145,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
         
         searchBar.delegate = self
-
-
+        
         getMarkers()
         mapView(map, regionWillChangeAnimated: true)
     }
@@ -157,7 +166,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     func keyboardWasShown(notification: NSNotification) {
         var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         reserverdOfHeightOfCenterMap = heightOfCenterMap.constant
         heightOfCenterMap.constant = -((keyboardSize!.height)+10)
     }
@@ -262,8 +271,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     // MARK: Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-
-        
         map.removeAnnotations(markersArrayFiltered!)
         markersArrayFiltered = searchText.isEmpty ? markersArray : markersArray?.filter{
             let string = $0.title
@@ -271,21 +278,34 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }
         
         mapView()
+        centerMap.isHidden = true
         tableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-                timersInvalidate()
+        timersInvalidate()
+        updateBtn.isEnabled = false
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         startTimer()
-        
+        updateBtn.isEnabled = true
         markersArrayFiltered = markersArray
-        centerMap.isHidden = true
         searchBar.text = ""
         mapView()
+        centerMap.isHidden = true
+        dismissKeyboard()
+        tableView.reloadData()
+    }
+    
+    func reloadDataWhenHideKeyboar() {
+        startTimer()
+        updateBtn.isEnabled = true
+        markersArrayFiltered = markersArray
+        searchBar.text = ""
+        mapView()
+        centerMap.isHidden = true
         tableView.reloadData()
     }
     
@@ -295,9 +315,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         if flag == 3 {
             centerMap.isHidden = false
             if searchBar?.text == "" {
-            timersInvalidate()
-            print("ViewController - sleep timer")
-            sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
+                timersInvalidate()
+                print("ViewController - sleep timer")
+                sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
             }
         }
         
@@ -305,11 +325,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             flag += 1
         }
     }
-
+    
     func timerDidBecomeActive() {
         print("ViewController - didBecomeActive")
-        quietGetMarkers()
-        startTimer()
+            if keyboardSize == nil {
+            quietGetMarkers()
+            startTimer()
+        }
     }
     
     // MARK: Timers
@@ -324,18 +346,5 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         print("ViewController - stop timers")
         timer.invalidate()
         sleepTimer.invalidate()
-    }
-}
-
-// MARK: Hide Keyboard
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
