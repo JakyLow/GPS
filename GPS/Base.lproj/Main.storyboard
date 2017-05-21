@@ -467,10 +467,10 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
-                                <rect key="frame" x="0.0" y="41" width="375" height="561"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="563"/>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bz-Et-j1C">
-                                <rect key="frame" x="324" y="406" width="40" height="40"/>
+                                <rect key="frame" x="324" y="407" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="HKY-f7-kek"/>
                                     <constraint firstAttribute="height" constant="40" id="xWH-mH-Ya2"/>
@@ -482,7 +482,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
-                                <rect key="frame" x="0.0" y="41" width="375" height="561"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" editingAccessoryType="disclosureIndicator" rowHeight="60" id="bsI-Ct-jMk" customClass="MarkersTableViewCell" customModule="GPS" customModuleProvider="target">
@@ -643,8 +643,8 @@
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="R6S-0V-99Q"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="TSz-Zr-2Bs"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="YMM-HS-d2N"/>
-                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-42" id="YgA-aY-txg"/>
-                            <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-42" id="Yqg-MU-ApS"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-40" id="YgA-aY-txg"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-40" id="Yqg-MU-ApS"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dhZ-Xg-hkg"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="20" id="kJK-jz-xJq"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="mQH-Q6-19w"/>

@@ -21,11 +21,12 @@ extension ViewController: MKMapViewDelegate {
                 view = dequeuedView
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
-                view.pinTintColor = annotation.pinColor()
+                
             }
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+            view.pinTintColor = annotation.pinColor()
             return view
         }
         return nil
