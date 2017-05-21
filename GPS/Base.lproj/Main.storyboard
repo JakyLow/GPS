@@ -455,22 +455,11 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Поиск объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-hz-eUv">
-                                <rect key="frame" x="0.0" y="-1" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-Hl-qbx">
-                                <rect key="frame" x="0.0" y="40" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="43" width="375" height="560.5"/>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bz-Et-j1C">
-                                <rect key="frame" x="324" y="407" width="40" height="40"/>
+                                <rect key="frame" x="324" y="407.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="HKY-f7-kek"/>
                                     <constraint firstAttribute="height" constant="40" id="xWH-mH-Ya2"/>
@@ -482,7 +471,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="itT-wP-gUk">
-                                <rect key="frame" x="0.0" y="40" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="43" width="375" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" editingAccessoryType="disclosureIndicator" rowHeight="60" id="bsI-Ct-jMk" customClass="MarkersTableViewCell" customModule="GPS" customModuleProvider="target">
@@ -562,6 +551,17 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="Поиск объектов" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-hz-eUv">
+                                <rect key="frame" x="0.0" y="-1" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="0.47058823529999999" green="0.86666666670000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4x-l3-EsE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
@@ -630,9 +630,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="05B-3n-n27"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7uR-Hl-qbx" secondAttribute="bottom" id="40X-Qr-Efk"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5cM-g3-xTP"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6wZ-fM-Qlk"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="7Y2-eq-jB6"/>
+                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="top" secondItem="ldh-hz-eUv" secondAttribute="bottom" id="7ul-l0-riB"/>
                             <constraint firstItem="ldh-hz-eUv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C5N-hc-EFt"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fis-zy-6Zn"/>
                             <constraint firstItem="0Bz-Et-j1C" firstAttribute="trailing" secondItem="7uR-Hl-qbx" secondAttribute="trailing" constant="-11" id="G6R-ez-a5w"/>
@@ -641,14 +643,12 @@
                             <constraint firstItem="0Bz-Et-j1C" firstAttribute="bottom" secondItem="7uR-Hl-qbx" secondAttribute="bottom" constant="-156" id="JAE-KK-Gwf"/>
                             <constraint firstItem="ldh-hz-eUv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-1" id="K2z-Qi-ow8"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="R6S-0V-99Q"/>
+                            <constraint firstItem="itT-wP-gUk" firstAttribute="top" secondItem="ldh-hz-eUv" secondAttribute="bottom" id="RSp-3E-4CI"/>
                             <constraint firstItem="J4x-l3-EsE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="TSz-Zr-2Bs"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="YMM-HS-d2N"/>
-                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-40" id="YgA-aY-txg"/>
-                            <constraint firstItem="itT-wP-gUk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-40" id="Yqg-MU-ApS"/>
                             <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dhZ-Xg-hkg"/>
-                            <constraint firstItem="7uR-Hl-qbx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="20" id="kJK-jz-xJq"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="itT-wP-gUk" secondAttribute="bottom" id="jhj-hY-ho0"/>
                             <constraint firstItem="bnR-g4-DnR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="mQH-Q6-19w"/>
-                            <constraint firstItem="itT-wP-gUk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="20" id="vmy-Ju-to4"/>
                             <constraint firstItem="itT-wP-gUk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yuW-gQ-0ll"/>
                         </constraints>
                     </view>

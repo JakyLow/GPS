@@ -39,11 +39,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     // MARK: Update markers
     @IBAction func updateMarkers(_ sender: UIBarButtonItem) {
+        updateBtn.isEnabled = false
         if self.markersArrayFiltered?.count != 0 {
             self.map.removeAnnotations(self.markersArrayFiltered!)
         }
         getMarkers()
-        self.centerMap.isHidden = true
     }
     
     // MARK: UISegmentedControl
@@ -134,8 +134,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         map.delegate = self
+        map.isHidden = true
+        updateBtn.isEnabled = false
         
-//        self.hideKeyboardWhenTappedAround()
+        searchBar.layer.borderWidth = 1
+        searchBar.layer.borderColor = UIColor(red: 120/255, green: 221/255, blue: 236/255, alpha: 1.0).cgColor
+        
         settingsService.setSearchButtonText(text: "Отмена", searchBar: searchBar)
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -195,6 +199,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 self.markersArrayFiltered = self.markersArray
                 self.tableView.reloadData()
                 self.loadingView.isHidden = true
+                self.updateBtn.isEnabled = true
                 self.ghostView.isHidden = true
                 self.mapView()
                 self.centerMap.isHidden = true
@@ -296,6 +301,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         mapView()
         centerMap.isHidden = true
         dismissKeyboard()
+        keyboardSize?.height = 0.0
         tableView.reloadData()
     }
     
@@ -314,7 +320,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         if flag == 3 {
             centerMap.isHidden = false
-            if searchBar?.text == "" {
+            if map.isHidden == false && keyboardSize?.height == 0 {
                 timersInvalidate()
                 print("ViewController - sleep timer")
                 sleepTimer = Timer.scheduledTimer(timeInterval: sleepTime!, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: false)
