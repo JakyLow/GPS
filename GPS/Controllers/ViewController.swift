@@ -89,6 +89,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         optionMenu.addAction(exitAction)
         optionMenu.addAction(helpAction)
         optionMenu.addAction(cancelAction)
+
+        let popover = optionMenu.popoverPresentationController
+        popover?.barButtonItem = sender
+        
         self.present(optionMenu, animated: true, completion: nil)
     }
     
