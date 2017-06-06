@@ -11,7 +11,7 @@ Also watch the [preview video](https://youtu.be/Ui9Xiz563Kw).
 ## Technical details
 The program accesses the server through get/post requests and receives the JSON. Access to the server is available on request or by timer. The user can select when to update the data. When using the map, the data update timer is set for convenient scrolling of the map.
 
-## Acknowledgments
+## Gratitude
 The customer highly appreciated the quality of the work performed and looks forward to further cooperation.
 ![acknowledgments](https://scontent.xx.fbcdn.net/v/t1.0-9/18835779_1568986819781144_5855514479227497650_n.jpg?oh=c6bee8cfc0b97072093ec65d37a27e6b&oe=59E2C970)
 
