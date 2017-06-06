@@ -1,5 +1,5 @@
 # GPS tracking
-> GPS tracking (GPS мониторинг) is the iOS application monitoring for any objects using trackers. The application is based on the [gps-tracker.com.ua](http://gps-tracker.com.ua) service.
+> GPS tracking (GPS мониторинг) is the iOS application monitoring for any objects using trackers. The application is based on the [gps-tracker.com.ua](http://gps-tracker.com.ua) service. Download application in [https://appsto.re/ru/xBq4jb.i](iTunes).
 
 ## Details
 Monitoring service for any objects: transport, people, animals, etc. The application allows owners of devices not only to track the movement on the map, but also in online mode to get the most complete information about the tracked object.
