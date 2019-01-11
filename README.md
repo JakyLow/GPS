@@ -13,7 +13,7 @@ The program accesses the server through get/post requests and receives the JSON.
 
 ## Gratitude
 The customer highly appreciated the quality of the work performed and looks forward to further cooperation.
-![acknowledgments](https://scontent.xx.fbcdn.net/v/t1.0-9/18835779_1568986819781144_5855514479227497650_n.jpg?oh=c6bee8cfc0b97072093ec65d37a27e6b&oe=59E2C970)
+<img src="https://pp.userapi.com/c845219/v845219559/17bb54/Cwx4w-btF9Y.jpg" width="450">
 
 ## Author
 Maxim Mazhuga [@JakyLow](https://www.facebook.com/maxim.mazhuga). 
